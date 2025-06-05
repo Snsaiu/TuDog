@@ -3,6 +3,12 @@
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <LangVersion>latest</LangVersion>
+        <Authors>Saiu</Authors>
+        <Description>工具</Description>
+        <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
+        <Title>YouYan.Hamster</Title>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
 </Project>

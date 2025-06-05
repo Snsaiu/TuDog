@@ -3,6 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>latest</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>TuDog.IocAttribute</Title>
+        <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
+        <Authors>Saiu</Authors>
     </PropertyGroup>
 
     <ItemGroup>
