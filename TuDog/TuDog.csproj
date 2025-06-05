@@ -5,6 +5,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>TuDog</Title>
+        <Description>An MVVM toolkit targeted at the Avalonia framework
+</Description>
+        <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
+        <PackageTags>avalonia;mvvm</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
