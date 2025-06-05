@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>false</IsPackable>
+        <IsPackable>true</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
 
@@ -15,6 +15,12 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<!-- Generates a package at build -->
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<Title>TuDog.IocAutoRegisterSource</Title>
+		<Company>YouYan</Company>
+		<Authors>Saiu</Authors>
+		<Description>avalonia 以来注入源代码生成器</Description>
+		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
 		<!-- Do not include the generator as a lib dependency -->
 
     </PropertyGroup>
