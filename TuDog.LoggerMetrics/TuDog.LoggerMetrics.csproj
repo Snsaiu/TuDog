@@ -4,6 +4,12 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<Version>1.0.1</Version>
+		<Title>TuDog.LoggerMetrics</Title>
+		<Authors>Saiu</Authors>
+		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
