@@ -122,6 +122,14 @@ Xamarin.Essentials (>= 1.8.1)
 该方法要求您返回一个`object`对象，针对桌面端，您只需要返回`window`对象，其实就是您应用的主窗口对象；针对移动端，您需要返回
 `UserControl`对象，其实就是您应用启动的第一个页面。
 
+### 引入样式
+在`App.xaml`文件中添加
+```
+ <Application.Styles>
+    <StyleInclude Source="avares://TuDog/Bootstrap/TuDogStyles.axaml" />
+</Application.Styles>
+```
+
 **一旦您完成上述操作，那么您的配置已经结束了，您可以编译一下项目保证没有问题后就可以继续您的下一步了！**
 
 <!-- USAGE EXAMPLES -->
