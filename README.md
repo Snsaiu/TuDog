@@ -92,7 +92,8 @@ Xamarin.Essentials (>= 1.8.1)
 * ```dotnet add package TuDog --version 1.0.0```
 * ```dotnet add package TuDog.IocAutoRegisterSourceGenerator --version 1.0.0```
 * ```dotnet add package TuDog.IocAttribute --version 1.0.0```
-* ```dotnet add package TuDog.LoggerMetrics --version 1.0.1``` _可选_
+* ```dotnet add package TuDog.LoggerMetrics --version 1.0.1``` _可选_  
+**注意：`TuDog.IocAutoRegisterSourceGenerator`在项目文件中必须要加上属性`OutputItemType="Analyzer"` `ReferenceOutputAssembly="false"`**
 
 ### 项目配置
 
