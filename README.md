@@ -33,16 +33,14 @@
     <li>
       <a href="#开始">开始</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#最低要求">最低要求</a></li>
+        <li><a href="#引入包">引入包</a></li>
+        <li><a href="#项目配置">项目配置</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#用法">用法</a></li>
+    <li><a href="#开源许可">开源许可</a></li>
+    <li><a href="#联系我们">联系我们</a></li>
   </ol>
 </details>
 
