@@ -48,7 +48,7 @@ public class DialogServer(ViewLocatorBase viewLocatorBase, IContainer container)
         {
             Title = title,
             PrimaryButtonText = confirmButtonText,
-            SecondaryButtonText = cancelButtonText
+            SecondaryButtonText = cancelButtonText,
         };
 
         var vm = new InputTextViewModel
@@ -84,7 +84,6 @@ public class DialogServer(ViewLocatorBase viewLocatorBase, IContainer container)
         view.DataContext = vm;
         view.AttachLoadedBehavior(vm);
         view.AttachUnLoadedBehavior(vm);
-
      
         var dialog = new DialogWindow()
         {
@@ -92,10 +91,16 @@ public class DialogServer(ViewLocatorBase viewLocatorBase, IContainer container)
             PrimaryButtonText = confirmButtonText,
             SecondaryButtonText = cancelButtonText,
             Content = view,
-            DialogViewModel = vm
+            DialogViewModel = vm,
+            Topmost = true
         };
-      
+
+        // var topMostClone = TuDogApplication.MainWindow.Topmost;
+        // TuDogApplication.MainWindow.Topmost = false;
+
         var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
+        // TuDogApplication.MainWindow.Topmost = topMostClone;
+        
         return result;
     }
 
