@@ -55,9 +55,16 @@ public partial class DialogWindow : Window
     {
         var result = await DialogViewModel.CancelAsync();
         DialogResultData data = new(false, result);
-        Close(data);
+        if (WhenCancelCloseWindow)
+            Close(data);
+
+        if (CancellationTokenSource is not null and var source)
+            await source.CancelAsync();
     }
 
+    internal CancellationTokenSource? CancellationTokenSource { get; set; }
+
+    public bool WhenCancelCloseWindow { get; set; } = true;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -78,10 +85,11 @@ public partial class DialogWindow : Window
             Width = userControl.Width;
             Height = userControl.Height + 24 * 7;
         });
-        DialogViewModel.ErrorMessageAction += (message, title, state) =>
-        {
-            _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state));
-        };
+        if (DialogViewModel is not null)
+            DialogViewModel.ErrorMessageAction += (message, title, state) =>
+            {
+                _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state));
+            };
     }
 
     public DialogWindow()

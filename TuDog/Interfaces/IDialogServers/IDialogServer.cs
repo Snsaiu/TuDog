@@ -1,5 +1,6 @@
 ﻿using TuDog.Bootstrap;
 using TuDog.Enums;
+using TuDog.Interfaces.IDialogServers.Impl;
 using TuDog.Models;
 
 namespace TuDog.Interfaces.IDialogServers;
@@ -16,12 +17,14 @@ public interface IDialogServer
         string placeHolder = "请输入...", string confirmButtonText = "确定",
         string cancelButtonText = "取消", string? defaultValue = null);
 
-    public Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel,TParameter, TResult>(string title,
+    public Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
         string confirmButtonText = "确定",
-        string cancelButtonText = "取消", TParameter? parameter=default )
-        where TViewModel : DialogViewModelBaseAsync<TParameter,TResult>;
+        string cancelButtonText = "取消", TParameter? parameter = default)
+        where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>;
 
     public Task<DialogResultData<object>?> ShowDialogAsync<TViewModel, TParameter>(string title,
         string confirmButtonText = "确定",
         string cancelButtonText = "取消", TParameter? parameter = default) where TViewModel : DialogViewModelBaseAsync;
+
+    public ProgressDialogResult ShowProgressDialog(string title, string subHeader, string cancelButton = "");
 }

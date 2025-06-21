@@ -1,23 +1,20 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using TuDog.Bootstrap;
 
 namespace Demo;
 
-public partial class App : Application
+public partial class App : TuDogApplication
 {
     public override void Initialize()
     {
+        base.Initialize();
         AvaloniaXamlLoader.Load(this);
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    public override object CreateShell()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            desktop.MainWindow = new MainWindow();
-        }
-
-        base.OnFrameworkInitializationCompleted();
+        return new MainWindow();
     }
 }

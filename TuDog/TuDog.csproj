@@ -5,36 +5,37 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>TuDog</Title>
         <Description>An MVVM toolkit targeted at the Avalonia framework
-</Description>
+        </Description>
         <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
         <PackageTags>avalonia;mvvm</PackageTags>
         <Version>1.0.1</Version>
         <PackageIcon>TuDog.png</PackageIcon>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" />
-        <PackageReference Include="Avalonia.Xaml.Behaviors" />
-      <PackageReference Include="CommunityToolkit.Mvvm" />
-        <PackageReference Include="FluentAvaloniaUI" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-        <PackageReference Include="Newtonsoft.Json" />
-        <PackageReference Include="Xamarin.Essentials" />
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Xaml.Behaviors"/>
+        <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="FluentAvaloniaUI"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions"/>
+        <PackageReference Include="Newtonsoft.Json"/>
+        <PackageReference Include="Xamarin.Essentials"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Interfaces\LocalPreferences\Impl\" />
+        <Folder Include="Interfaces\LocalPreferences\Impl\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="TuDog.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-      </None>
+        <None Update="TuDog.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uIs="clr-namespace:TuDog.UIs"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="uIs:ProgressDialogViewModel"
+             Width="400"
+             Height="100"
+             x:Class="TuDog.UIs.ProgressDialog">
+    <Design.DataContext>
+        <uIs:ProgressDialogViewModel />
+    </Design.DataContext>
+    <Grid Margin="20,10" VerticalAlignment="Center" RowDefinitions="Auto,Auto,Auto,Auto">
+        <TextBlock Grid.Row="0" Text="{Binding SubTitle}" />
+        <ProgressBar Value="{Binding Value}" Margin="0,10,0,0" Grid.Row="1" IsIndeterminate="{Binding IsIndeterminate}" />
+    </Grid>
+</UserControl>

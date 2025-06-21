@@ -19,4 +19,25 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TuDog.IocAttribute\TuDog.IocAttribute.csproj" />
+      <ProjectReference Include="..\TuDog.IocAutoRegisterSourceGenerator\TuDog.IocAutoRegisterSourceGenerator\TuDog.IocAutoRegisterSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+      <ProjectReference Include="..\TuDog.LoggerMetrics\TuDog.LoggerMetrics.csproj" />
+      <ProjectReference Include="..\TuDog\TuDog.csproj" />
+      <ProjectReference Include="..\YouYan.Hamster\YouYan.Hamster.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="$(MSBuildProjectFile)"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <ScanAssemblyRule>^Demo</ScanAssemblyRule>
+    </PropertyGroup>
+
 </Project>

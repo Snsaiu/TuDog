@@ -4,7 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Media;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Logging;
 using TuDog.Bases.Regions;
 using TuDog.Bases.Regions.Impl;
 using TuDog.Interfaces.IDialogServers;
@@ -39,6 +39,7 @@ public abstract class TuDogApplication : Application
         Register(collection);
         AutoRegister(collection);
         ServiceProvider = collection.BuildServiceProvider();
+        InitGlobalExceptionHandlers();
     }
 
     protected virtual void AutoRegister(IServiceCollection collection)
@@ -64,17 +65,13 @@ public abstract class TuDogApplication : Application
             BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
 
         // remove each entry found
-        foreach (var plugin in dataValidationPluginsToRemove)
-        {
-            BindingPlugins.DataValidators.Remove(plugin);
-        }
+        foreach (var plugin in dataValidationPluginsToRemove) BindingPlugins.DataValidators.Remove(plugin);
     }
 
     public abstract object CreateShell();
 
     public override void OnFrameworkInitializationCompleted()
     {
-
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             var window = (Window)CreateShell();
@@ -104,5 +101,25 @@ public abstract class TuDogApplication : Application
 
     protected virtual void Register(IServiceCollection collection)
     {
+    }
+
+    public void InitGlobalExceptionHandlers()
+    {
+        var logger = ServiceProvider.GetService<ILogger<TuDogApplication>>();
+
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            if (e is OperationCanceledException) DialogServer.ProgressDialogWindow.Close();
+
+            if (logger is null) return;
+            var ex = (Exception)e.ExceptionObject;
+            logger.LogError(ex, ex.Message);
+        };
+
+        TaskScheduler.UnobservedTaskException += (sender, e) =>
+        {
+            if (logger is not null) logger.LogError(e.Exception, e.Exception.Message);
+            e.SetObserved();
+        };
     }
 }
