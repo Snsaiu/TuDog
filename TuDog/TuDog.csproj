@@ -11,7 +11,7 @@
         <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
         <PackageTags>avalonia;mvvm</PackageTags>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <PackageIcon>TuDog.png</PackageIcon>
         <IsPackable>true</IsPackable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
