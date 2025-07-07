@@ -23,4 +23,9 @@ public partial class MainWindow : Window
     {
         _regionManager.AddToRegion<ProgressDialogViewModel>(regionName);
     }
+
+    private void OpenTextInputDialog(object? sender, RoutedEventArgs e)
+    {
+        _regionManager.AddToRegion<TextInputDialogViewModel>(regionName);
+    }
 }

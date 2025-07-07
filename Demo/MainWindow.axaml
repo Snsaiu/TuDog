@@ -9,6 +9,7 @@
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Left" Margin="5">
             <Button Content="等待弹框" Click="OpenWaitingDialog" />
+            <Button Content="文本输入框"  Click="OpenTextInputDialog"></Button>
         </StackPanel>
         <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
     </DockPanel>

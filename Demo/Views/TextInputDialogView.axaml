@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Demo.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:TextInputDialogViewModel"
+             x:Class="Demo.Views.TextInputDialogView">
+   <StackPanel>
+       <Button Content="基本用法" Command="{Binding BaseUsageCommand}"></Button>
+       <Button Content="将内容带入文本框" Command="{Binding TextHasContentCommand}"></Button>
+       <Button Content="限制长度为10" Command="{Binding LimitLengthContentCommand }"></Button>
+       <StackPanel Orientation="Horizontal">
+           <TextBlock Text="结果:"></TextBlock>
+           <TextBlock Text="{Binding ResultMessage}"></TextBlock>
+       </StackPanel>
+   </StackPanel>
+</UserControl>

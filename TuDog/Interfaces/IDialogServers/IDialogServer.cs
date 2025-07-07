@@ -15,7 +15,7 @@ public interface IDialogServer
 
     public Task<DialogResultData<string>> ShowInputDialogAsync(string message, string title = "提示",
         string placeHolder = "请输入...", string confirmButtonText = "确定",
-        string cancelButtonText = "取消", string? defaultValue = null);
+        string cancelButtonText = "取消", string? defaultValue = null,int? maxLength = null);
 
     public Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
         string confirmButtonText = "确定",
