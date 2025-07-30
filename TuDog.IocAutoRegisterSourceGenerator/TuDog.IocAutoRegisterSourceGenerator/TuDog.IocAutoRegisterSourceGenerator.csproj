@@ -21,6 +21,7 @@
 		<Description>avalonia 以来注入源代码生成器</Description>
 		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
+		<Version>1.0.2</Version>
 		<!-- Do not include the generator as a lib dependency -->
 
     </PropertyGroup>
