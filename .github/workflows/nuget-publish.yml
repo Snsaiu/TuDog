@@ -1,0 +1,24 @@
+name: Publish NuGet
+
+on:
+  push:
+    tags:
+      - 'v*'   # 打标签时发布
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+      - name: Restore
+        run: dotnet restore
+      - name: build
+        run: dotnet build --configuration Release
+      - name: Pack
+        run: dotnet pack --configuration Release
+      - name: Push to NuGet
+        run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
