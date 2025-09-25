@@ -5,10 +5,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Title>TuDog.LoggerMetrics</Title>
-		<Authors>Saiu</Authors>
-		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>TudogTool_Icon.png</PackageIcon>
 	</PropertyGroup>
 

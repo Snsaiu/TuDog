@@ -16,8 +16,6 @@
 		<!-- Generates a package at build -->
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<Title>TuDog.IocAutoRegisterSource</Title>
-		<Company>YouYan</Company>
-		<Authors>Saiu</Authors>
 		<Description>avalonia 注入源代码生成器</Description>
 		<PackageIcon>TudogTool_Icon.png</PackageIcon>
 	

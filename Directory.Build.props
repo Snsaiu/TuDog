@@ -1,21 +1,16 @@
 <Project>
 	<PropertyGroup>
-
-		<!-- д╛хо Release ╠ЮрК -->
 		<Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-
-		<!-- вт╤╞тз build й╠иЗЁи NuGet ╟Э -->
+        
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         
-		<!-- мЁр╩ NuGet т╙йЩ╬щ -->
-		<Authors>до╬╘ссЕШ©ф╪╪╪╪йУспоч╧╚к╬</Authors>
-		<Company>до╬╘ссЕШ©ф╪╪╪╪йУспоч╧╚к╬</Company>
+        <Authors>Е█≈Д╨╛Д╫▒Е╕█Г╖▒Ф┼─Ф┼─Ф°╞Ф°┴И≥░Е┘╛Е▐╦</Authors>
+        <Company>Е█≈Д╨╛Д╫▒Е╕█Г╖▒Ф┼─Ф┼─Ф°╞Ф°┴И≥░Е┘╛Е▐╦</Company>
 		
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
-
-		<!-- ╟Ф╠╬╨е -->
+        
 		<Version>0.0.0.3</Version>
 		<FileVersion>0.0.0.3</FileVersion>
 		<AssemblyVersion>0.0.0.3</AssemblyVersion>
