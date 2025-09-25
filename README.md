@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Snsaiu/TuDog">
-    <img src="ReadMeAssets/TuDog.png" alt="Logo" width="80" height="80">
+    <img src="ReadMeAssets/Tudog_Icon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">中华田园犬-Avalonia-ToolKit</h3>

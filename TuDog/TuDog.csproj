@@ -11,32 +11,38 @@
         <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
         <PackageTags>avalonia;mvvm</PackageTags>
-        <Version>1.0.4</Version>
-        <PackageIcon>TuDog.png</PackageIcon>
+        <PackageIcon>Tudog_Icon.png</PackageIcon>
         <IsPackable>true</IsPackable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia"/>
-        <PackageReference Include="Avalonia.Xaml.Behaviors"/>
-        <PackageReference Include="CommunityToolkit.Mvvm"/>
-        <PackageReference Include="FluentAvaloniaUI"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions"/>
-        <PackageReference Include="Newtonsoft.Json"/>
-        <PackageReference Include="Xamarin.Essentials"/>
+        <PackageReference Include="Avalonia" />
+        <PackageReference Include="Avalonia.Xaml.Behaviors" />
+        <PackageReference Include="CommunityToolkit.Mvvm" />
+        <PackageReference Include="FluentAvaloniaUI" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="Xamarin.Essentials" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Interfaces\LocalPreferences\Impl\"/>
+        <Folder Include="Interfaces\LocalPreferences\Impl\" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="TuDog.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
+      <None Include="..\ReadMeAssets\Tudog_Icon.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Icon.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>

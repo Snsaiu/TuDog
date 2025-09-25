@@ -18,10 +18,9 @@
 		<Title>TuDog.IocAutoRegisterSource</Title>
 		<Company>YouYan</Company>
 		<Authors>Saiu</Authors>
-		<Description>avalonia 以来注入源代码生成器</Description>
-		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
-		<Version>1.0.2</Version>
+		<Description>avalonia 注入源代码生成器</Description>
+		<PackageIcon>TudogTool_Icon.png</PackageIcon>
+	
 		<!-- Do not include the generator as a lib dependency -->
 
     </PropertyGroup>
@@ -47,6 +46,10 @@
 
 		<!-- Package the generator in the analyzer directory of the nuget package -->
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="..\..\ReadMeAssets\TudogTool_Icon.png">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 
 		<!-- Package the Newtonsoft.Json dependency alongside the generator assembly -->
 		<None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
