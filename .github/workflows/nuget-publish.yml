@@ -20,5 +20,7 @@ jobs:
         run: dotnet build --configuration Release
       - name: Pack
         run: dotnet pack --configuration Release
+      - name: Remove Demo package
+        run: rm -f **/Demo.*.nupkg
       - name: Push to NuGet
         run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}

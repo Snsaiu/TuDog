@@ -6,8 +6,13 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    </PropertyGroup>
+    
     <ItemGroup>
         <PackageReference Include="Avalonia" />
         <PackageReference Include="Avalonia.Desktop" />
