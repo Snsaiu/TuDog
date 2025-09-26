@@ -23,7 +23,7 @@ jobs:
         run: dotnet pack --configuration Release
 
       - name: Remove Demo package
-        run: rm -f **/Demo.*.nupkg
+        run: Remove-Item -Path **/Demo.*.nupkg -Force
 
       - name: List packages
         run: ls **/*.nupkg
