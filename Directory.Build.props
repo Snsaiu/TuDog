@@ -1,18 +1,18 @@
 <Project>
-	<PropertyGroup>
-		<Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-        
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        
+    <PropertyGroup>
+        <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
         <Authors>南京佑妍科技技术有限公司</Authors>
         <Company>南京佑妍科技技术有限公司</Company>
-		
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
-        
-		<Version>1.0.5</Version>
-		<FileVersion>1.0.5</FileVersion>
-		<AssemblyVersion>1.0.5</AssemblyVersion>
-	</PropertyGroup>
+
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
+
+        <Version>1.0.6</Version>
+        <FileVersion>1.0.6</FileVersion>
+        <AssemblyVersion>1.0.6</AssemblyVersion>
+    </PropertyGroup>
 </Project>
