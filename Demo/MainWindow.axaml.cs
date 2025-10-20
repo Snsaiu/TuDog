@@ -1,13 +1,14 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Demo.ViewModels;
+using FluentAvalonia.UI.Windowing;
 using Microsoft.Extensions.DependencyInjection;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.RegionManagers;
 
 namespace Demo;
 
-public partial class MainWindow : Window
+public partial class MainWindow : AppWindow
 {
     private const string regionName = "mainContainer";
 

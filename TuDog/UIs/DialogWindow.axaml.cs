@@ -78,20 +78,13 @@ public partial class DialogWindow : Window
 
         this.GetObservable(SecondaryButtonTextProperty)
             .Subscribe(x => _secondaryButton.IsVisible = !string.IsNullOrEmpty(x));
-
-        this.GetObservable(ContentProperty).Subscribe(x =>
-        {
-            if (x is not UserControl userControl) return;
-            Width = userControl.Width;
-            Height = userControl.Height + 24 * 7;
-        });
+        
         if (DialogViewModel is not null)
             DialogViewModel.ErrorMessageAction += (message, title, state) =>
             {
                 _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state));
             };
     }
-
     public DialogWindow()
     {
         InitializeComponent();
