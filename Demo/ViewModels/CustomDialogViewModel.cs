@@ -15,4 +15,10 @@ public partial class CustomDialogViewModel(IDialogServer dialogServer) : TuDogVi
         var result =
             await dialogServer.ShowDialogAsync<MyDialogViewModel, string, CustomDialogData>("自定义", parameter: "custom");
     }
+
+    [RelayCommand]
+    public  Task NoReturnShow()
+    {
+        return dialogServer.ShowDialogAsync<MyDialogNoReturnViewModel,bool>("custom");
+    }
 }
