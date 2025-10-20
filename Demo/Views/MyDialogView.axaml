@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Demo.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Width="400"
+             Height="200"
+             x:DataType="{x:Type viewModels:MyDialogViewModel}"
+             x:Class="Demo.Views.MyDialogView">
+    <Grid RowDefinitions="Auto,Auto">
+        <DockPanel LastChildFill="True">
+            <TextBlock DockPanel.Dock="Left" Text="Message:"></TextBlock>
+            <TextBox DockPanel.Dock="Right" Text="{Binding Data.Message}"></TextBox>
+        </DockPanel>
+        <CheckBox Grid.Row="1" Content="Sync" IsChecked="{Binding Data.IsSync}"></CheckBox>
+    </Grid>
+</UserControl>

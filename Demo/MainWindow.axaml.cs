@@ -28,4 +28,9 @@ public partial class MainWindow : Window
     {
         _regionManager.AddToRegion<TextInputDialogViewModel>(regionName);
     }
+
+    private void OpenCustomDialog(object? sender, RoutedEventArgs e)
+    {
+        _regionManager.AddToRegion<CustomDialogViewModel>(regionName);
+    }
 }
