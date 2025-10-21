@@ -27,7 +27,7 @@ public abstract class DialogViewModelBaseAsync : TuDogViewModelBase, IViewModelR
     public abstract Task<object?> CancelAsync();
 
 
-    public Task<bool> CanConfirmAsync()
+    public virtual Task<bool> CanConfirmAsync()
     {
         return Task.FromResult(true);
     }

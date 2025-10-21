@@ -11,7 +11,7 @@
         <StackPanel DockPanel.Dock="Left" Margin="5">
             <Button Content="等待弹框" Click="OpenWaitingDialog" />
             <Button Content="文本输入框"  Click="OpenTextInputDialog"></Button>
-            <Button Content="自定义文本框" Click="OpenCustomDialog"></Button>
+            <Button Content="自定义弹框" Click="OpenCustomDialog"></Button>
         </StackPanel>
         <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
     </DockPanel>

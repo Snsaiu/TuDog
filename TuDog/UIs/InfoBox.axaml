@@ -15,7 +15,7 @@
                <ItemsControl Name="PART_ItemControl">
                    <ItemsControl.ItemTemplate>
                        <DataTemplate DataType="{x:Type models:InfoModel}">
-                           <Border CornerRadius="10" Opacity="0"
+                           <Border CornerRadius="5" Opacity="0"
                                    MinWidth="50"
                                    Name="Border"
                                    VerticalAlignment="Center"
@@ -62,14 +62,12 @@
                                </Interaction.Behaviors>
                                <StackPanel HorizontalAlignment="Left">
                                    <TextBlock Foreground="{DynamicResource InfoBarTitleForeground}" FontWeight="Bold"
+                                              HorizontalAlignment="Left"
                                               VerticalAlignment="Center" DockPanel.Dock="Left" Text="{Binding Title}" />
                                    <DockPanel LastChildFill="True">
-                                       <TextBlock Foreground="{DynamicResource InfoBarMessageForeground}"
-                                                  VerticalAlignment="Center" DockPanel.Dock="Left"
-                                                  Text="{Binding Message}" />
-
                                        <Button Name="CloseButton"
                                                VerticalAlignment="Center"
+                                               DockPanel.Dock="Right"
                                                Command="{Binding CloseCommand,  RelativeSource={RelativeSource  AncestorType=controls:InfoBox}}"
                                                CommandParameter="{Binding .}"
                                                HorizontalAlignment="Right"
@@ -83,6 +81,10 @@
                                                <controls1:SymbolIcon Symbol="{StaticResource InfoBarCloseButtonSymbol}" />
                                            </Viewbox>
                                        </Button>
+                                       <TextBlock Foreground="{DynamicResource InfoBarMessageForeground}"
+                                                  VerticalAlignment="Center" DockPanel.Dock="Left"
+                                                  HorizontalAlignment="Left"
+                                                  Text="{Binding Message}" />
 
                                    </DockPanel>
                                </StackPanel>

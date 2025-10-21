@@ -1,16 +1,19 @@
 ﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using TuDog.Bootstrap;
+using TuDog.Enums;
 using TuDog.IocAttribute;
 
 namespace Demo.ViewModels;
 
 
-public sealed class CustomDialogData
+public sealed partial class CustomDialogData:ModelBase
 {
-    public string Message { get; set; } = string.Empty;
+    [ObservableProperty]
+    private string _message;
     
-    public bool IsSync { get; set; }
+    [ObservableProperty]
+    private bool _isSync;
 }
 
 [Register]
@@ -28,6 +31,16 @@ public partial class MyDialogViewModel:DialogViewModelBaseAsync<string,CustomDia
     public override Task<CustomDialogData> ConfirmAsync()
     {
         return Task.FromResult(Data);
+    }
+
+    public override Task<bool> CanConfirmAsync()
+    {
+        if (string.IsNullOrEmpty(Data.Message))
+        {
+            ErrorMessageAction("message不能为空", "错误", MessageState.Error);
+            return Task.FromResult(false);
+        }
+        return Task.FromResult(true);
     }
 
     public override Task<CustomDialogData> CancelAsync()

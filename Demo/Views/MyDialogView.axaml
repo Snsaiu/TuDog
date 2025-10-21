@@ -11,7 +11,7 @@
     <Grid RowDefinitions="Auto,Auto">
         <DockPanel LastChildFill="True">
             <TextBlock DockPanel.Dock="Left" Text="Message:"></TextBlock>
-            <TextBox DockPanel.Dock="Right" Text="{Binding Data.Message}"></TextBox>
+            <TextBox DockPanel.Dock="Right" Text="{Binding Data.Message,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </DockPanel>
         <CheckBox Grid.Row="1" Content="Sync" IsChecked="{Binding Data.IsSync}"></CheckBox>
     </Grid>
