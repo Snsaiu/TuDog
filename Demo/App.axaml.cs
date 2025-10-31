@@ -8,9 +8,9 @@ namespace Demo;
 public partial class App : TuDogApplication
 {
     public override void Initialize()
-    {   AvaloniaXamlLoader.Load(this);
+    {
         base.Initialize();
-     
+        AvaloniaXamlLoader.Load(this);
     }
 
     public override object CreateShell()

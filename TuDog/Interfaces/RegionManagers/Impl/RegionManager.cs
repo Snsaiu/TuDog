@@ -8,7 +8,10 @@ using TuDog.ViewLocators;
 
 namespace TuDog.Interfaces.RegionManagers.Impl;
 
-public class RegionManager(RegionContainerBase regionContainer, IContainer container, ViewLocatorBase viewLocatorBase)
+public class RegionManager(
+    RegionContainerBase regionContainer,
+    ITuDogContainer container,
+    ViewLocatorBase viewLocatorBase)
     : IRegionManager
 {
     public void AddToRegion<T>(string regionName) where T : TuDogViewModelBase
@@ -41,7 +44,7 @@ public class RegionManager(RegionContainerBase regionContainer, IContainer conta
         if (!regionContainer.Exists(regionName))
             throw new ArgumentException("Region not found");
 
-        var vm = KeepParse<T>() ?? container.GetRequiredService<T>();
+        var vm = KeepParse<T>() ?? container.Resolve<T>();
 
         BuildControl(regionName, vm);
 
@@ -109,7 +112,7 @@ public class RegionManager(RegionContainerBase regionContainer, IContainer conta
             if (vm is IKeep { Keep: false }) _keepVmDictionary.Remove(vmType);
         }
 
-        vm ??= container.GetRequiredService(vmType);
+        vm ??= container.Resolve(vmType);
 
         BuildControl(regionName, vm);
         if (vm is IKeep { Keep: true } && !_keepVmDictionary.ContainsKey(vmType)) _keepVmDictionary.Add(vmType, vm);
@@ -128,7 +131,7 @@ public class RegionManager(RegionContainerBase regionContainer, IContainer conta
             throw new ArgumentException("Region not found");
 
         var vm = KeepParse<T>();
-        vm ??= container.GetRequiredService<T>();
+        vm ??= container.Resolve<T>();
 
         if (vm is IParameter parameterViewModelBase)
         {
@@ -182,7 +185,7 @@ public class RegionManager(RegionContainerBase regionContainer, IContainer conta
 
     public Control GetViewByViewModel<T>() where T : TuDogViewModelBase
     {
-        var vm = container.GetRequiredService<T>();
+        var vm = container.Resolve<T>();
         var control = viewLocatorBase.Build(vm);
         if (control is null)
             throw new NullReferenceException();

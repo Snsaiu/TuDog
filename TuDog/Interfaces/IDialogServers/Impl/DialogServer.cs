@@ -11,7 +11,7 @@ using TuDog.ViewLocators;
 
 namespace TuDog.Interfaces.IDialogServers.Impl;
 
-internal class DialogServer(ViewLocatorBase viewLocatorBase, IContainer container) : IDialogServer
+internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer container) : IDialogServer
 {
     public Task ShowMessageDialogAsync(string message, string title = "提示",
         string buttonText = "确定")
@@ -75,7 +75,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, IContainer containe
         string cancelButtonText = "取消", TParameter? parameter = default)
         where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>
     {
-        var vm = container.GetRequiredService<TViewModel>();
+        var vm = container.Resolve<TViewModel>();
         if (vm is null)
             throw new ArgumentNullException();
 
@@ -112,7 +112,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, IContainer containe
         string confirmButtonText = "确定",
         string cancelButtonText = "取消", TParameter? parameter = default) where TViewModel : DialogViewModelBaseAsync
     {
-        var vm = container.GetRequiredService<TViewModel>();
+        var vm = container.Resolve<TViewModel>();
         if (vm is null)
             throw new ArgumentNullException();
 

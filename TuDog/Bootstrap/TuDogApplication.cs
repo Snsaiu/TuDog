@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Media;
+using DryIoc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TuDog.Bases.Regions;
@@ -22,11 +23,12 @@ using TuDog.IocContainers.Impl;
 using TuDog.ViewLocators;
 using TuDog.ViewLocators.Impl;
 
+
 namespace TuDog.Bootstrap;
 
 public abstract class TuDogApplication : Application
 {
-    public static IServiceProvider ServiceProvider { get; private set; } = null!;
+    public static IContainer ServiceProvider { get; } = new Container();
 
     public static TopLevel? TopLevel { get; set; }
 
@@ -34,28 +36,27 @@ public abstract class TuDogApplication : Application
 
     public override void Initialize()
     {
-        var collection = new ServiceCollection();
-        SystemServiceRegister(collection);
-        Register(collection);
-        AutoRegister(collection);
-        ServiceProvider = collection.BuildServiceProvider();
+        AutoRegister(ServiceProvider);
+        SystemServiceRegister(ServiceProvider);
+        Register(ServiceProvider);
+
         InitGlobalExceptionHandlers();
     }
 
-    protected virtual void AutoRegister(IServiceCollection collection)
+    protected virtual void AutoRegister(IContainer collection)
     {
     }
 
-    protected void SystemServiceRegister(IServiceCollection collection)
+    protected void SystemServiceRegister(IContainer collection)
     {
-        collection.AddSingleton<ViewLocatorBase, ViewLocator>();
-        collection.AddSingleton<RegionContainerBase, RegionContainer>();
-        collection.AddSingleton<IContainer, Container>();
-        collection.AddSingleton<IRegionManager, RegionManager>();
-        collection.AddSingleton<IDialogServer, DialogServer>();
-        collection.AddSingleton<IPreferenceService, JsonPreferenceService>();
-        collection.AddSingleton<INavigationService>(_ => new NavigationService(ApplicationLifetime));
-        collection.AddSingleton<IMessageBarService, MessageBarService>();
+        collection.Register<ViewLocatorBase, ViewLocator>(Reuse.Singleton);
+        collection.Register<RegionContainerBase, RegionContainer>(Reuse.Singleton);
+        collection.Register<ITuDogContainer, TuDogContainer>(Reuse.Singleton);
+        collection.Register<IRegionManager, RegionManager>(Reuse.Singleton);
+        collection.Register<IDialogServer, DialogServer>(Reuse.Singleton);
+        collection.Register<IPreferenceService, JsonPreferenceService>(Reuse.Singleton);
+        collection.RegisterInstance<INavigationService>(new NavigationService(ApplicationLifetime));
+        collection.Register<IMessageBarService, MessageBarService>(Reuse.Singleton);
     }
 
     private void DisableAvaloniaDataAnnotationValidation()
@@ -99,7 +100,7 @@ public abstract class TuDogApplication : Application
     }
 
 
-    protected virtual void Register(IServiceCollection collection)
+    protected virtual void Register(IContainer collection)
     {
     }
 

@@ -1,4 +1,4 @@
-﻿namespace TabbyCat.IServices.LocalConfigs;
+﻿namespace TuDog.Interfaces.LocalPreferences;
 
 public interface ILocalConfigService<T>
 {

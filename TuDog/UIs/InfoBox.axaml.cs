@@ -7,7 +7,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
+using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Enums;
 using TuDog.Interfaces.MessageBarService;
@@ -25,7 +25,7 @@ public partial class InfoBox : TemplatedControl
     private ItemsControl _itemControl;
 
     private IMessageBarService _messageBarService =
-        TuDogApplication.ServiceProvider.GetRequiredService<IMessageBarService>();
+        TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
     public InfoBox()
     {
       ((MessageBarService)_messageBarService ).RegisterInfoBox(this);
