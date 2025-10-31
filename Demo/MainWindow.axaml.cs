@@ -1,8 +1,7 @@
-using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Demo.ViewModels;
+using DryIoc;
 using FluentAvalonia.UI.Windowing;
-using Microsoft.Extensions.DependencyInjection;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.RegionManagers;
 
@@ -17,7 +16,7 @@ public partial class MainWindow : AppWindow
     public MainWindow()
     {
         InitializeComponent();
-        _regionManager = TuDogApplication.ServiceProvider.GetRequiredService<IRegionManager>();
+        _regionManager = TuDogApplication.ServiceProvider.Resolve<IRegionManager>();
     }
 
     private void OpenWaitingDialog(object? sender, RoutedEventArgs e)

@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Microsoft.Extensions.DependencyInjection;
+using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.RegionManagers;
 
@@ -10,7 +10,7 @@ public sealed class NavigationService(IApplicationLifetime singleViewPlatform) :
 {
     private Stack<Control?> stack = new();
 
-    private IRegionManager _regionManager = TuDogApplication.ServiceProvider.GetRequiredService<IRegionManager>();
+    private readonly IRegionManager _regionManager = TuDogApplication.ServiceProvider.Resolve<IRegionManager>();
 
     public Task PushAsync<ViewModel>(INavigationParameter? parameter) where ViewModel : TuDogViewModelBase
     {

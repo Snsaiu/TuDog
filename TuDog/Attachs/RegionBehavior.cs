@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Interactivity;
-using Microsoft.Extensions.DependencyInjection;
+using DryIoc;
 using TuDog.Bases.Regions;
 using TuDog.Bootstrap;
 using TuDog.ViewLocators;
@@ -20,7 +20,7 @@ public class RegionBehavior:AvaloniaObject
     {
         if(arg1 is not ContentControl contentControl)
             return;
-        var regionContainer = TuDogApplication.ServiceProvider?.GetRequiredService<RegionContainerBase>();
+        var regionContainer = TuDogApplication.ServiceProvider?.Resolve<RegionContainerBase>();
         if (regionContainer is null)
             throw new NullReferenceException("RegionContainer is null");
         if(arg2.NewValue is not null and var v)

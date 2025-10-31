@@ -1,13 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using TabbyCat.IServices.LocalConfigs;
+﻿
+using DryIoc;
 using TuDog.Bootstrap;
+using TuDog.Interfaces.LocalPreferences;
 
 namespace TuDog.Interfaces.PreferenceServices.Impl;
 
 public abstract class LocalConfigService<T>() : ILocalConfigService<T>
 {
     private IPreferenceService PreferenceService =>
-        TuDogApplication.ServiceProvider.GetRequiredService<IPreferenceService>();
+        TuDogApplication.ServiceProvider.Resolve<IPreferenceService>();
 
     public abstract string Key { get; }
 

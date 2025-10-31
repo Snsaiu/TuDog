@@ -1,7 +1,5 @@
 using Avalonia.Controls;
-
-using Microsoft.Extensions.DependencyInjection;
-
+using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Interfaces;
 
@@ -14,7 +12,7 @@ namespace TuDog.ViewLocators
 
         protected ViewLocatorBase()
         {
-            var service = TuDogApplication.ServiceProvider.GetRequiredService<IViewLocatorService>();
+            var service = TuDogApplication.ServiceProvider.Resolve<IViewLocatorService>();
             _controlDictionary = service.InitControlDictionaryControls();
 
         }
