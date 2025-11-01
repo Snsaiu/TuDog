@@ -6,6 +6,7 @@ using Avalonia.Media;
 using DryIoc;
 using TuDog.Bases.Regions;
 using TuDog.Bases.Regions.Impl;
+using TuDog.Interfaces;
 using TuDog.Interfaces.IDialogServers;
 using TuDog.Interfaces.IDialogServers.Impl;
 using TuDog.Interfaces.MessageBarService;
@@ -103,7 +104,7 @@ public abstract class TuDogApplication : Application
 
     public void InitGlobalExceptionHandlers()
     {
-        // var logger = ServiceProvider.Resolve<ILogger<TuDogApplication>>();
+        // var logger = ServiceProvider.Resolve<ILogger>();
         //
         // AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
         // {
@@ -111,12 +112,12 @@ public abstract class TuDogApplication : Application
         //
         //     if (logger is null) return;
         //     var ex = (Exception)e.ExceptionObject;
-        //     logger.LogError(ex, ex.Message);
+        //     logger.LogError(ex.Message);
         // };
         //
         // TaskScheduler.UnobservedTaskException += (sender, e) =>
         // {
-        //     if (logger is not null) logger.LogError(e.Exception, e.Exception.Message);
+        //     if (logger is not null) logger.LogError(e.Exception.Message);
         //     e.SetObserved();
         // };
     }

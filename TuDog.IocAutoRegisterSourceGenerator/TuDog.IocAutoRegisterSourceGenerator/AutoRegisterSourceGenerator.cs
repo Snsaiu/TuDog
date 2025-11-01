@@ -75,6 +75,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
         {
             var collection = "  collection.Register";
             var registerType = "";
+            
             if (model.LifeType == LifeType.Transient)
                 registerType = "Reuse.Transient";
             else if (model.LifeType == LifeType.Scoped)
@@ -83,9 +84,9 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 registerType = "Reuse.Singleton";
 
             if (string.IsNullOrEmpty(model.InterfaceFullName))
-                sb.AppendLine($"{collection}<{model.ImplementFullName}>();");
+                sb.AppendLine($"{collection}<{model.ImplementFullName}>({registerType});");
             else
-                sb.AppendLine($"{collection}<{model.InterfaceFullName},{model.ImplementFullName}>();");
+                sb.AppendLine($"{collection}<{model.InterfaceFullName},{model.ImplementFullName}>({registerType});");
         }
 
         sb.AppendLine(
@@ -137,6 +138,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
 
                         var lifeTime = find.ConstructorArguments.FirstOrDefault().Value;
                         if (lifeTime is not null) model.LifeType = (LifeType)lifeTime;
+                        else model.LifeType = LifeType.Transient;
 
                         var interfaceType = find.AttributeClass?.TypeArguments[0].ToDisplayString();
 
