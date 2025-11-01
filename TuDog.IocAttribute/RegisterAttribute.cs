@@ -1,9 +1,6 @@
 ﻿using System;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace TuDog.IocAttribute;
-
-
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 public class RegisterAttribute : Attribute

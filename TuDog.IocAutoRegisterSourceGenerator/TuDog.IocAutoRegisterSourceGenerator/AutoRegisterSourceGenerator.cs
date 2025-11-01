@@ -1,10 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
 using TuDog.IocAutoRegisterSourceGenerator.Models;
 
 namespace TuDog.IocAutoRegisterSourceGenerator;
@@ -22,36 +20,29 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(projectFile, (context, proj) =>
         {
-
             context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor(id: "Gen001",
-                title: "Debug",
-                messageFormat: $"开始启动源生成器"
-                , category: "TuDog.SourceGenerator"
-                , DiagnosticSeverity.Warning, isEnabledByDefault: true), Location.None));
+                new DiagnosticDescriptor("Gen001",
+                    "Debug",
+                    $"开始启动源生成器"
+                    , "TuDog.SourceGenerator"
+                    , DiagnosticSeverity.Warning, true), Location.None));
 
-            if ((proj.Left is null))
-            {
-                return;
-            }
+            if (proj.Left is null) return;
             var content = proj.ToString();
 
             //   Debugger.Launch();
             context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor(id: "Gen002",
-                title: "Debug",
-                messageFormat: $"csproj文件为:{content}"
-                , category: "TuDog.SourceGenerator"
-                , DiagnosticSeverity.Warning, isEnabledByDefault: true), Location.None));
+                new DiagnosticDescriptor("Gen002",
+                    "Debug",
+                    $"csproj文件为:{content}"
+                    , "TuDog.SourceGenerator"
+                    , DiagnosticSeverity.Warning, true), Location.None));
 
-            string pattern = @"<ScanAssemblyRule>(.*?)<\/ScanAssemblyRule>";
+            var pattern = @"<ScanAssemblyRule>(.*?)<\/ScanAssemblyRule>";
 
             var rule = "*";
             var math = Regex.Match(content, pattern);
-            if (math.Success)
-            {
-                rule = math.Groups[1].Value;
-            }
+            if (math.Success) rule = math.Groups[1].Value;
 
             var models = DiscoverModel(proj.Right, rule);
             // 写文件
@@ -65,13 +56,8 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 var source = GenerateSource(models, appNamespace);
 
                 context.AddSource("App.g.cs", source);
-
             }
         });
-
-
-
-
     }
 
     private static string GenerateSource(IEnumerable<DiscoverModel> models, string nameSpace)
@@ -84,8 +70,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
         sb.AppendLine("public partial class App {");
 
         sb.AppendLine("protected override void AutoRegister(IContainer collection){");
-        sb.AppendLine(
-            "collection.Register<TuDog.Interfaces.IViewLocatorService,TuDog.Services.ViewLocatorService>(Reuse.Singleton);");
+
         foreach (var model in models)
         {
             var collection = "  collection.Register";
@@ -98,14 +83,13 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 registerType = "Reuse.Singleton";
 
             if (string.IsNullOrEmpty(model.InterfaceFullName))
-            {
                 sb.AppendLine($"{collection}<{model.ImplementFullName}>();");
-            }
             else
-            {
                 sb.AppendLine($"{collection}<{model.InterfaceFullName},{model.ImplementFullName}>();");
-            }
         }
+
+        sb.AppendLine(
+            "collection.Register<TuDog.Interfaces.IViewLocatorService,TuDog.Services.ViewLocatorService>(Reuse.Singleton);");
 
 
         sb.AppendLine("     }");
@@ -117,7 +101,6 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
 
     private static IEnumerable<DiscoverModel> DiscoverModel(Compilation compilation, string assemblyCondition)
     {
-
         var result = new List<DiscoverModel>();
 
         var main = FindClassesByAttribute(compilation.GlobalNamespace);
@@ -136,8 +119,6 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
         var result = new List<DiscoverModel>();
 
         foreach (var type in GetNamespaceTypes(symbol))
-        {
-
             if (type is { TypeKind: TypeKind.Class, IsAbstract: false } and var item)
             {
                 if (item.GetAttributes().Length == 0)
@@ -148,15 +129,14 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 if (att is null)
                     continue;
                 {
-                    if (item.GetAttributes().FirstOrDefault(x => x.AttributeClass?.OriginalDefinition.ToDisplayString() == "TuDog.IocAttribute.RegisterAttribute<TService>") is { } find)
+                    if (item.GetAttributes().FirstOrDefault(x =>
+                            x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
+                            "TuDog.IocAttribute.RegisterAttribute<TService>") is { } find)
                     {
                         var model = new DiscoverModel();
 
                         var lifeTime = find.ConstructorArguments.FirstOrDefault().Value;
-                        if (lifeTime is not null)
-                        {
-                            model.LifeType = (LifeType)lifeTime;
-                        }
+                        if (lifeTime is not null) model.LifeType = (LifeType)lifeTime;
 
                         var interfaceType = find.AttributeClass?.TypeArguments[0].ToDisplayString();
 
@@ -167,16 +147,15 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                     }
                 }
                 {
-                    if (item.GetAttributes().FirstOrDefault(x => x.AttributeClass?.OriginalDefinition.ToDisplayString() == "TuDog.IocAttribute.RegisterAttribute") is { } find)
+                    if (item.GetAttributes().FirstOrDefault(x =>
+                            x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
+                            "TuDog.IocAttribute.RegisterAttribute") is { } find)
                     {
                         var model = new DiscoverModel();
 
                         foreach (var x in find.ConstructorArguments)
                         {
-                            if (x.Type?.ToDisplayString() != "Microsoft.Extensions.DependencyInjection.ServiceLifetime")
-                            {
-                                continue;
-                            }
+                            if (x.Type?.ToDisplayString() != "TuDog.IocAttribute.ServiceLifetime") continue;
 
                             model.LifeType = (LifeType)x.Value!;
 
@@ -188,8 +167,6 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 }
             }
 
-        }
-
         return result;
     }
 
@@ -197,19 +174,9 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
     private static IEnumerable<INamedTypeSymbol> GetNamespaceTypes(INamespaceSymbol namespaceSymbol)
     {
         foreach (var member in namespaceSymbol.GetMembers())
-        {
             if (member is INamespaceSymbol namespaceMember)
-            {
                 foreach (var nestedType in GetNamespaceTypes(namespaceMember))
-                {
                     yield return nestedType;
-                }
-            }
-            else if (member is INamedTypeSymbol typeMember)
-            {
-                yield return typeMember;
-            }
-        }
+            else if (member is INamedTypeSymbol typeMember) yield return typeMember;
     }
-
 }

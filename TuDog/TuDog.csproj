@@ -22,7 +22,6 @@
         <PackageReference Include="CommunityToolkit.Mvvm" />
         <PackageReference Include="DryIoc.dll" />
         <PackageReference Include="FluentAvaloniaUI" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
         <PackageReference Include="Newtonsoft.Json" />
         <PackageReference Include="Xamarin.Essentials" />
     </ItemGroup>

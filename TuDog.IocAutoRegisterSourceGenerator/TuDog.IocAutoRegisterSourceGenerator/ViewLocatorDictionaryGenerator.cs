@@ -19,28 +19,22 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(projectFile, (context, proj) =>
         {
-            if ((proj.Left is null))
-            {
-                return;
-            }
+            if (proj.Left is null) return;
 
             var content = proj.ToString();
 
 
-            string pattern = @"<ScanAssemblyRule>(.*?)<\/ScanAssemblyRule>";
+            var pattern = @"<ScanAssemblyRule>(.*?)<\/ScanAssemblyRule>";
 
             var rule = "*";
             var math = Regex.Match(content, pattern);
-            if (math.Success)
-            {
-                rule = math.Groups[1].Value;
-            }
+            if (math.Success) rule = math.Groups[1].Value;
 
             var models = DiscoverModel(proj.Right, rule);
 
-            var appNamespace = proj.Right.AssemblyName;
-            if (string.IsNullOrEmpty(appNamespace))
-                return;
+            // var appNamespace = proj.Right.AssemblyName;
+            // if (string.IsNullOrEmpty(appNamespace))
+            //     return;
             var source = GenerateSource(models);
             context.AddSource("ViewModelLocatorService.g.cs", source);
         });
@@ -54,7 +48,7 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
         sb.AppendLine("namespace TuDog.Services");
         sb.AppendLine("{");
         sb.AppendLine(
-            "[TuDog.IocAttribute.Register<TuDog.Interfaces.IViewLocatorService>(Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton)]");
+            "[TuDog.IocAttribute.Register<TuDog.Interfaces.IViewLocatorService>(TuDog.IocAttribute.ServiceLifetime.Singleton)]");
         sb.AppendLine("public sealed class ViewLocatorService:TuDog.Interfaces.IViewLocatorService {");
 
         sb.AppendLine(
@@ -92,7 +86,6 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
         var result = new List<VmModel>();
 
         foreach (var type in GetNamespaceTypes(symbol))
-        {
             if (type is { TypeKind: TypeKind.Class, IsAbstract: false } and var item)
             {
                 if (item.GetAttributes().Length == 0)
@@ -112,20 +105,12 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
 
                         foreach (var x in find.ConstructorArguments)
                         {
-                            if (x.Type?.ToDisplayString() != "Microsoft.Extensions.DependencyInjection.ServiceLifetime")
-                            {
+                            if (x.Type?.ToDisplayString() != "TuDog.IocAttribute.ServiceLifetime")
                                 continue;
-                            }
 
-                            if (item is not ISymbol symbolInfo)
-                            {
-                                continue;
-                            }
+                            if (item is not ISymbol symbolInfo) continue;
 
-                            if (!symbolInfo.Name.EndsWith("ViewModel"))
-                            {
-                                continue;
-                            }
+                            if (!symbolInfo.Name.EndsWith("ViewModel")) continue;
 
                             model.ViewModelFullName = item.ToDisplayString();
                             model.ViewFullName = model.ViewModelFullName.Replace("ViewModels", "Views")
@@ -136,7 +121,6 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
                     }
                 }
             }
-        }
 
         return result;
     }
@@ -145,18 +129,9 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
     private static IEnumerable<INamedTypeSymbol> GetNamespaceTypes(INamespaceSymbol namespaceSymbol)
     {
         foreach (var member in namespaceSymbol.GetMembers())
-        {
             if (member is INamespaceSymbol namespaceMember)
-            {
                 foreach (var nestedType in GetNamespaceTypes(namespaceMember))
-                {
                     yield return nestedType;
-                }
-            }
-            else if (member is INamedTypeSymbol typeMember)
-            {
-                yield return typeMember;
-            }
-        }
+            else if (member is INamedTypeSymbol typeMember) yield return typeMember;
     }
 }

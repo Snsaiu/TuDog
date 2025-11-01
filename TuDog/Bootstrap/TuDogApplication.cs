@@ -4,8 +4,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Media;
 using DryIoc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using TuDog.Bases.Regions;
 using TuDog.Bases.Regions.Impl;
 using TuDog.Interfaces.IDialogServers;
@@ -39,7 +37,6 @@ public abstract class TuDogApplication : Application
         AutoRegister(ServiceProvider);
         SystemServiceRegister(ServiceProvider);
         Register(ServiceProvider);
-
         InitGlobalExceptionHandlers();
     }
 
@@ -106,21 +103,21 @@ public abstract class TuDogApplication : Application
 
     public void InitGlobalExceptionHandlers()
     {
-        var logger = ServiceProvider.GetService<ILogger<TuDogApplication>>();
-
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-        {
-            if (e is OperationCanceledException) DialogServer.ProgressDialogWindow.Close();
-
-            if (logger is null) return;
-            var ex = (Exception)e.ExceptionObject;
-            logger.LogError(ex, ex.Message);
-        };
-
-        TaskScheduler.UnobservedTaskException += (sender, e) =>
-        {
-            if (logger is not null) logger.LogError(e.Exception, e.Exception.Message);
-            e.SetObserved();
-        };
+        // var logger = ServiceProvider.Resolve<ILogger<TuDogApplication>>();
+        //
+        // AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        // {
+        //     if (e is OperationCanceledException) DialogServer.ProgressDialogWindow.Close();
+        //
+        //     if (logger is null) return;
+        //     var ex = (Exception)e.ExceptionObject;
+        //     logger.LogError(ex, ex.Message);
+        // };
+        //
+        // TaskScheduler.UnobservedTaskException += (sender, e) =>
+        // {
+        //     if (logger is not null) logger.LogError(e.Exception, e.Exception.Message);
+        //     e.SetObserved();
+        // };
     }
 }
