@@ -17,8 +17,14 @@ public partial class CustomDialogViewModel(IDialogServer dialogServer) : TuDogVi
     }
 
     [RelayCommand]
-    public  Task NoReturnShow()
+    public Task NoReturnShow()
     {
-        return dialogServer.ShowDialogAsync<MyDialogNoReturnViewModel,bool>("custom");
+        return dialogServer.ShowDialogAsync<MyDialogNoReturnViewModel, bool>("custom");
+    }
+
+    [RelayCommand]
+    public Task ShowSystemDialog()
+    {
+        return dialogServer.ShowDialogAsync<SystemDialogViewModel, bool, object>("system");
     }
 }

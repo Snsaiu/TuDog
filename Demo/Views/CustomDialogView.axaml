@@ -7,7 +7,8 @@
              x:DataType="{x:Type viewModels:CustomDialogViewModel}"
              x:Class="Demo.Views.CustomDialogView">
     <StackPanel>
-        <Button Content="自定义无返回值弹框" Command="{Binding NoReturnShowCommand}"></Button>
-        <Button Content="自定义弹框" Command="{Binding ShowCommand}"></Button>
+        <Button Content="自定义无返回值弹框" Command="{Binding NoReturnShowCommand}" />
+        <Button Content="自定义弹框" Command="{Binding ShowCommand}" />
+        <Button Content="弹框中显示系统弹框" Command="{Binding ShowSystemDialogCommand}" />
     </StackPanel>
 </UserControl>

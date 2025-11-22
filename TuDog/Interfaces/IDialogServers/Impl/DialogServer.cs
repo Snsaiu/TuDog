@@ -42,7 +42,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
     public async Task<DialogResultData<string>> ShowInputDialogAsync(string message, string title = "提示",
         string placeHolder = "请输入...",
         string confirmButtonText = "确定",
-        string cancelButtonText = "取消", string? defaultValue = null,int? maxLength = null)
+        string cancelButtonText = "取消", string? defaultValue = null, int? maxLength = null)
     {
         var dialog = new ContentDialog
         {
@@ -56,9 +56,9 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
             Text = message,
             Watermark = placeHolder
         };
-        if(maxLength is not null)
-            vm.MaxLength=maxLength.Value;
-        
+        if (maxLength is not null)
+            vm.MaxLength = maxLength.Value;
+
         var control = new InputTextView
         {
             DataContext = vm
@@ -95,8 +95,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
             PrimaryButtonText = confirmButtonText,
             SecondaryButtonText = cancelButtonText,
             Content = view,
-            DialogViewModel = vm,
-            Topmost = true
+            DialogViewModel = vm
         };
 
         // var topMostClone = TuDogApplication.MainWindow.Topmost;
