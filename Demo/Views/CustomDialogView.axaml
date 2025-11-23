@@ -10,5 +10,6 @@
         <Button Content="自定义无返回值弹框" Command="{Binding NoReturnShowCommand}" />
         <Button Content="自定义弹框" Command="{Binding ShowCommand}" />
         <Button Content="弹框中显示系统弹框" Command="{Binding ShowSystemDialogCommand}" />
+        <Button Content="查找父类" Command="{Binding OpenFindFatherDialogCommand}" />
     </StackPanel>
 </UserControl>

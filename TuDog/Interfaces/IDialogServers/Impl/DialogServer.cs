@@ -70,73 +70,125 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         return new DialogResultData<string>(false, string.Empty);
     }
 
+
     public async Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
         string confirmButtonText = "确定",
         string cancelButtonText = "取消", TParameter? parameter = default)
-        where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>
+        where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>, new()
     {
-        var vm = container.Resolve<TViewModel>();
-        if (vm is null)
-            throw new ArgumentNullException();
-
-        vm.Parameter = parameter;
-
-        var view = viewLocatorBase.Build(vm);
-        if (view is null)
-            throw new ArgumentNullException();
-
-        view.DataContext = vm;
-        view.AttachLoadedBehavior(vm);
-        view.AttachUnLoadedBehavior(vm);
-
-        var dialog = new DialogWindow
+        if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
-            Title = title,
-            PrimaryButtonText = confirmButtonText,
-            SecondaryButtonText = cancelButtonText,
-            Content = view,
-            DialogViewModel = vm
-        };
+            var vm = new TViewModel();
+            var baseType = typeof(TViewModel).BaseType;
+            var viewModelFullName = $"{baseType.Namespace}.{baseType.Name}".Split("`")[0];
+            var viewFullName = viewModelFullName.Replace("ViewModel", "View");
+            var viewType = Type.GetType($"{viewFullName},{baseType.Assembly.GetName().Name}");
+            var view = viewLocatorBase.GetControlByType(viewType);
+            vm.Parameter = parameter;
+            view.DataContext = vm;
+            view.AttachLoadedBehavior(vm);
+            view.AttachUnLoadedBehavior(vm);
 
-        // var topMostClone = TuDogApplication.MainWindow.Topmost;
-        // TuDogApplication.MainWindow.Topmost = false;
+            var dialog = new DialogWindow
+            {
+                Title = title,
+                PrimaryButtonText = confirmButtonText,
+                SecondaryButtonText = cancelButtonText,
+                Content = view,
+                DialogViewModel = vm
+            };
+            var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
+            return result;
+        }
+        else
+        {
+            var vm = container.Resolve<TViewModel>();
+            if (vm is null)
+                throw new ArgumentNullException();
 
-        var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
-        // TuDogApplication.MainWindow.Topmost = topMostClone;
+            vm.Parameter = parameter;
 
-        return result;
+            var view = viewLocatorBase.Build(vm);
+            if (view is null)
+                throw new ArgumentNullException();
+
+            view.DataContext = vm;
+            view.AttachLoadedBehavior(vm);
+            view.AttachUnLoadedBehavior(vm);
+
+            var dialog = new DialogWindow
+            {
+                Title = title,
+                PrimaryButtonText = confirmButtonText,
+                SecondaryButtonText = cancelButtonText,
+                Content = view,
+                DialogViewModel = vm
+            };
+
+
+            var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
+            return result;
+        }
     }
 
     public async Task<DialogResultData<object>?> ShowDialogAsync<TViewModel, TParameter>(string title,
         string confirmButtonText = "确定",
-        string cancelButtonText = "取消", TParameter? parameter = default) where TViewModel : DialogViewModelBaseAsync
+        string cancelButtonText = "取消", TParameter? parameter = default)
+        where TViewModel : DialogViewModelBaseAsync, new()
     {
-        var vm = container.Resolve<TViewModel>();
-        if (vm is null)
-            throw new ArgumentNullException();
-
-        vm.Parameter = parameter;
-
-        var view = viewLocatorBase.Build(vm);
-        if (view is null)
-            throw new ArgumentNullException();
-
-        view.DataContext = vm;
-        view.AttachLoadedBehavior(vm);
-        view.AttachUnLoadedBehavior(vm);
-
-
-        var dialog = new DialogWindow
+        if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
-            Title = title,
-            PrimaryButtonText = confirmButtonText,
-            SecondaryButtonText = cancelButtonText,
-            Content = view,
-            DialogViewModel = vm
-        };
+            var vm = new TViewModel();
+            var baseType = typeof(TViewModel).BaseType;
+            var viewModelFullName = $"{baseType.Namespace}.{baseType.Name}".Split("`")[0];
+            var viewFullName = viewModelFullName.Replace("ViewModel", "View");
+            var viewType = Type.GetType($"{viewFullName},{baseType.Assembly.GetName().Name}");
+            var view = viewLocatorBase.GetControlByType(viewType);
+            vm.Parameter = parameter;
+            view.DataContext = vm;
+            view.AttachLoadedBehavior(vm);
+            view.AttachUnLoadedBehavior(vm);
 
-        var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
-        return result;
+            var dialog = new DialogWindow
+            {
+                Title = title,
+                PrimaryButtonText = confirmButtonText,
+                SecondaryButtonText = cancelButtonText,
+                Content = view,
+                DialogViewModel = vm
+            };
+            var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
+            return result;
+        }
+        else
+        {
+            var vm = container.Resolve<TViewModel>();
+            if (vm is null)
+                throw new ArgumentNullException();
+
+            vm.Parameter = parameter;
+
+            var view = viewLocatorBase.Build(vm);
+            if (view is null)
+                throw new ArgumentNullException();
+
+            view.DataContext = vm;
+            view.AttachLoadedBehavior(vm);
+            view.AttachUnLoadedBehavior(vm);
+
+
+            var dialog = new DialogWindow
+            {
+                Title = title,
+                PrimaryButtonText = confirmButtonText,
+                SecondaryButtonText = cancelButtonText,
+                Content = view,
+                DialogViewModel = vm
+            };
+
+            var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
+            return result;
+        }
     }
 
 

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using Demo.Models;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.IDialogServers;
 using TuDog.IocAttribute;
@@ -26,5 +27,11 @@ public partial class CustomDialogViewModel(IDialogServer dialogServer) : TuDogVi
     public Task ShowSystemDialog()
     {
         return dialogServer.ShowDialogAsync<SystemDialogViewModel, bool, object>("system");
+    }
+
+    [RelayCommand]
+    public Task OpenFindFatherDialog()
+    {
+        return dialogServer.ShowDialogAsync<ChildrenViewModel, bool, Children>("systen");
     }
 }

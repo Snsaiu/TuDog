@@ -3,41 +3,47 @@ using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Interfaces;
 
-namespace TuDog.ViewLocators
+namespace TuDog.ViewLocators;
+
+public abstract partial class ViewLocatorBase
 {
-
-
-    public abstract partial class ViewLocatorBase
+    protected ViewLocatorBase()
     {
+        var service = TuDogApplication.ServiceProvider.Resolve<IViewLocatorService>();
+        _controlDictionary = service.InitControlDictionaryControls();
+    }
 
-        protected ViewLocatorBase()
-        {
-            var service = TuDogApplication.ServiceProvider.Resolve<IViewLocatorService>();
-            _controlDictionary = service.InitControlDictionaryControls();
+    private readonly IDictionary<Type, Func<Control>>? _controlDictionary;
 
-        }
+    public Control? Build(object? param)
+    {
+        var viewType = GetViewType(param);
+        if (viewType is null)
+            return ErrorView(param);
 
-        private readonly IDictionary<Type, Func<Control>>? _controlDictionary;
+        if (_controlDictionary is null)
+            return null;
 
-        public Control? Build(object? param)
-        {
-            var viewType = GetViewType(param);
-            if (viewType is null)
-                return ErrorView(param);
+        return _controlDictionary.TryGetValue(viewType, out var func) ? func() : null;
+    }
 
-            if (_controlDictionary is null)
-                return null;
-
-            return _controlDictionary.TryGetValue(viewType, out Func<Control>? func) ? func() : null;
-        }
+    public Control GetControlByType(Type viewType)
+    {
+        return _controlDictionary.TryGetValue(viewType, out var func) ? func() : null;
+    }
 
 
-        protected virtual Control ErrorView(object? param) => new TextBlock { Text = "Not Found: " + param };
+    protected virtual Control ErrorView(object? param)
+    {
+        return new TextBlock { Text = "Not Found: " + param };
+    }
 
-        public abstract Type? GetViewType(object? param);
+    public abstract Type? GetViewType(object? param);
 
-        protected abstract bool MatchViewModel(object? data);
+    protected abstract bool MatchViewModel(object? data);
 
-        public bool Match(object? data) => MatchViewModel(data);
+    public bool Match(object? data)
+    {
+        return MatchViewModel(data);
     }
 }

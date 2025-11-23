@@ -86,7 +86,7 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
         var result = new List<VmModel>();
 
         foreach (var type in GetNamespaceTypes(symbol))
-            if (type is { TypeKind: TypeKind.Class, IsAbstract: false } and var item)
+            if (type is { TypeKind: TypeKind.Class } and var item)
             {
                 if (item.GetAttributes().Length == 0)
                     continue;
@@ -112,7 +112,7 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
 
                             if (!symbolInfo.Name.EndsWith("ViewModel")) continue;
 
-                            model.ViewModelFullName = item.ToDisplayString();
+                            model.ViewModelFullName = $"{symbolInfo.ContainingNamespace.ToString()}.{symbolInfo.Name}";
                             model.ViewFullName = model.ViewModelFullName.Replace("ViewModels", "Views")
                                 .Replace("ViewModel", "View");
                             result.Add(model);
