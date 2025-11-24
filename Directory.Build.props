@@ -11,8 +11,8 @@
         <RepositoryUrl>https://github.com/Snsaiu/TuDog</RepositoryUrl>
         <PackageProjectUrl>https://github.com/Snsaiu/TuDog</PackageProjectUrl>
 
-        <Version>1.0.1.4</Version>
-        <FileVersion>1.0.1.4</FileVersion>
-        <AssemblyVersion>1.0.1.4</AssemblyVersion>
+        <Version>1.0.1.5</Version>
+        <FileVersion>1.0.1.5</FileVersion>
+        <AssemblyVersion>1.0.1.5</AssemblyVersion>
     </PropertyGroup>
 </Project>
