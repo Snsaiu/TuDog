@@ -96,28 +96,33 @@ public class ViewLocatorDictionaryGenerator : IIncrementalGenerator
                 if (att is null)
                     continue;
 
+                if (item.GetAttributes().FirstOrDefault(x =>
+                        x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
+                        "TuDog.IocAttribute.NoViewAttribute") is { })
                 {
-                    if (item.GetAttributes().FirstOrDefault(x =>
-                            x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
-                            "TuDog.IocAttribute.RegisterAttribute") is { } find)
+                    continue;
+                }
+                
+                if (item.GetAttributes().FirstOrDefault(x =>
+                        x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
+                        "TuDog.IocAttribute.RegisterAttribute") is { } find)
+                {
+                    var model = new VmModel();
+
+                    foreach (var x in find.ConstructorArguments)
                     {
-                        var model = new VmModel();
-
-                        foreach (var x in find.ConstructorArguments)
-                        {
-                            if (x.Type?.ToDisplayString() != "TuDog.IocAttribute.ServiceLifetime")
-                                continue;
-
-                            if (item is not ISymbol symbolInfo) continue;
-
-                            if (!symbolInfo.Name.EndsWith("ViewModel")) continue;
-
-                            model.ViewModelFullName = $"{symbolInfo.ContainingNamespace.ToString()}.{symbolInfo.Name}";
-                            model.ViewFullName = model.ViewModelFullName.Replace("ViewModels", "Views")
-                                .Replace("ViewModel", "View");
-                            result.Add(model);
+                        if (x.Type?.ToDisplayString() != "TuDog.IocAttribute.ServiceLifetime")
                             continue;
-                        }
+
+                        if (item is not ISymbol symbolInfo) continue;
+
+                        if (!symbolInfo.Name.EndsWith("ViewModel")) continue;
+
+                        model.ViewModelFullName = $"{symbolInfo.ContainingNamespace.ToString()}.{symbolInfo.Name}";
+                        model.ViewFullName = model.ViewModelFullName.Replace("ViewModels", "Views")
+                            .Replace("ViewModel", "View");
+                        result.Add(model);
+                        continue;
                     }
                 }
             }

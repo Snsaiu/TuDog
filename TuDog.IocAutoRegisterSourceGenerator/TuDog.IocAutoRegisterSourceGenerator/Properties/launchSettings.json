@@ -2,7 +2,7 @@
   "profiles": {
     "DebugRoslynSourceGenerator": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "/Users/saiu/RiderProjects/TuDog/Demo/Demo.csproj"
+      "targetProject": "H:/TuDog/Demo/Demo.csproj"
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json"

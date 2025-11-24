@@ -12,6 +12,8 @@ public abstract partial class FindFatherViewModel<T> : DialogViewModelBaseAsync<
     [ObservableProperty] private string _title;
 }
 
+[Register]
+[NoView]
 public class ChildrenViewModel : FindFatherViewModel<Children>
 {
     public ChildrenViewModel()

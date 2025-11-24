@@ -74,11 +74,15 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
     public async Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
         string confirmButtonText = "确定",
         string cancelButtonText = "取消", TParameter? parameter = default)
-        where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>, new()
+        where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>
     {
+        var vm = container.Resolve<TViewModel>();
+        if (vm == null)
+            throw new InvalidOperationException(
+                $"Type {typeof(TViewModel).FullName} is not registered in the container.");
+      
         if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
-            var vm = new TViewModel();
             var baseType = typeof(TViewModel).BaseType;
             var viewModelFullName = $"{baseType.Namespace}.{baseType.Name}".Split("`")[0];
             var viewFullName = viewModelFullName.Replace("ViewModel", "View");
@@ -102,7 +106,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         }
         else
         {
-            var vm = container.Resolve<TViewModel>();
             if (vm is null)
                 throw new ArgumentNullException();
 
@@ -134,11 +137,15 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
     public async Task<DialogResultData<object>?> ShowDialogAsync<TViewModel, TParameter>(string title,
         string confirmButtonText = "确定",
         string cancelButtonText = "取消", TParameter? parameter = default)
-        where TViewModel : DialogViewModelBaseAsync, new()
+        where TViewModel : DialogViewModelBaseAsync
     {
+        var vm = container.Resolve<TViewModel>();
+        if (vm == null)
+            throw new InvalidOperationException(
+                $"Type {typeof(TViewModel).FullName} is not registered in the container.");
+
         if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
-            var vm = new TViewModel();
             var baseType = typeof(TViewModel).BaseType;
             var viewModelFullName = $"{baseType.Namespace}.{baseType.Name}".Split("`")[0];
             var viewFullName = viewModelFullName.Replace("ViewModel", "View");
@@ -162,7 +169,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         }
         else
         {
-            var vm = container.Resolve<TViewModel>();
             if (vm is null)
                 throw new ArgumentNullException();
 
