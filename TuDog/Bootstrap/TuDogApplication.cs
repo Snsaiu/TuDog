@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Media;
+using Avalonia.Threading;
 using DryIoc;
 using TuDog.Bases.Regions;
 using TuDog.Bases.Regions.Impl;
@@ -19,6 +20,7 @@ using TuDog.Interfaces.RegionManagers;
 using TuDog.Interfaces.RegionManagers.Impl;
 using TuDog.IocContainers;
 using TuDog.IocContainers.Impl;
+using TuDog.UIs;
 using TuDog.ViewLocators;
 using TuDog.ViewLocators.Impl;
 
@@ -104,21 +106,37 @@ public abstract class TuDogApplication : Application
 
     public void InitGlobalExceptionHandlers()
     {
-        // var logger = ServiceProvider.Resolve<ILogger>();
-        //
-        // AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-        // {
-        //     if (e is OperationCanceledException) DialogServer.ProgressDialogWindow.Close();
-        //
-        //     if (logger is null) return;
-        //     var ex = (Exception)e.ExceptionObject;
-        //     logger.LogError(ex.Message);
-        // };
-        //
-        // TaskScheduler.UnobservedTaskException += (sender, e) =>
-        // {
-        //     if (logger is not null) logger.LogError(e.Exception.Message);
-        //     e.SetObserved();
-        // };
+        ILogger? logger = null;
+        if (ServiceProvider.IsRegistered(typeof(ILogger)))
+            logger = ServiceProvider.Resolve<ILogger>();
+        Dispatcher.UIThread.UnhandledException += (s, e) =>
+        {
+            if (e.Exception is OperationCanceledException)
+                e.Handled = true;
+        };
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            if (logger is null) return;
+            var ex = (Exception)e.ExceptionObject;
+            logger.LogError(ex.Message);
+
+            if (e.ExceptionObject is OperationCanceledException)
+            {
+                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                {
+                    if (DialogServer.ProgressDialogWindow is not null)
+                    {
+                        DialogServer.ProgressDialogWindow.Close();
+                        DialogServer.ProgressDialogWindow = null;
+                    }
+                });
+            }
+        };
+
+        TaskScheduler.UnobservedTaskException += (sender, e) =>
+        {
+            if (logger is not null) logger.LogError(e.Exception.Message);
+            e.SetObserved();
+        };
     }
 }

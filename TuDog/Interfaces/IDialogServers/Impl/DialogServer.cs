@@ -197,53 +197,51 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         }
     }
 
-
-    /// <summary>
-    /// progress window单例
-    /// </summary>
-    private static readonly Lazy<DialogWindow> _lazyWindow = new(() => new DialogWindow
-    {
-        Topmost = true, Content = new ProgressDialog(),
-        DialogViewModel = new ProgressDialogViewModel(),
-        WhenCancelCloseWindow = false
-    });
-
-    // 公开的单例访问入口
-    internal static DialogWindow ProgressDialogWindow => _lazyWindow.Value;
+    
+    internal static DialogWindow? ProgressDialogWindow { get; set; }
 
     public ProgressDialogResult ShowProgressDialog(string title, string subHeader, string cancelButton = "")
     {
-        if (ProgressDialogWindow is not
+        var progressDialogWindow = new DialogWindow
+        {
+            Topmost = true, Content = new ProgressDialog(),
+            DialogViewModel = new ProgressDialogViewModel(),
+            WhenCancelCloseWindow = false
+        };
+        
+        ProgressDialogWindow = progressDialogWindow;
+        
+        if (progressDialogWindow is not
             { DialogViewModel: ProgressDialogViewModel tdViewModel })
             throw new InvalidOperationException();
 
-        ProgressDialogWindow.DataContext = tdViewModel;
-        ProgressDialogWindow.Title = title;
+        progressDialogWindow.DataContext = tdViewModel;
+        progressDialogWindow.Title = title;
         tdViewModel.SubTitle = subHeader;
 
 
         var token = CancellationToken.None;
         if (!string.IsNullOrEmpty(cancelButton))
         {
-            ProgressDialogWindow.SecondaryButtonText = cancelButton;
+            progressDialogWindow.SecondaryButtonText = cancelButton;
             var source = new CancellationTokenSource();
-            ProgressDialogWindow.CancellationTokenSource = source;
+            progressDialogWindow.CancellationTokenSource = source;
 
             token = source.Token;
         }
         else
         {
-            ProgressDialogWindow.SecondaryButtonText = string.Empty;
+            progressDialogWindow.SecondaryButtonText = string.Empty;
         }
 
 
-        ProgressDialogWindow.ShowDialog(TuDogApplication.MainWindow);
+        progressDialogWindow.ShowDialog(TuDogApplication.MainWindow);
 
         ProgressProcess progressProcess = UpdateProgress;
 
         void UpdateProgress(string header, string subHeader, double? percentage)
         {
-            ProgressDialogWindow.Title = header;
+            progressDialogWindow.Title = header;
             tdViewModel.SubTitle = subHeader;
 
             if (!percentage.HasValue)
@@ -257,6 +255,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
             }
         }
 
-        return new ProgressDialogResult(ProgressDialogWindow, progressProcess, token);
+        return new ProgressDialogResult(progressDialogWindow, progressProcess, token);
     }
 }
