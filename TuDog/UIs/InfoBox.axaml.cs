@@ -1,49 +1,40 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
-using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
-using Avalonia.Interactivity;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using DryIoc;
 using TuDog.Bootstrap;
-using TuDog.Enums;
 using TuDog.Interfaces.MessageBarService;
 using TuDog.Interfaces.MessageBarService.Impl;
 using TuDog.Models;
 
 namespace TuDog.UIs;
 
-
 [TemplatePart(Name = "PART_ItemControl", Type = typeof(ItemsControl))]
 public partial class InfoBox : TemplatedControl
 {
-    private const string PART_ItemControl=nameof(PART_ItemControl);
+    private const string PART_ItemControl = nameof(PART_ItemControl);
 
     private ItemsControl _itemControl;
 
     private IMessageBarService _messageBarService =
         TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
-    public InfoBox()
-    {
-      ((MessageBarService)_messageBarService ).RegisterInfoBox(this);
-    }
 
     public void AddNewMessage(InfoModel message)
     {
         message.CloseAction += RemoveItem;
-        _itemControl.Items.Insert(0,message);
-
+        Dispatcher.UIThread.Post(() => { _itemControl.Items.Insert(0, message); }, DispatcherPriority.Background);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
         _itemControl = e.NameScope.Get<ItemsControl>(PART_ItemControl);
-    }
 
+        if (Parent is not { Parent : DialogWindow { Content: ProgressDialog } })
+            ((MessageBarService)_messageBarService).RegisterInfoBox(this);
+    }
 
     [RelayCommand]
     private Task Close(InfoModel parameter)
@@ -57,5 +48,4 @@ public partial class InfoBox : TemplatedControl
         var find = _itemControl.Items.FirstOrDefault(x => ((InfoModel)x).Key == key);
         if (find != null) _itemControl.Items.Remove(find);
     }
-
 }

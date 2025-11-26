@@ -1,8 +1,5 @@
-﻿using Avalonia.Controls;
-using Avalonia.Media;
-using FluentAvalonia.UI.Controls;
+﻿using FluentAvalonia.UI.Controls;
 using TuDog.Bootstrap;
-using TuDog.Enums;
 using TuDog.Extensions;
 using TuDog.IocContainers;
 using TuDog.Models;
@@ -70,7 +67,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         return new DialogResultData<string>(false, string.Empty);
     }
 
-
     public async Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
         string confirmButtonText = "确定",
         string cancelButtonText = "取消", TParameter? parameter = default)
@@ -80,7 +76,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         if (vm == null)
             throw new InvalidOperationException(
                 $"Type {typeof(TViewModel).FullName} is not registered in the container.");
-      
+
         if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
             var baseType = typeof(TViewModel).BaseType;
@@ -127,7 +123,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
                 Content = view,
                 DialogViewModel = vm
             };
-
 
             var result = await dialog.ShowDialog<DialogResultData>(TuDogApplication.MainWindow);
             return result;
@@ -182,7 +177,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
             view.AttachLoadedBehavior(vm);
             view.AttachUnLoadedBehavior(vm);
 
-
             var dialog = new DialogWindow
             {
                 Title = title,
@@ -197,7 +191,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         }
     }
 
-    
     internal static DialogWindow? ProgressDialogWindow { get; set; }
 
     public ProgressDialogResult ShowProgressDialog(string title, string subHeader, string cancelButton = "")
@@ -208,9 +201,9 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
             DialogViewModel = new ProgressDialogViewModel(),
             WhenCancelCloseWindow = false
         };
-        
+
         ProgressDialogWindow = progressDialogWindow;
-        
+
         if (progressDialogWindow is not
             { DialogViewModel: ProgressDialogViewModel tdViewModel })
             throw new InvalidOperationException();
@@ -218,7 +211,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         progressDialogWindow.DataContext = tdViewModel;
         progressDialogWindow.Title = title;
         tdViewModel.SubTitle = subHeader;
-
 
         var token = CancellationToken.None;
         if (!string.IsNullOrEmpty(cancelButton))
@@ -233,7 +225,6 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         {
             progressDialogWindow.SecondaryButtonText = string.Empty;
         }
-
 
         progressDialogWindow.ShowDialog(TuDogApplication.MainWindow);
 

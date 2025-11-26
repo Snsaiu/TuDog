@@ -6,14 +6,13 @@ using TuDog.Interfaces;
 
 namespace TuDog.UIs;
 
-public partial class ProgressDialogViewModel : TuDogViewModelBase, IViewModelResultAsync
+internal sealed partial class ProgressDialogViewModel : TuDogViewModelBase, IViewModelResultAsync
 {
     [ObservableProperty] private string _subTitle = string.Empty;
 
-    [ObservableProperty] private bool _isIndeterminate = false;
+    [ObservableProperty] private bool _isIndeterminate = true;
 
     [ObservableProperty] private double _value = 0;
-
 
     public IAsyncRelayCommand LoadedCommand { get; }
     public IAsyncRelayCommand UnLoadedCommand { get; }
@@ -21,12 +20,12 @@ public partial class ProgressDialogViewModel : TuDogViewModelBase, IViewModelRes
 
     public Task<object?> ConfirmAsync()
     {
-        return Task.FromResult<object>(true);
+        return Task.FromResult<object?>(true);
     }
 
     public Task<object?> CancelAsync()
     {
-        return Task.FromResult<object>(false);
+        return Task.FromResult<object?>(false);
     }
 
     public Task<bool> CanConfirmAsync()

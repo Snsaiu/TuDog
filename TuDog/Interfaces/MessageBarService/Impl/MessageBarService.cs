@@ -4,7 +4,7 @@ using TuDog.UIs;
 
 namespace TuDog.Interfaces.MessageBarService.Impl;
 
-public sealed class MessageBarService:IMessageBarService
+public sealed class MessageBarService : IMessageBarService
 {
     private InfoBox _infoBox;
 
@@ -25,7 +25,7 @@ public sealed class MessageBarService:IMessageBarService
 
     public void RegisterInfoBox(InfoBox infoBox)
     {
-        _infoBox=infoBox;
+        _infoBox = infoBox;
     }
 
     private void CreateInfoModel(string message, string title, bool showClose, MessageState state)
@@ -36,5 +36,4 @@ public sealed class MessageBarService:IMessageBarService
         var model = InfoModel.Create(message, title, showClose, state);
         _infoBox.AddNewMessage(model);
     }
-
 }

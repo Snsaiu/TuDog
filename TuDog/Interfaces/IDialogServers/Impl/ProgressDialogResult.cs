@@ -3,7 +3,7 @@ using TuDog.UIs;
 
 namespace TuDog.Interfaces.IDialogServers.Impl;
 
-public class ProgressDialogResult : IDisposable
+public class ProgressDialogResult : IDisposable,IAsyncDisposable
 {
     private readonly DialogWindow _taskDialog;
 
@@ -22,5 +22,11 @@ public class ProgressDialogResult : IDisposable
     {
         if (_taskDialog is not null)
             _taskDialog.Close();
+    }
+
+    public  ValueTask DisposeAsync()
+    {
+        Dispose();
+        return ValueTask.CompletedTask;
     }
 }

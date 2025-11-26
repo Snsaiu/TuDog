@@ -17,7 +17,9 @@
                        <DataTemplate DataType="{x:Type models:InfoModel}">
                            <Border CornerRadius="5" Opacity="0"
                                    MinWidth="50"
+                                   Margin="5"
                                    Name="Border"
+                                   BoxShadow="2 2 5 0 DarkGray"
                                    VerticalAlignment="Center"
                                    Padding="5">
                                <Border.Styles>
