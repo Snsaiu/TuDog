@@ -14,7 +14,7 @@
         ExtendClientAreaChromeHints="NoChrome"
         ExtendClientAreaToDecorationsHint="True">
         <Window.Template>
-                      <ControlTemplate TargetType="uIs:DialogWindow">
+            <ControlTemplate TargetType="uIs:DialogWindow">
                     <Grid RowDefinitions="Auto,*,Auto" Background="{DynamicResource SolidBackgroundFillColorBase}">
                         <Border Padding="24" BorderThickness="0,0,0,1"
                                 BorderBrush="{DynamicResource ContentDialogBorderBrush}">

@@ -5,6 +5,7 @@
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
+    
     <Application.Styles>
         <StyleInclude Source="avares://TuDog/Bootstrap/TuDogStyles.axaml" />
         <styling:FluentAvaloniaTheme PreferSystemTheme="True" />

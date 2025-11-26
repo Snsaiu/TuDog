@@ -4,9 +4,12 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Input;
+using DryIoc;
 using FluentAvalonia.UI.Windowing;
 using TuDog.Bootstrap;
 using TuDog.Interfaces;
+using TuDog.Interfaces.MessageBarService;
+using TuDog.Interfaces.MessageBarService.Impl;
 using TuDog.Models;
 
 namespace TuDog.UIs;
@@ -20,6 +23,10 @@ public partial class DialogWindow : Window
     private Button _primaryButton;
     private Button _secondaryButton;
     private InfoBox _infoBox;
+
+    private IMessageBarService _messageBarService =
+        TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
+
 
     public IViewModelResultAsync DialogViewModel { get; set; }
 
@@ -39,7 +46,6 @@ public partial class DialogWindow : Window
         set => SetValue(SecondaryButtonTextProperty, value);
     }
 
-
     [RelayCommand]
     private async Task Confirm()
     {
@@ -48,7 +54,6 @@ public partial class DialogWindow : Window
         DialogResultData data = new(true, result);
         Close(data);
     }
-
 
     [RelayCommand]
     private async Task Cancel()
@@ -78,13 +83,14 @@ public partial class DialogWindow : Window
 
         this.GetObservable(SecondaryButtonTextProperty)
             .Subscribe(x => _secondaryButton.IsVisible = !string.IsNullOrEmpty(x));
-        
+
         if (DialogViewModel is not null)
             DialogViewModel.ErrorMessageAction += (message, title, state) =>
             {
                 _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state));
             };
     }
+
     public DialogWindow()
     {
         InitializeComponent();

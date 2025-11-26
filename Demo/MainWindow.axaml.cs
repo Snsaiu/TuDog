@@ -5,10 +5,11 @@ using FluentAvalonia.UI.Windowing;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.MessageBarService;
 using TuDog.Interfaces.RegionManagers;
+using TuDog.UIs;
 
 namespace Demo;
 
-public partial class MainWindow : AppWindow
+public partial class MainWindow : TuDogWindow
 {
     private const string regionName = "mainContainer";
 

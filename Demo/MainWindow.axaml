@@ -1,13 +1,12 @@
-<windowing:AppWindow xmlns="https://github.com/avaloniaui"
-           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-           xmlns:attachs="clr-namespace:TuDog.Attachs;assembly=TuDog"
-           xmlns:windowing="clr-namespace:FluentAvalonia.UI.Windowing;assembly=FluentAvalonia"
-           xmlns:uIs="clr-namespace:TuDog.UIs;assembly=TuDog"
-           mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-           x:Class="Demo.MainWindow"
-           Title="Demo">
+<uIs:TuDogWindow xmlns="https://github.com/avaloniaui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:attachs="clr-namespace:TuDog.Attachs;assembly=TuDog"
+                 xmlns:uIs="clr-namespace:TuDog.UIs;assembly=TuDog"
+                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                 x:Class="Demo.MainWindow"
+                 Title="Demo">
     <Grid>
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Left" Margin="5">
@@ -18,6 +17,5 @@
         </StackPanel>
         <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
     </DockPanel>
-        <uIs:InfoBox  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
     </Grid>
-</windowing:AppWindow>
+</uIs:TuDogWindow>

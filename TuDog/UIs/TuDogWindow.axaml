@@ -1,0 +1,25 @@
+﻿<windowing:AppWindow xmlns="https://github.com/avaloniaui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:uIs="clr-namespace:TuDog.UIs"
+                     xmlns:windowing="clr-namespace:FluentAvalonia.UI.Windowing;assembly=FluentAvalonia"
+                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                     x:Class="TuDog.UIs.TuDogWindow"
+                     ExtendClientAreaToDecorationsHint="True"
+                     ExtendClientAreaChromeHints="NoChrome"
+                     Title="TuDogWindow">
+
+    <windowing:AppWindow.Template>
+        <ControlTemplate>
+            <Grid RowDefinitions="Auto,*" Background="{DynamicResource SolidBackgroundFillColorBase}">
+                <Border Grid.Row="0" x:Name="PART_TitleBar">
+                    <ContentControl Template="{TemplateBinding TitleBarTemplate}" />
+                </Border>
+                <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
+                <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
+                             Margin="0,5,5,0" />
+            </Grid>
+        </ControlTemplate>
+    </windowing:AppWindow.Template>
+</windowing:AppWindow>

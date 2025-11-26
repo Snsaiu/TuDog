@@ -2,5 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Add Resources Here -->
     <StyleInclude Source="avares://TuDog/UIs/InfoBox.axaml" />
+    <StyleInclude Source="avares://TuDog/UIs/Styles/TuDogWindowStyle.axaml" />
+    <StyleInclude Source="avares://TuDog/UIs/Styles/ButtonStyle.axaml" />
 
 </Styles>
