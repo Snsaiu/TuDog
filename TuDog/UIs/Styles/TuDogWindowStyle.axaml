@@ -3,33 +3,87 @@
         xmlns:uIs="clr-namespace:TuDog.UIs"
         xmlns:extensions="clr-namespace:TuDog.Extensions"
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia">
-
+    
     <Style Selector="uIs|TuDogWindow">
         <Setter Property="TitleBarTemplate">
             <Setter.Value>
                 <ControlTemplate>
                     <Border Background="{DynamicResource LayerFillColorAltBrush}">
+                        <Grid ColumnDefinitions="*,*,*">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Spacing="6" Orientation="Horizontal"
+                                            IsVisible="{OnPlatform Default=false,macOS=true}"
+                                            Margin="8,5,0,5"
+                                            VerticalAlignment="Center">
+                                    <StackPanel.Styles>
+                                        <Style
+                                            Selector="StackPanel:pointerover uIs|IconButton /template/ Border controls|FontIcon#Icon">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Style>
+                                    </StackPanel.Styles>
+                                    <uIs:IconButton
+                                        IsVisible="{TemplateBinding ShowCloseButton}"
+                                        IconFont="{x:Static extensions:IconFonts.MacosClose}"
+                                        FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
+                                        Foreground="#FF605C" Background="#FF605C" />
+                                    <uIs:IconButton
+                                        IsVisible="{TemplateBinding ShowMinButton}"
+                                        IconFont="{x:Static extensions:IconFonts.MacosMinimize}"
+                                        FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
+                                        Background="#FFBD44" Foreground="#FFBD44" />
+                                    <uIs:IconButton
+                                        IsVisible="{TemplateBinding ShowMaxButton}"
+                                        IconFont="{x:Static extensions:IconFonts.MacosMaximize}"
+                                        FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
+                                        Background="#00CA4E" Foreground="#00CA4E" />
+                                    <ContentPresenter Content="{TemplateBinding TitleBarLeftAreaTemplate}" />
+                                </StackPanel>
+                            </StackPanel>
+                            <ContentPresenter
+                                Grid.Column="1"
+                                DataContext="{Binding $parent[uIs:TuDogWindow]}"
+                                Content="{TemplateBinding TitleTemplate}" />
+                            <StackPanel HorizontalAlignment="Right" Grid.Column="2" Orientation="Horizontal">
+                                <ContentPresenter Content="{TemplateBinding TitleBarRightAreaTemplate}" />
+                                <StackPanel Orientation="Horizontal" Spacing="6"
+                                            HorizontalAlignment="Right"
+                                            IsVisible="{OnPlatform Default=false,Windows=true,Linux=true}">
+                                    <StackPanel.Styles>
+                                        <Style Selector="uIs|IconButton">
+                                            <Setter Property="FontFamily"
+                                                    Value="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont" />
+                                            <Setter Property="FontSize" Value="14" />
+                                            <Setter Property="Width" Value="40" />
+                                            <Setter Property="Height" Value="40" />
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Style>
+                                        <Style Selector="uIs|IconButton:pointerover">
+                                            <Setter Property="Background"
+                                                    Value="{DynamicResource AccentFillColorDefaultBrush}" />
+                                        </Style>
+                                    </StackPanel.Styles>
+                                    <uIs:IconButton IsVisible="{TemplateBinding ShowMinButton}"
+                                                    IconFont="{x:Static extensions:IconFonts.WindowsMinimize}" />
 
-                        <StackPanel Orientation="Horizontal" Margin="8,5,0,5" VerticalAlignment="Center">
-                            <StackPanel.Styles>
-                                <Style
-                                    Selector="StackPanel:pointerover uIs|IconButton /template/ Border controls|FontIcon#Icon">
-                                    <Setter Property="Foreground" Value="Black" />
-                                </Style>
-                            </StackPanel.Styles>
+                                    <uIs:IconButton IsVisible="{TemplateBinding ShowMaxButton}"
+                                                    IconFont="{x:Static extensions:IconFonts.WindowsMaximize}" />
 
-                            <uIs:IconButton
-                                IconFont="{x:Static extensions:IconFonts.MacosClose}"
-                                FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
-                                Foreground="#FF605C" Background="#FF605C" />
-                            <uIs:IconButton
-                                IconFont="{x:Static extensions:IconFonts.MacosMinimize}"
-                                FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
-                                Background="#FFBD44" Foreground="#FFBD44" Margin="6,0,0,0" />
-                            <!-- <Button Classes="MacosTitleBarButton" extensions:IconAttach.Icon="{x:Static tabbyCat:IconFontProvider.MacosMaximize}" Background="#00CA4E" Foreground="#00CA4E" Margin="6,0,0,0" /> -->
-                        </StackPanel>
+                                    <uIs:IconButton IsVisible="{TemplateBinding ShowCloseButton}"
+                                                    IconFont="{x:Static extensions:IconFonts.WindowsClose}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
 
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TitleTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <TextBlock Text="{TemplateBinding Title}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                               FontSize="20" Foreground="Red"
+                               FontWeight="Bold" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
