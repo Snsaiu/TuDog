@@ -7,15 +7,23 @@
                  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                  x:Class="Demo.MainWindow"
                  Title="Demo">
+
+    <uIs:TuDogWindow.TitleBarRightAreaTemplate>
+        <ControlTemplate>
+            <TextBlock>test</TextBlock>
+        </ControlTemplate>
+    </uIs:TuDogWindow.TitleBarRightAreaTemplate>
+
     <Grid>
-    <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Left" Margin="5">
-            <Button Content="等待弹框" Click="OpenWaitingDialog" />
-            <Button Content="文本输入框"  Click="OpenTextInputDialog"></Button>
-            <Button Content="自定义弹框" Click="OpenCustomDialog"></Button>
-            <Button Content="MessageBox" Click="ShowMessageBox"></Button>
-        </StackPanel>
-        <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
-    </DockPanel>
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Left" Margin="5">
+                <Button Content="等待弹框" Click="OpenWaitingDialog" />
+                <Button Content="文本输入框" Click="OpenTextInputDialog" />
+                <Button Content="OK弹框" Click="ShowConfirmBox" />
+                <Button Content="自定义弹框" Click="OpenCustomDialog" />
+                <Button Content="MessageBox" Click="ShowMessageBox" />
+            </StackPanel>
+            <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
+        </DockPanel>
     </Grid>
 </uIs:TuDogWindow>

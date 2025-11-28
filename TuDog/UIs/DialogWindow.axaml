@@ -16,6 +16,11 @@
         <Window.Template>
             <ControlTemplate TargetType="uIs:DialogWindow">
                     <Grid RowDefinitions="Auto,*,Auto" Background="{DynamicResource SolidBackgroundFillColorBase}">
+
+                        <!-- for show dialog -->
+                        <VisualLayerManager Grid.RowSpan="3">
+                            <OverlayLayer />
+                        </VisualLayerManager>
                         <Border Padding="24" BorderThickness="0,0,0,1"
                                 BorderBrush="{DynamicResource ContentDialogBorderBrush}">
                             <StackPanel Orientation="Vertical">
@@ -45,10 +50,12 @@
                                     </Style>
                                 </StackPanel.Styles>
                                 <Button Name="PrimaryButton"
+                                        MinWidth="100"
                                         Command="{Binding $parent[uIs:DialogWindow].ConfirmCommand}"
                                         Content="{TemplateBinding PrimaryButtonText}" />
                                 <Button Name="SecondaryButton"
                                         Margin="5,0,0,0"
+                                        MinWidth="100"
                                         Command="{Binding $parent[uIs:DialogWindow].CancelCommand}"
                                         Content="{TemplateBinding SecondaryButtonText}" />
                             </StackPanel>

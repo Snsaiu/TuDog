@@ -2,15 +2,12 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
 using Avalonia.Input;
-using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Templates;
 using DryIoc;
 using FluentAvalonia.UI.Windowing;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.MessageBarService;
-using TuDog.Interfaces.MessageBarService.Impl;
 
 namespace TuDog.UIs;
 
@@ -117,6 +114,7 @@ public partial class TuDogWindow : AppWindow
     public TuDogWindow()
     {
         InitializeComponent();
+        DataContext = new TuDogWindowViewModelBase();
         _messageBarService = TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
     }
 
@@ -130,13 +128,7 @@ public partial class TuDogWindow : AppWindow
         _titleBar.PointerMoved += WindowDragHandle_OnPointerMoved;
         _titleBar.PointerPressed += WindowDragHandle_OnPointerPressed;
         _titleBar.PointerReleased += WindowDragHandle_OnPointerReleased;
-    }
-
-    protected override void OnGotFocus(GotFocusEventArgs e)
-    {
-        base.OnGotFocus(e);
-        if (_infoBox is { } box)
-            ((MessageBarService)_messageBarService).RegisterInfoBox(box);
+        TuDogApplication.InfoBox = _infoBox;
     }
 
     private bool _isWindowDragInEffect = false;

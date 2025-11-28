@@ -6,21 +6,17 @@ using TuDog.IocAttribute;
 
 namespace Demo.ViewModels;
 
-
-public sealed partial class CustomDialogData:ModelBase
+public sealed partial class CustomDialogData : ModelBase
 {
-    [ObservableProperty]
-    private string _message;
-    
-    [ObservableProperty]
-    private bool _isSync;
+    [ObservableProperty] private string _message;
+
+    [ObservableProperty] private bool _isSync;
 }
 
 [Register]
-public partial class MyDialogViewModel:DialogViewModelBaseAsync<string,CustomDialogData>
+public partial class MyDialogViewModel : DialogViewModelBaseAsync<string, CustomDialogData>
 {
-    [ObservableProperty]
-    private CustomDialogData _data = new CustomDialogData();
+    [ObservableProperty] private CustomDialogData _data = new();
 
     protected override Task OnLoaded()
     {
@@ -40,6 +36,7 @@ public partial class MyDialogViewModel:DialogViewModelBaseAsync<string,CustomDia
             ErrorMessageAction("message不能为空", "错误", MessageState.Error);
             return Task.FromResult(false);
         }
+
         return Task.FromResult(true);
     }
 

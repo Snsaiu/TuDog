@@ -11,7 +11,7 @@ namespace TuDog.Interfaces.IDialogServers.Impl;
 internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer container) : IDialogServer
 {
     public Task ShowMessageDialogAsync(string message, string title = "提示",
-        string buttonText = "确定")
+        string buttonText = "OK")
     {
         var dialog = new ContentDialog
         {
@@ -22,8 +22,8 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         return dialog.ShowAsync();
     }
 
-    public async Task<bool> ShowConfirmDialogAsync(string message, string title = "提示", string confirmButtonText = "确定",
-        string cancelButtonText = "取消")
+    public async Task<bool> ShowConfirmDialogAsync(string message, string title = "提示", string confirmButtonText = "OK",
+        string cancelButtonText = "Cancel")
     {
         var dialog = new ContentDialog
         {
@@ -32,14 +32,15 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
             PrimaryButtonText = confirmButtonText,
             SecondaryButtonText = cancelButtonText
         };
+
         var result = await dialog.ShowAsync();
         return result == ContentDialogResult.Primary;
     }
 
     public async Task<DialogResultData<string>> ShowInputDialogAsync(string message, string title = "提示",
-        string placeHolder = "请输入...",
-        string confirmButtonText = "确定",
-        string cancelButtonText = "取消", string? defaultValue = null, int? maxLength = null)
+        string placeHolder = "Please input ...",
+        string confirmButtonText = "OK",
+        string cancelButtonText = "Cancel", string? defaultValue = null, int? maxLength = null)
     {
         var dialog = new ContentDialog
         {
@@ -68,8 +69,8 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
     }
 
     public async Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
-        string confirmButtonText = "确定",
-        string cancelButtonText = "取消", TParameter? parameter = default)
+        string confirmButtonText = "OK",
+        string cancelButtonText = "Cancel", TParameter? parameter = default)
         where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>
     {
         var vm = container.Resolve<TViewModel>();
@@ -130,8 +131,8 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
     }
 
     public async Task<DialogResultData<object>?> ShowDialogAsync<TViewModel, TParameter>(string title,
-        string confirmButtonText = "确定",
-        string cancelButtonText = "取消", TParameter? parameter = default)
+        string confirmButtonText = "OK",
+        string cancelButtonText = "Cancel", TParameter? parameter = default)
         where TViewModel : DialogViewModelBaseAsync
     {
         var vm = container.Resolve<TViewModel>();

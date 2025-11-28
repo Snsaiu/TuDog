@@ -27,7 +27,6 @@ public partial class DialogWindow : Window
     private IMessageBarService _messageBarService =
         TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
 
-
     public IViewModelResultAsync DialogViewModel { get; set; }
 
     public string PrimaryButtonText
@@ -53,6 +52,16 @@ public partial class DialogWindow : Window
         var result = await DialogViewModel.ConfirmAsync();
         DialogResultData data = new(true, result);
         Close(data);
+        ResetInfoBox();
+    }
+
+    /// <summary>
+    /// reset <see cref="InfoBox"/>,set <see cref="IMessageBarService"/>
+    /// instance's InfoBox to the application's InfoBox
+    /// </summary>
+    private void ResetInfoBox()
+    {
+        if (TuDogApplication.InfoBox is { } infobox) ((MessageBarService)_messageBarService).RegisterInfoBox(infobox);
     }
 
     [RelayCommand]
@@ -62,9 +71,9 @@ public partial class DialogWindow : Window
         DialogResultData data = new(false, result);
         if (WhenCancelCloseWindow)
             Close(data);
-
         if (CancellationTokenSource is not null and var source)
             await source.CancelAsync();
+        ResetInfoBox();
     }
 
     internal CancellationTokenSource? CancellationTokenSource { get; set; }

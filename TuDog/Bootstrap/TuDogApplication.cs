@@ -24,7 +24,6 @@ using TuDog.UIs;
 using TuDog.ViewLocators;
 using TuDog.ViewLocators.Impl;
 
-
 namespace TuDog.Bootstrap;
 
 public abstract class TuDogApplication : Application
@@ -34,6 +33,8 @@ public abstract class TuDogApplication : Application
     public static TopLevel? TopLevel { get; set; }
 
     public static Window? MainWindow { get; private set; }
+
+    internal static InfoBox? InfoBox { get; set; }
 
     public override void Initialize()
     {
@@ -98,7 +99,6 @@ public abstract class TuDogApplication : Application
 
         base.OnFrameworkInitializationCompleted();
     }
-
 
     protected virtual void Register(IContainer collection)
     {
