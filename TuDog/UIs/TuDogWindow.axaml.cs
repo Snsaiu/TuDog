@@ -114,7 +114,6 @@ public partial class TuDogWindow : AppWindow
     public TuDogWindow()
     {
         InitializeComponent();
-        DataContext = new TuDogWindowViewModelBase();
         _messageBarService = TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
     }
 

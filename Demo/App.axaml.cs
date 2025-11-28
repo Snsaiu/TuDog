@@ -17,7 +17,7 @@ public partial class App : TuDogApplication
 
     public override object CreateShell()
     {
-        return new MainWindow();
+        return new MainWindow { DataContext = new MainWindowViewModel() };
     }
 
     protected override void Register(IContainer collection)

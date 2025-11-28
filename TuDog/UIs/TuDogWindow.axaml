@@ -7,7 +7,6 @@
                      xmlns:bootstrap="clr-namespace:TuDog.Bootstrap"
                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                      x:Class="TuDog.UIs.TuDogWindow"
-                     x:DataType="{x:Type bootstrap:TuDogWindowViewModelBase}"
                      WindowState="{Binding WindowState, Mode=TwoWay}"
                      ExtendClientAreaToDecorationsHint="True"
                      ExtendClientAreaChromeHints="NoChrome">
@@ -27,6 +26,11 @@
                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
                 <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
                              Margin="0,5,5,0" />
+                <Interaction.Behaviors>
+                    <EventTriggerBehavior EventName="Loaded">
+                        <InvokeCommandAction Command="{Binding LoadedCommand}" />
+                    </EventTriggerBehavior>
+                </Interaction.Behaviors>
             </Grid>
         </ControlTemplate>
     </windowing:AppWindow.Template>
