@@ -4,7 +4,6 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:uIs="clr-namespace:TuDog.UIs"
                      xmlns:windowing="clr-namespace:FluentAvalonia.UI.Windowing;assembly=FluentAvalonia"
-                     xmlns:bootstrap="clr-namespace:TuDog.Bootstrap"
                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                      x:Class="TuDog.UIs.TuDogWindow"
                      WindowState="{Binding WindowState, Mode=TwoWay}"
@@ -15,15 +14,18 @@
         <ControlTemplate>
             <Grid RowDefinitions="Auto,*" Background="{DynamicResource SolidBackgroundFillColorBase}">
 
-                <!-- for dialog -->
-                <VisualLayerManager Grid.RowSpan="2">
-                    <OverlayLayer />
-                </VisualLayerManager>
-                
+
                 <Border Grid.Row="0" x:Name="PART_TitleBar">
                     <ContentControl Template="{TemplateBinding TitleBarTemplate}" />
                 </Border>
                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
+
+                <!-- for dialog -->
+                <VisualLayerManager Grid.RowSpan="2" Grid.Row="0">
+                    <OverlayLayer />
+                </VisualLayerManager>
+
+
                 <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
                              Margin="0,5,5,0" />
                 <Interaction.Behaviors>
