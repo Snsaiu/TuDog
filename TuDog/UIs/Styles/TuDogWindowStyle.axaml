@@ -40,9 +40,9 @@
                                         FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
                                         Command="{Binding MaximizeWindowCommand}"
                                         Background="#00CA4E" Foreground="#00CA4E" />
-                                    <ContentControl
-                                        Template="{Binding  $parent[uIs:TuDogWindow].TitleBarLeftAreaTemplate}" />
                                 </StackPanel>
+                                <ContentControl
+                                    Template="{Binding  $parent[uIs:TuDogWindow].TitleBarLeftAreaTemplate}" />
                             </StackPanel>
 
                             <ContentControl Grid.Column="1"

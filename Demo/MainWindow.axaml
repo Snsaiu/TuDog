@@ -10,6 +10,11 @@
                  x:DataType="{x:Type viewModels:MainWindowViewModel}"
                  Title="Demo">
 
+    <uIs:TuDogWindow.TitleBarLeftAreaTemplate>
+        <ControlTemplate>
+            <Button Content="click" />
+        </ControlTemplate>
+    </uIs:TuDogWindow.TitleBarLeftAreaTemplate>
     <uIs:TuDogWindow.TitleBarRightAreaTemplate>
         <ControlTemplate>
             <TextBlock>test</TextBlock>
