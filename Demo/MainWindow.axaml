@@ -17,7 +17,22 @@
     </uIs:TuDogWindow.TitleBarLeftAreaTemplate>
     <uIs:TuDogWindow.TitleBarRightAreaTemplate>
         <ControlTemplate>
-            <TextBlock>test</TextBlock>
+
+            <StackPanel Spacing="10" Orientation="Horizontal">
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+                <TextBlock>内容</TextBlock>
+            </StackPanel>
+
         </ControlTemplate>
     </uIs:TuDogWindow.TitleBarRightAreaTemplate>
 

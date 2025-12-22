@@ -10,7 +10,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="uIs:TuDogWindow">
                     <Border Background="{DynamicResource LayerFillColorAltBrush}">
-                        <Grid ColumnDefinitions="*,*,*">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Spacing="6" Orientation="Horizontal"
                                             IsVisible="{OnPlatform Default=false,macOS=true}"
@@ -47,11 +47,9 @@
 
                             <ContentControl Grid.Column="1"
                                             Template="{Binding $parent[uIs:TuDogWindow].TitleTemplate}" />
-                            
-                            <StackPanel HorizontalAlignment="Right" Grid.Column="2" Orientation="Horizontal">
-                                <ContentControl Template="{Binding $parent[uIs:TuDogWindow].TitleBarRightAreaTemplate}" />
-                                <StackPanel Orientation="Horizontal" Spacing="6"
-                                            HorizontalAlignment="Right"
+
+                            <DockPanel Grid.Column="2" LastChildFill="True">
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="6"
                                             IsVisible="{OnPlatform Default=false,Windows=true,Linux=true}">
                                     <StackPanel.Styles>
                                         <Style Selector="uIs|IconButton">
@@ -82,7 +80,10 @@
                                                     Command="{Binding CloseWindowCommand}"
                                                     IconFont="{x:Static extensions:IconFonts.WindowsClose}" />
                                 </StackPanel>
-                            </StackPanel>
+
+                                <ContentControl
+                                    Template="{Binding $parent[uIs:TuDogWindow].TitleBarRightAreaTemplate}" />
+                            </DockPanel>
                         </Grid>
 
                     </Border>
