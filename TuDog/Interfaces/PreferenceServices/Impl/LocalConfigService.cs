@@ -1,5 +1,4 @@
-﻿
-using DryIoc;
+﻿using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.LocalPreferences;
 

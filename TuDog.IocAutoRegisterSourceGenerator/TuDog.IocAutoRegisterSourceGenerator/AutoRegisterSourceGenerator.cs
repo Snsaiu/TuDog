@@ -12,31 +12,18 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        var projectFile = context.AdditionalTextsProvider
-            .Where(x => x.Path.EndsWith(".csproj"))
-            .Select((x, _) => x.GetText()).Combine(context.CompilationProvider);
+        var projectFile = context.AdditionalTextsProvider.Where(x => x.Path.EndsWith(".csproj")).Select((x, _) => x.GetText()).Combine(context.CompilationProvider);
         var content = projectFile.ToString();
-
 
         context.RegisterSourceOutput(projectFile, (context, proj) =>
         {
-            context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor("Gen001",
-                    "Debug",
-                    $"开始启动源生成器"
-                    , "TuDog.SourceGenerator"
-                    , DiagnosticSeverity.Warning, true), Location.None));
+            context.ReportDiagnostic(Diagnostic.Create(new DiagnosticDescriptor("Gen001", "Debug", $"开始启动源生成器", "TuDog.SourceGenerator", DiagnosticSeverity.Warning, true), Location.None));
 
             if (proj.Left is null) return;
             var content = proj.ToString();
 
             //   Debugger.Launch();
-            context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor("Gen002",
-                    "Debug",
-                    $"csproj文件为:{content}"
-                    , "TuDog.SourceGenerator"
-                    , DiagnosticSeverity.Warning, true), Location.None));
+            context.ReportDiagnostic(Diagnostic.Create(new DiagnosticDescriptor("Gen002", "Debug", $"csproj文件为:{content}", "TuDog.SourceGenerator", DiagnosticSeverity.Warning, true), Location.None));
 
             var pattern = @"<ScanAssemblyRule>(.*?)<\/ScanAssemblyRule>";
 
@@ -51,7 +38,6 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 var appNamespace = proj.Right.AssemblyName;
                 if (string.IsNullOrEmpty(appNamespace))
                     return;
-
 
                 var source = GenerateSource(models, appNamespace);
 
@@ -75,7 +61,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
         {
             var collection = "  collection.Register";
             var registerType = "";
-            
+
             if (model.LifeType == LifeType.Transient)
                 registerType = "Reuse.Transient";
             else if (model.LifeType == LifeType.Scoped)
@@ -89,9 +75,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 sb.AppendLine($"{collection}<{model.InterfaceFullName},{model.ImplementFullName}>({registerType});");
         }
 
-        sb.AppendLine(
-            "collection.Register<TuDog.Interfaces.IViewLocatorService,TuDog.Services.ViewLocatorService>(Reuse.Singleton);");
-
+        sb.AppendLine("collection.Register<TuDog.Interfaces.IViewLocatorService,TuDog.Services.ViewLocatorService>(Reuse.Singleton);");
 
         sb.AppendLine("     }");
 
@@ -130,9 +114,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                 if (att is null)
                     continue;
                 {
-                    if (item.GetAttributes().FirstOrDefault(x =>
-                            x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
-                            "TuDog.IocAttribute.RegisterAttribute<TService>") is { } find)
+                    if (item.GetAttributes().FirstOrDefault(x => x.AttributeClass?.OriginalDefinition.ToDisplayString() == "TuDog.IocAttribute.RegisterAttribute<TService>") is { } find)
                     {
                         var model = new DiscoverModel();
 
@@ -149,9 +131,7 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
                     }
                 }
                 {
-                    if (item.GetAttributes().FirstOrDefault(x =>
-                            x.AttributeClass?.OriginalDefinition.ToDisplayString() ==
-                            "TuDog.IocAttribute.RegisterAttribute") is { } find)
+                    if (item.GetAttributes().FirstOrDefault(x => x.AttributeClass?.OriginalDefinition.ToDisplayString() == "TuDog.IocAttribute.RegisterAttribute") is { } find)
                     {
                         var model = new DiscoverModel();
 
@@ -171,7 +151,6 @@ public class AutoRegisterSourceGenerator : IIncrementalGenerator
 
         return result;
     }
-
 
     private static IEnumerable<INamedTypeSymbol> GetNamespaceTypes(INamespaceSymbol namespaceSymbol)
     {

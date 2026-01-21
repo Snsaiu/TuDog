@@ -13,7 +13,9 @@ public sealed class JsonPreferenceService : IPreferenceService
     {
         if (OperatingSystem.IsAndroid())
             // 返回应用的配置目录
+        {
             fullFilePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+        }
         else
         {
             var exeName = Path.GetFileName(Environment.ProcessPath)?.Split(".").FirstOrDefault();
@@ -29,8 +31,6 @@ public sealed class JsonPreferenceService : IPreferenceService
 
         if (!File.Exists(fullFilePath))
             File.WriteAllText(fullFilePath, "{}");
-
-
     }
 
     public void Set<T>(string key, T value)

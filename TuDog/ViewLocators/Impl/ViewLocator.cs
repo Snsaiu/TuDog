@@ -12,5 +12,8 @@ public class ViewLocator : ViewLocatorBase
         return Type.GetType($"{name},{ass}");
     }
 
-    protected override bool MatchViewModel(object? data) => true;
+    protected override bool MatchViewModel(object? data)
+    {
+        return true;
+    }
 }

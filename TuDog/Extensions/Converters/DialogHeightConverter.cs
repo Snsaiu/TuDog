@@ -2,7 +2,7 @@
 
 namespace TuDog.Extensions.Converters;
 
-internal sealed class DialogHeightConverter:ValueConvertBase
+internal sealed class DialogHeightConverter : ValueConvertBase
 {
     public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {

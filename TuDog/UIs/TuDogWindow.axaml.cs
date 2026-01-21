@@ -25,8 +25,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     /// title bar template
     /// </summary>
-    public static readonly StyledProperty<ControlTemplate?> TitleBarTemplateProperty =
-        AvaloniaProperty.Register<TuDogWindow, ControlTemplate?>(nameof(TitleBarTemplate));
+    public static readonly StyledProperty<ControlTemplate?> TitleBarTemplateProperty = AvaloniaProperty.Register<TuDogWindow, ControlTemplate?>(nameof(TitleBarTemplate));
 
     public ControlTemplate? TitleBarTemplate
     {
@@ -37,8 +36,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     /// close button visibility
     /// </summary>
-    public static readonly StyledProperty<bool> ShowCloseButtonProperty = AvaloniaProperty.Register<TuDogWindow, bool>(
-        nameof(ShowCloseButton), true);
+    public static readonly StyledProperty<bool> ShowCloseButtonProperty = AvaloniaProperty.Register<TuDogWindow, bool>(nameof(ShowCloseButton), true);
 
     public bool ShowCloseButton
     {
@@ -49,8 +47,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     ///  minimize button visibility
     /// </summary>
-    public static readonly StyledProperty<bool> ShowMinButtonProperty = AvaloniaProperty.Register<TuDogWindow, bool>(
-        nameof(ShowMinButton), true);
+    public static readonly StyledProperty<bool> ShowMinButtonProperty = AvaloniaProperty.Register<TuDogWindow, bool>(nameof(ShowMinButton), true);
 
     public bool ShowMinButton
     {
@@ -61,8 +58,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     /// maximize button visibility
     /// </summary>
-    public static readonly StyledProperty<bool> ShowMaxButtonProperty = AvaloniaProperty.Register<TuDogWindow, bool>(
-        nameof(ShowMaxButton), true);
+    public static readonly StyledProperty<bool> ShowMaxButtonProperty = AvaloniaProperty.Register<TuDogWindow, bool>(nameof(ShowMaxButton), true);
 
     public bool ShowMaxButton
     {
@@ -73,9 +69,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     /// title area template, the title template is to the center of the title bar
     /// </summary>
-    public static readonly StyledProperty<ControlTemplate?> TitleTemplateProperty =
-        AvaloniaProperty.Register<TuDogWindow, ControlTemplate?>(
-            nameof(TitleTemplate));
+    public static readonly StyledProperty<ControlTemplate?> TitleTemplateProperty = AvaloniaProperty.Register<TuDogWindow, ControlTemplate?>(nameof(TitleTemplate));
 
     public ControlTemplate? TitleTemplate
     {
@@ -86,9 +80,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     ///  left area template, the left area is to the left of the title bar,on the macOS platform,it is to the right of the system buttons that minimize,maximize and close
     /// </summary>
-    public static readonly StyledProperty<ControlTemplate> TitleBarLeftAreaTemplateProperty =
-        AvaloniaProperty.Register<TuDogWindow, ControlTemplate>(
-            nameof(TitleBarLeftAreaTemplate));
+    public static readonly StyledProperty<ControlTemplate> TitleBarLeftAreaTemplateProperty = AvaloniaProperty.Register<TuDogWindow, ControlTemplate>(nameof(TitleBarLeftAreaTemplate));
 
     public ControlTemplate TitleBarLeftAreaTemplate
     {
@@ -99,9 +91,7 @@ public partial class TuDogWindow : AppWindow
     /// <summary>
     /// right area template that is to the right of the title bar,on the windows platform,it is to the left of the system buttons that minimize,maximize and close
     /// </summary>
-    public static readonly StyledProperty<ControlTemplate> TitleBarRightAreaTemplateProperty =
-        AvaloniaProperty.Register<TuDogWindow, ControlTemplate>(
-            nameof(TitleBarRightAreaTemplate));
+    public static readonly StyledProperty<ControlTemplate> TitleBarRightAreaTemplateProperty = AvaloniaProperty.Register<TuDogWindow, ControlTemplate>(nameof(TitleBarRightAreaTemplate));
 
     public ControlTemplate TitleBarRightAreaTemplate
     {

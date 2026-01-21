@@ -17,32 +17,32 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" />
-        <PackageReference Include="Avalonia.Xaml.Behaviors" />
-        <PackageReference Include="CommunityToolkit.Mvvm" />
-        <PackageReference Include="DryIoc.dll" />
-        <PackageReference Include="FluentAvaloniaUI" />
-        <PackageReference Include="Newtonsoft.Json" />
-        <PackageReference Include="Xamarin.Essentials" />
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Xaml.Behaviors"/>
+        <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="DryIoc.dll"/>
+        <PackageReference Include="FluentAvaloniaUI"/>
+        <PackageReference Include="Newtonsoft.Json"/>
+        <PackageReference Include="Xamarin.Essentials"/>
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Assets\IconFonts\"/>
-        <Folder Include="Interfaces\LocalPreferences\Impl\" />
+        <Folder Include="Interfaces\LocalPreferences\Impl\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\ReadMeAssets\Tudog_Icon.png">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
+        <None Include="..\ReadMeAssets\Tudog_Icon.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Icon.png">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
+        <None Update="Icon.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

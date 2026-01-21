@@ -11,8 +11,7 @@ using TuDog.Models;
 namespace Demo.ViewModels;
 
 [Register]
-public partial class TextInputDialogViewModel(IDialogServer dialogServer, IMessageBarService messageBarService)
-    : TuDogViewModelBase
+public partial class TextInputDialogViewModel(IDialogServer dialogServer, IMessageBarService messageBarService) : TuDogViewModelBase
 {
     [ObservableProperty] private string _resultMessage = string.Empty;
 
@@ -39,10 +38,7 @@ public partial class TextInputDialogViewModel(IDialogServer dialogServer, IMessa
 
     private void Display(DialogResultData<string> result)
     {
-        if (result is not { Ok: true, Data: var data })
-        {
-            return;
-        }
+        if (result is not { Ok: true, Data: var data }) return;
 
         ResultMessage = data;
     }

@@ -7,6 +7,6 @@
              x:DataType="viewModels:MessageDialogViewModel"
              x:Class="Demo.Views.MessageDialogView">
     <StackPanel Orientation="Vertical">
-        <Button Content="Success" Command="{Binding ShowInfoMessageCommand}"></Button>
+        <Button Content="Success" Command="{Binding ShowInfoMessageCommand}" />
     </StackPanel>
 </UserControl>

@@ -36,6 +36,13 @@
     <ItemGroup>
         <AdditionalFiles Include="$(MSBuildProjectFile)"/>
     </ItemGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="Assets\IconFont\IconFont.json"></AdditionalFiles>
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="Assets\IconFont\iconfont.ttf"/>
+        <AvaloniaResource Include="Assets\IconFont\iconfont.ttf"/>
+    </ItemGroup>
 
     <PropertyGroup>
         <ScanAssemblyRule>^Demo</ScanAssemblyRule>

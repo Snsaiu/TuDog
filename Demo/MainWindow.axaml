@@ -44,6 +44,7 @@
                 <Button Content="Confirm弹框" Command="{Binding ShowConfirmDialogCommand}" />
                 <Button Content="自定义弹框" Command="{Binding ShowCustomDialogCommand}" />
                 <Button Content="MessageBox" Command="{Binding ShowMessageBarCommand}" />
+                <Button Content="Icon提供方" Command="{Binding ShowIconProviderCommand }" />
             </StackPanel>
             <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
         </DockPanel>

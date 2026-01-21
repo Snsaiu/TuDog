@@ -12,13 +12,9 @@ public sealed class EnumToRadioButtonCheckedStateConverter : ValueConvertBase
             throw new ArgumentException();
 
         if (value is Enum enumValue)
-        {
             return enumValue.Equals(valueAsEnum);
-        }
         else
-        {
             throw new ArgumentException();
-        }
     }
 
     public override object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

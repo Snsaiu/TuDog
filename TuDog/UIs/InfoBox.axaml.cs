@@ -18,8 +18,7 @@ public partial class InfoBox : TemplatedControl
 
     private ItemsControl _itemControl;
 
-    private IMessageBarService _messageBarService =
-        TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
+    private IMessageBarService _messageBarService = TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
 
     public void AddNewMessage(InfoModel message)
     {

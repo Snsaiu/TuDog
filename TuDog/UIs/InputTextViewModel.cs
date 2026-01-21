@@ -11,7 +11,6 @@ public partial class InputTextViewModel : DialogViewModelBase
     [ObservableProperty] private string _text = string.Empty;
     [ObservableProperty] private int _maxLength = int.MaxValue;
 
-    
     public override object Confirm()
     {
         return Text;

@@ -1,5 +1,3 @@
-
-
 namespace TuDog.IocContainers;
 
 public interface ITuDogContainer

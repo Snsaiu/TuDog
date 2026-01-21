@@ -55,6 +55,12 @@ public partial class MainWindowViewModel : TuDogWindowViewModelBase
         _regionManager.AddToRegion<MessageDialogViewModel>(regionName);
     }
 
+    [RelayCommand]
+    private void ShowIconProvider()
+    {
+        _regionManager.AddToRegion<IconProviderViewModel>(regionName);
+    }
+
     protected override Task OnLoaded()
     {
         return base.OnLoaded();

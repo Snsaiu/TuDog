@@ -1,0 +1,226 @@
+﻿{
+  "id": "5043866",
+  "name": "Koala",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7017728",
+      "name": "帮助",
+      "font_class": "Help",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "5127475",
+      "name": "ReDo",
+      "font_class": "ReDo",
+      "unicode": "e7fa",
+      "unicode_decimal": 59386
+    },
+    {
+      "icon_id": "5127576",
+      "name": "UnDo",
+      "font_class": "UnDo",
+      "unicode": "e842",
+      "unicode_decimal": 59458
+    },
+    {
+      "icon_id": "28940406",
+      "name": "收藏",
+      "font_class": "Favourite",
+      "unicode": "e78f",
+      "unicode_decimal": 59279
+    },
+    {
+      "icon_id": "312608",
+      "name": "版本管理",
+      "font_class": "Versionmanage",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "6151228",
+      "name": "锁定",
+      "font_class": "Lock",
+      "unicode": "e7fb",
+      "unicode_decimal": 59387
+    },
+    {
+      "icon_id": "11981761",
+      "name": "导入",
+      "font_class": "Import",
+      "unicode": "e977",
+      "unicode_decimal": 59767
+    },
+    {
+      "icon_id": "4529754",
+      "name": "导出",
+      "font_class": "Export",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "7239734",
+      "name": "MarkDown",
+      "font_class": "MarkDown",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "7442356",
+      "name": "pdf",
+      "font_class": "PDF",
+      "unicode": "e759",
+      "unicode_decimal": 59225
+    },
+    {
+      "icon_id": "20559463",
+      "name": "Txt",
+      "font_class": "Txt",
+      "unicode": "e7b0",
+      "unicode_decimal": 59312
+    },
+    {
+      "icon_id": "24636961",
+      "name": "Word",
+      "font_class": "Word",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "10304530",
+      "name": "points",
+      "font_class": "points",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "30112690",
+      "name": "添加",
+      "font_class": "Add",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "4765891",
+      "name": "setting",
+      "font_class": "Setting",
+      "unicode": "e78e",
+      "unicode_decimal": 59278
+    },
+    {
+      "icon_id": "25919228",
+      "name": "macos-minimize",
+      "font_class": "MacosMinimize",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "25919878",
+      "name": "macos-maximize",
+      "font_class": "MacosMaximize",
+      "unicode": "e6c7",
+      "unicode_decimal": 59079
+    },
+    {
+      "icon_id": "25919882",
+      "name": "macos-close",
+      "font_class": "MacosClose",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "142067",
+      "name": "今天",
+      "font_class": "Today",
+      "unicode": "e8cf",
+      "unicode_decimal": 59599
+    },
+    {
+      "icon_id": "356475",
+      "name": "所有",
+      "font_class": "All",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "547882",
+      "name": "左侧边栏",
+      "font_class": "LeftSliderBar",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "6151209",
+      "name": "查看",
+      "font_class": "Eye",
+      "unicode": "e7ed",
+      "unicode_decimal": 59373
+    },
+    {
+      "icon_id": "7206039",
+      "name": "选项",
+      "font_class": "Options",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "11490925",
+      "name": "回收站",
+      "font_class": "Trash",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "12589565",
+      "name": "同步失败",
+      "font_class": "SyncError",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "12865685",
+      "name": "共享",
+      "font_class": "Share",
+      "unicode": "e6ee",
+      "unicode_decimal": 59118
+    },
+    {
+      "icon_id": "15644379",
+      "name": "同步",
+      "font_class": "Sync",
+      "unicode": "e6ca",
+      "unicode_decimal": 59082
+    },
+    {
+      "icon_id": "15838523",
+      "name": "固定",
+      "font_class": "Pin",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "21608143",
+      "name": "readonly",
+      "font_class": "UnReadable",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "39249210",
+      "name": "取消固定",
+      "font_class": "UnPin",
+      "unicode": "eb02",
+      "unicode_decimal": 60162
+    },
+    {
+      "icon_id": "42800427",
+      "name": "创建新文件夹",
+      "font_class": "NewFolder",
+      "unicode": "e82d",
+      "unicode_decimal": 59437
+    }
+  ]
+}

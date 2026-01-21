@@ -6,13 +6,13 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="viewModels:TextInputDialogViewModel"
              x:Class="Demo.Views.TextInputDialogView">
-   <StackPanel>
-       <Button Content="基本用法" Command="{Binding BaseUsageCommand}"></Button>
-       <Button Content="将内容带入文本框" Command="{Binding TextHasContentCommand}"></Button>
-       <Button Content="限制长度为10" Command="{Binding LimitLengthContentCommand }"></Button>
-       <StackPanel Orientation="Horizontal">
-           <TextBlock Text="结果:"></TextBlock>
-           <TextBlock Text="{Binding ResultMessage}"></TextBlock>
-       </StackPanel>
-   </StackPanel>
+    <StackPanel>
+        <Button Content="基本用法" Command="{Binding BaseUsageCommand}" />
+        <Button Content="将内容带入文本框" Command="{Binding TextHasContentCommand}" />
+        <Button Content="限制长度为10" Command="{Binding LimitLengthContentCommand }" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="结果:" />
+            <TextBlock Text="{Binding ResultMessage}" />
+        </StackPanel>
+    </StackPanel>
 </UserControl>

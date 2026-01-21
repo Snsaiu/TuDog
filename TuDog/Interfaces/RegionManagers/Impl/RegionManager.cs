@@ -8,11 +8,7 @@ using TuDog.ViewLocators;
 
 namespace TuDog.Interfaces.RegionManagers.Impl;
 
-public class RegionManager(
-    RegionContainerBase regionContainer,
-    ITuDogContainer container,
-    ViewLocatorBase viewLocatorBase)
-    : IRegionManager
+public class RegionManager(RegionContainerBase regionContainer, ITuDogContainer container, ViewLocatorBase viewLocatorBase) : IRegionManager
 {
     public void AddToRegion<T>(string regionName) where T : TuDogViewModelBase
     {
@@ -20,7 +16,6 @@ public class RegionManager(
     }
 
     private Dictionary<Type, object> _keepVmDictionary = [];
-
 
     private T? KeepParse<T>()
     {
@@ -59,8 +54,7 @@ public class RegionManager(
         return BuildControlReturnVm<T>(regionName);
     }
 
-    private T BuildControlReturnVmAsync<T, TResult>(string regionName)
-        where T : TuDogViewModelBase, IViewModelResultAsync<TResult>
+    private T BuildControlReturnVmAsync<T, TResult>(string regionName) where T : TuDogViewModelBase, IViewModelResultAsync<TResult>
     {
         return BuildControlReturnVm<T>(regionName);
     }
@@ -146,20 +140,17 @@ public class RegionManager(
         throw new ArgumentException("ParameterViewModelBase not found");
     }
 
-
     public IViewModelResult AddToRegionForResult<T>(string regionName) where T : TuDogViewModelBase, IViewModelResult
     {
         return BuildControlReturnVm<T>(regionName);
     }
 
-    public IViewModelResult AddToRegionForResult<T>(string regionName, object? parameter)
-        where T : IParameter, IViewModelResult
+    public IViewModelResult AddToRegionForResult<T>(string regionName, object? parameter) where T : IParameter, IViewModelResult
     {
         return BuildControlReturnVm<T>(regionName, parameter);
     }
 
-    public IViewModelResultAsync<TResult> AddToRegionForResultAsync<T, TResult>(string regionName)
-        where T : TuDogViewModelBase, IViewModelResultAsync<TResult>
+    public IViewModelResultAsync<TResult> AddToRegionForResultAsync<T, TResult>(string regionName) where T : TuDogViewModelBase, IViewModelResultAsync<TResult>
     {
         return BuildControlReturnVmAsync<T, TResult>(regionName);
     }

@@ -17,7 +17,7 @@ public partial class ProgressDialogViewModel(IDialogServer dialogServer) : TuDog
         await Task.Delay(2000);
         ds.Progress("2", "3", 30);
         await Task.Delay(4000);
-         ds.CancellationToken.ThrowIfCancellationRequested();
-         await Task.Delay(4000);
+        ds.CancellationToken.ThrowIfCancellationRequested();
+        await Task.Delay(4000);
     }
 }

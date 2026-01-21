@@ -7,8 +7,8 @@ namespace TuDog.Extensions;
 
 public static class LoggerExtension
 {
-    public static void  RegisterConsoleLogger(this IContainer services,LogLevel logLevel)
+    public static void RegisterConsoleLogger(this IContainer services, LogLevel logLevel)
     {
-        services.RegisterInstance(typeof(ILogger),new ConsoleLogger(logLevel));
+        services.RegisterInstance(typeof(ILogger), new ConsoleLogger(logLevel));
     }
 }

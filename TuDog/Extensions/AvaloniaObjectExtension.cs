@@ -9,11 +9,11 @@ internal static class AvaloniaObjectExtension
 {
     public static void AttachLoadedBehavior(this AvaloniaObject view, ITuDogViewModel vm)
     {
-        var eventTriggerBehavior = new EventTriggerBehavior()
+        var eventTriggerBehavior = new EventTriggerBehavior
         {
             EventName = "Loaded"
         };
-        var invokeCommandAction = new InvokeCommandAction()
+        var invokeCommandAction = new InvokeCommandAction
         {
             Command = vm.LoadedCommand
         };
@@ -23,11 +23,11 @@ internal static class AvaloniaObjectExtension
 
     public static void AttachUnLoadedBehavior(this AvaloniaObject view, ITuDogViewModel vm)
     {
-        var eventTriggerBehavior = new EventTriggerBehavior()
+        var eventTriggerBehavior = new EventTriggerBehavior
         {
             EventName = "Unloaded"
         };
-        var invokeCommandAction = new InvokeCommandAction()
+        var invokeCommandAction = new InvokeCommandAction
         {
             Command = vm.UnLoadedCommand
         };

@@ -32,7 +32,6 @@ public abstract partial class ViewLocatorBase
         return _controlDictionary.TryGetValue(viewType, out var func) ? func() : null;
     }
 
-
     protected virtual Control ErrorView(object? param)
     {
         return new TextBlock { Text = "Not Found: " + param };

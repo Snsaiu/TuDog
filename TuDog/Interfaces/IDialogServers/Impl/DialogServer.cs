@@ -10,8 +10,7 @@ namespace TuDog.Interfaces.IDialogServers.Impl;
 
 internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer container) : IDialogServer
 {
-    public Task ShowMessageDialogAsync(string message, string title = "提示",
-        string buttonText = "OK")
+    public Task ShowMessageDialogAsync(string message, string title = "提示", string buttonText = "OK")
     {
         var dialog = new ContentDialog
         {
@@ -22,8 +21,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         return dialog.ShowAsync();
     }
 
-    public async Task<bool> ShowConfirmDialogAsync(string message, string title = "提示", string confirmButtonText = "OK",
-        string cancelButtonText = "Cancel")
+    public async Task<bool> ShowConfirmDialogAsync(string message, string title = "提示", string confirmButtonText = "OK", string cancelButtonText = "Cancel")
     {
         var dialog = new ContentDialog
         {
@@ -37,10 +35,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         return result == ContentDialogResult.Primary;
     }
 
-    public async Task<DialogResultData<string>> ShowInputDialogAsync(string message, string title = "提示",
-        string placeHolder = "Please input ...",
-        string confirmButtonText = "OK",
-        string cancelButtonText = "Cancel", string? defaultValue = null, int? maxLength = null)
+    public async Task<DialogResultData<string>> ShowInputDialogAsync(string message, string title = "提示", string placeHolder = "Please input ...", string confirmButtonText = "OK", string cancelButtonText = "Cancel", string? defaultValue = null, int? maxLength = null)
     {
         var dialog = new ContentDialog
         {
@@ -68,15 +63,11 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         return new DialogResultData<string>(false, string.Empty);
     }
 
-    public async Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title,
-        string confirmButtonText = "OK",
-        string cancelButtonText = "Cancel", TParameter? parameter = default)
-        where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>
+    public async Task<DialogResultData<TResult>?> ShowDialogAsync<TViewModel, TParameter, TResult>(string title, string confirmButtonText = "OK", string cancelButtonText = "Cancel", TParameter? parameter = default) where TViewModel : DialogViewModelBaseAsync<TParameter, TResult>
     {
         var vm = container.Resolve<TViewModel>();
         if (vm == null)
-            throw new InvalidOperationException(
-                $"Type {typeof(TViewModel).FullName} is not registered in the container.");
+            throw new InvalidOperationException($"Type {typeof(TViewModel).FullName} is not registered in the container.");
 
         if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
@@ -130,15 +121,11 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
         }
     }
 
-    public async Task<DialogResultData<object>?> ShowDialogAsync<TViewModel, TParameter>(string title,
-        string confirmButtonText = "OK",
-        string cancelButtonText = "Cancel", TParameter? parameter = default)
-        where TViewModel : DialogViewModelBaseAsync
+    public async Task<DialogResultData<object>?> ShowDialogAsync<TViewModel, TParameter>(string title, string confirmButtonText = "OK", string cancelButtonText = "Cancel", TParameter? parameter = default) where TViewModel : DialogViewModelBaseAsync
     {
         var vm = container.Resolve<TViewModel>();
         if (vm == null)
-            throw new InvalidOperationException(
-                $"Type {typeof(TViewModel).FullName} is not registered in the container.");
+            throw new InvalidOperationException($"Type {typeof(TViewModel).FullName} is not registered in the container.");
 
         if (!typeof(TViewModel).BaseType.Name.StartsWith("DialogViewModelBaseAsync"))
         {
@@ -205,8 +192,7 @@ internal class DialogServer(ViewLocatorBase viewLocatorBase, ITuDogContainer con
 
         ProgressDialogWindow = progressDialogWindow;
 
-        if (progressDialogWindow is not
-            { DialogViewModel: ProgressDialogViewModel tdViewModel })
+        if (progressDialogWindow is not { DialogViewModel: ProgressDialogViewModel tdViewModel })
             throw new InvalidOperationException();
 
         progressDialogWindow.DataContext = tdViewModel;

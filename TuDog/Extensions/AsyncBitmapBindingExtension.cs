@@ -10,8 +10,7 @@ public class AsyncBitmapBindingExtension : MarkupExtension
 
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
-        if (serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget provideValueTarget
-            && provideValueTarget.TargetObject is Image image)
+        if (serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget provideValueTarget && provideValueTarget.TargetObject is Image image)
             // 绑定完了之后异步加载图片
             _ = LoadImageAsync(image);
         return null!;
@@ -39,7 +38,7 @@ public static class UrlBitmapLoader
             var memoryStream = new MemoryStream();
             await stream.CopyToAsync(memoryStream);
             memoryStream.Seek(0, SeekOrigin.Begin);
-            return new(memoryStream);
+            return new Bitmap(memoryStream);
         }
         catch
         {
