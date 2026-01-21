@@ -6,5 +6,5 @@ public interface INavigationService
 {
     Task PushAsync<ViewModel>(INavigationParameter? parameter) where ViewModel : TuDogViewModelBase;
 
-    Task PopAsync(INavigationParameter? result=null);
+    Task PopAsync(INavigationParameter? result = null);
 }

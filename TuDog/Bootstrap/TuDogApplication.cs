@@ -63,8 +63,7 @@ public abstract class TuDogApplication : Application
     private void DisableAvaloniaDataAnnotationValidation()
     {
         // Get an array of plugins to remove
-        var dataValidationPluginsToRemove =
-            BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
+        var dataValidationPluginsToRemove = BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
 
         // remove each entry found
         foreach (var plugin in dataValidationPluginsToRemove) BindingPlugins.DataValidators.Remove(plugin);
@@ -121,8 +120,7 @@ public abstract class TuDogApplication : Application
             logger.LogError(ex.Message);
 
             if (e.ExceptionObject is OperationCanceledException)
-            {
-                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                Dispatcher.UIThread.Post(() =>
                 {
                     if (DialogServer.ProgressDialogWindow is not null)
                     {
@@ -130,7 +128,6 @@ public abstract class TuDogApplication : Application
                         DialogServer.ProgressDialogWindow = null;
                     }
                 });
-            }
         };
 
         TaskScheduler.UnobservedTaskException += (sender, e) =>

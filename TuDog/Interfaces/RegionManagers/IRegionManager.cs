@@ -20,8 +20,7 @@ public interface IRegionManager
 
     // IViewModelResult AddToRegionForResult<T>(string regionName) where T : TuDogViewModelBase, IViewModelResult;
 
-    IViewModelResult AddToRegionForResult<T>(string regionName, object? parameter)
-        where T : IParameter, IViewModelResult;
+    IViewModelResult AddToRegionForResult<T>(string regionName, object? parameter) where T : IParameter, IViewModelResult;
 
     // IViewModelResultAsync<TResult> AddToRegionForResultAsync<T, TResult>(string regionName) where T : TuDogViewModelBase, IViewModelResultAsync<TResult>;
     //

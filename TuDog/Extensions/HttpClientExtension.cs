@@ -6,16 +6,14 @@ namespace TuDog.Extensions;
 
 public static class HttpClientExtensions
 {
-    public static async Task DownloadFilePostAsync(this HttpClient client, string fileUrl, string savePath,
-        Action<double>? progress = null)
+    public static async Task DownloadFilePostAsync(this HttpClient client, string fileUrl, string savePath, Action<double>? progress = null)
     {
-            using var content = new StringContent(string.Empty);
-            using var response = await client.PostAsync(fileUrl, content);
-            await DownImplAsync(response, savePath, progress);
+        using var content = new StringContent(string.Empty);
+        using var response = await client.PostAsync(fileUrl, content);
+        await DownImplAsync(response, savePath, progress);
     }
 
-    private static async Task DownImplAsync(HttpResponseMessage response, string savePath,
-        Action<double>? progress = null)
+    private static async Task DownImplAsync(HttpResponseMessage response, string savePath, Action<double>? progress = null)
     {
         response.EnsureSuccessStatusCode(); // 确保请求成功
 
@@ -43,36 +41,31 @@ public static class HttpClientExtensions
         }
     }
 
-    public static async Task<TResult?> PostRequestAsync<TParams, TResult>(this HttpClient client, string url,
-        TParams request) where TParams : class
+    public static async Task<TResult?> PostRequestAsync<TParams, TResult>(this HttpClient client, string url, TParams request) where TParams : class
     {
         try
         {
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json);
-            content.Headers.ContentType = new("application/json");
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var response = await client.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
-            return !response.IsSuccessStatusCode
-                ? default
-                : JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
+            return !response.IsSuccessStatusCode ? default : JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
         }
         catch (Exception ex)
         {
             return default;
         }
     }
-    
-    public static async Task PostRequestAsync<TParams>(this HttpClient client, string url,
-        TParams request) where TParams : class
+
+    public static async Task PostRequestAsync<TParams>(this HttpClient client, string url, TParams request) where TParams : class
     {
-            var json = JsonConvert.SerializeObject(request);
-            var content = new StringContent(json);
-            content.Headers.ContentType = new("application/json");
-            var response = await client.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
+        var json = JsonConvert.SerializeObject(request);
+        var content = new StringContent(json);
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        var response = await client.PostAsync(url, content);
+        response.EnsureSuccessStatusCode();
     }
-    
 
     /// <summary>
     /// 异步下载文件，并保存到指定路径。
@@ -81,8 +74,7 @@ public static class HttpClientExtensions
     /// <param name="fileUrl">文件 URL</param>
     /// <param name="savePath">本地保存路径</param>
     /// <param name="progress">可选，下载进度回调（0-100%）</param>
-    public static async Task<bool> DownloadFileAsync(this HttpClient client, string fileUrl, string savePath,
-        Action<double>? progress = null, Action<string>? onError = null)
+    public static async Task<bool> DownloadFileAsync(this HttpClient client, string fileUrl, string savePath, Action<double>? progress = null, Action<string>? onError = null)
     {
         try
         {
@@ -96,7 +88,6 @@ public static class HttpClientExtensions
             // 写入日志
             return false;
         }
-
     }
 
     /// <summary>
@@ -115,7 +106,7 @@ public static class HttpClientExtensions
         using var form = new MultipartFormDataContent();
         using var fileStream = File.OpenRead(fileName);
         var streamContent = new StreamContent(fileStream);
-        streamContent.Headers.ContentType = new("application/octet-stream");
+        streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
         form.Add(streamContent, "file", Path.GetFileName(fileName));
 
@@ -140,10 +131,7 @@ public static class HttpClientExtensions
 
             await using var stream = await response.Content.ReadAsStreamAsync();
             var directory = Path.GetDirectoryName(savePath);
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory!);
-            }
+            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory!);
 
             await using var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write, FileShare.None);
             await stream.CopyToAsync(fileStream);

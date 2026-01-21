@@ -1,13 +1,14 @@
 ﻿namespace YouYan.Hamster.ResultModels;
 
-internal sealed class ResultModel:IResultModel
+internal sealed class ResultModel : IResultModel
 {
     public bool Ok { get; private set; }
     public string ErrorMsg { get; private set; }
     public object Data { get; private set; }
+
     public IResultModel Success()
     {
-        return new ResultModel()
+        return new ResultModel
         {
             Ok = true
         };
@@ -15,7 +16,7 @@ internal sealed class ResultModel:IResultModel
 
     public IResultModel Error(string errorMsg)
     {
-        return new ResultModel()
+        return new ResultModel
         {
             Ok = false,
             ErrorMsg = errorMsg
@@ -24,7 +25,7 @@ internal sealed class ResultModel:IResultModel
 
     public IResultModel Success(object data)
     {
-        return new ResultModel()
+        return new ResultModel
         {
             Ok = true,
             Data = data
@@ -34,13 +35,13 @@ internal sealed class ResultModel:IResultModel
 
 internal class ResultModel<T> : IResultModel<T>
 {
-    public bool Ok { get;private set; }
-    public string ErrorMsg { get;private set; }
-    public T Data { get;private set; }
+    public bool Ok { get; private set; }
+    public string ErrorMsg { get; private set; }
+    public T Data { get; private set; }
 
     public IResultModel<T> Success()
     {
-        return new ResultModel<T>()
+        return new ResultModel<T>
         {
             Ok = true
         };
@@ -48,7 +49,7 @@ internal class ResultModel<T> : IResultModel<T>
 
     public IResultModel<T> Error(string errorMsg)
     {
-        return new ResultModel<T>()
+        return new ResultModel<T>
         {
             Ok = false,
             ErrorMsg = errorMsg
@@ -57,7 +58,7 @@ internal class ResultModel<T> : IResultModel<T>
 
     public IResultModel<T> Success(T data)
     {
-        return new ResultModel<T>()
+        return new ResultModel<T>
         {
             Ok = true,
             Data = data

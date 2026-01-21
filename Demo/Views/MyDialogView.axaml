@@ -10,9 +10,9 @@
              x:Class="Demo.Views.MyDialogView">
     <Grid RowDefinitions="Auto,Auto">
         <DockPanel LastChildFill="True">
-            <TextBlock DockPanel.Dock="Left" Text="Message:"></TextBlock>
-            <TextBox DockPanel.Dock="Right" Text="{Binding Data.Message,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock DockPanel.Dock="Left" Text="Message:" />
+            <TextBox DockPanel.Dock="Right" Text="{Binding Data.Message,UpdateSourceTrigger=PropertyChanged}" />
         </DockPanel>
-        <CheckBox Grid.Row="1" Content="Sync" IsChecked="{Binding Data.IsSync}"></CheckBox>
+        <CheckBox Grid.Row="1" Content="Sync" IsChecked="{Binding Data.IsSync}" />
     </Grid>
 </UserControl>

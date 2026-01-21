@@ -22,7 +22,7 @@ public interface ILogger
     /// </summary>
     /// <param name="message">日志信息</param>
     void LogError(string message);
-    
+
     /// <summary>
     /// 记录调试日志
     /// </summary>

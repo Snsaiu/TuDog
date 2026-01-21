@@ -16,16 +16,13 @@ namespace TuDog.UIs;
 
 public partial class DialogWindow : Window
 {
-    public static readonly StyledProperty<string> PrimaryButtonTextProperty =
-        AvaloniaProperty.Register<DialogWindow, string>(
-            nameof(PrimaryButtonText));
+    public static readonly StyledProperty<string> PrimaryButtonTextProperty = AvaloniaProperty.Register<DialogWindow, string>(nameof(PrimaryButtonText));
 
     private Button _primaryButton;
     private Button _secondaryButton;
     private InfoBox _infoBox;
 
-    private IMessageBarService _messageBarService =
-        TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
+    private IMessageBarService _messageBarService = TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
 
     public IViewModelResultAsync DialogViewModel { get; set; }
 
@@ -35,9 +32,7 @@ public partial class DialogWindow : Window
         set => SetValue(PrimaryButtonTextProperty, value);
     }
 
-    public static readonly StyledProperty<string> SecondaryButtonTextProperty =
-        AvaloniaProperty.Register<DialogWindow, string>(
-            nameof(SecondaryButtonText));
+    public static readonly StyledProperty<string> SecondaryButtonTextProperty = AvaloniaProperty.Register<DialogWindow, string>(nameof(SecondaryButtonText));
 
     public string SecondaryButtonText
     {
@@ -87,17 +82,12 @@ public partial class DialogWindow : Window
         _secondaryButton = e.NameScope.Find<Button>("SecondaryButton") ?? throw new NullReferenceException();
         _infoBox = e.NameScope.Find<InfoBox>("PART_InfoBox") ?? throw new NullReferenceException();
 
-        this.GetObservable(PrimaryButtonTextProperty)
-            .Subscribe(x => _primaryButton.IsVisible = !string.IsNullOrEmpty(x));
+        this.GetObservable(PrimaryButtonTextProperty).Subscribe(x => _primaryButton.IsVisible = !string.IsNullOrEmpty(x));
 
-        this.GetObservable(SecondaryButtonTextProperty)
-            .Subscribe(x => _secondaryButton.IsVisible = !string.IsNullOrEmpty(x));
+        this.GetObservable(SecondaryButtonTextProperty).Subscribe(x => _secondaryButton.IsVisible = !string.IsNullOrEmpty(x));
 
         if (DialogViewModel is not null)
-            DialogViewModel.ErrorMessageAction += (message, title, state) =>
-            {
-                _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state));
-            };
+            DialogViewModel.ErrorMessageAction += (message, title, state) => { _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state)); };
     }
 
     public DialogWindow()

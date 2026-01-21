@@ -10,6 +10,10 @@ public interface IParameter
 public interface IParameter<T> : IParameter
 {
     T? Parameter { get; set; }
-    
-    object? IParameter.Parameter { get=>Parameter; set=>Parameter=(T?)value; }
+
+    object? IParameter.Parameter
+    {
+        get => Parameter;
+        set => Parameter = (T?)value;
+    }
 }

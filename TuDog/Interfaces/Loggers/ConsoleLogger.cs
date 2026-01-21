@@ -28,7 +28,7 @@ internal sealed class ConsoleLogger(LogLevel logLevel) : ILogger
     {
         if (_logLevel < LogLevel.Warning)
             return;
-        
+
         var messagePackage = $"[WARN] {DateTime.Now:HH:mm:ss} {message}";
         if (OperatingSystem.IsWindows() || OperatingSystem.IsMacOS() || OperatingSystem.IsLinux())
         {

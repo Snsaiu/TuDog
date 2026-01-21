@@ -19,7 +19,7 @@ public static class ResultModelFactory
         var result = new ResultModel();
         return result.Success(data);
     }
-    
+
     public static IResultModel<T> Success<T>()
     {
         var result = new ResultModel<T>();

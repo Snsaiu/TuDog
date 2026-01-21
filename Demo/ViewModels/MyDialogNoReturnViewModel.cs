@@ -5,7 +5,7 @@ using TuDog.IocAttribute;
 namespace Demo.ViewModels;
 
 [Register]
-public partial class MyDialogNoReturnViewModel:DialogViewModelBaseAsync
+public partial class MyDialogNoReturnViewModel : DialogViewModelBaseAsync
 {
     public override Task<object?> ConfirmAsync()
     {

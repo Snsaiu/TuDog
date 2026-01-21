@@ -6,8 +6,7 @@ namespace TuDog.UIs;
 
 public class IconButton : Button
 {
-    public static readonly StyledProperty<string> IconFontProperty = AvaloniaProperty.Register<IconButton, string>(
-        nameof(IconFont));
+    public static readonly StyledProperty<string> IconFontProperty = AvaloniaProperty.Register<IconButton, string>(nameof(IconFont));
 
     protected override Type StyleKeyOverride { get; } = typeof(IconButton);
 
@@ -17,9 +16,7 @@ public class IconButton : Button
         set => SetValue(IconFontProperty, value);
     }
 
-    public static readonly StyledProperty<FontFamily> FontFamilyProperty =
-        AvaloniaProperty.Register<IconButton, FontFamily>(
-            nameof(FontFamily));
+    public static readonly StyledProperty<FontFamily> FontFamilyProperty = AvaloniaProperty.Register<IconButton, FontFamily>(nameof(FontFamily));
 
     public FontFamily FontFamily
     {

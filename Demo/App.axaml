@@ -5,9 +5,15 @@
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
-    
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="iconFont">avares://Demo/Assets/IconFont/iconfont.ttf#iconfont</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
     <Application.Styles>
         <StyleInclude Source="avares://TuDog/Bootstrap/TuDogStyles.axaml" />
+        <StyleInclude Source="Styles/ButtonStyle.axaml" />
         <styling:FluentAvaloniaTheme PreferSystemTheme="True" />
     </Application.Styles>
 </Application>

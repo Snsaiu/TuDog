@@ -22,7 +22,7 @@
                 <VisualLayerManager Grid.RowSpan="2" Grid.Row="0">
                     <OverlayLayer />
                 </VisualLayerManager>
-                
+
                 <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
                              Margin="0,5,5,0" />
                 <Interaction.Behaviors>

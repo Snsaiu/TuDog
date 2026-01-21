@@ -16,6 +16,6 @@ public class DialogResultData<T>(bool ok, T? data) : DialogResult(ok)
 
     public static implicit operator DialogResultData<T>(DialogResultData data)
     {
-        return data.Data is (T and var result) ? new DialogResultData<T>(true, result) : new(false, default);
+        return data.Data is T and var result ? new DialogResultData<T>(true, result) : new DialogResultData<T>(false, default);
     }
 }
