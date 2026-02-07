@@ -10,11 +10,11 @@
     <StackPanel Spacing="10">
         <TextBlock>Icon 示例</TextBlock>
         <StackPanel Orientation="Horizontal">
-            <Button Classes="icon" extension:IconAttach.Icon="{x:Static demo:IconFontProviderBuilder.Add}" />
+            <Button Classes="icon" extension:IconAttach.Icon="{x:Static demo:IconFontProvider.Add}" />
 
             <controls:FontIcon
                 FontFamily="{StaticResource iconFont}"
-                Glyph="{x:Static demo:IconFontProviderBuilder.Export}" />
+                Glyph="{x:Static demo:IconFontProvider.Export}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

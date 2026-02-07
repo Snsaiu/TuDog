@@ -37,7 +37,7 @@
         <AdditionalFiles Include="$(MSBuildProjectFile)"/>
     </ItemGroup>
     <ItemGroup>
-        <AdditionalFiles Include="Assets\IconFont\IconFont.json"></AdditionalFiles>
+        <AdditionalFiles Include="Assets\IconFont\IconFont.json"/>
     </ItemGroup>
     <ItemGroup>
         <None Remove="Assets\IconFont\iconfont.ttf"/>
