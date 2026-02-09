@@ -9,12 +9,12 @@
              x:Class="Demo.Views.IconProviderView">
     <StackPanel Spacing="10">
         <TextBlock>Icon 示例</TextBlock>
-        <!-- <StackPanel Orientation="Horizontal"> -->
-        <!--     <Button Classes="icon" extension:IconAttach.Icon="{x:Static demo:IconFontProvider.Add}" /> -->
-        <!-- -->
-        <!--     <controls:FontIcon -->
-        <!--         FontFamily="{StaticResource iconFont}" -->
-        <!--         Glyph="{x:Static demo:IconFontProvider.Export}" /> -->
-        <!-- </StackPanel> -->
+         <StackPanel Orientation="Horizontal"> 
+             <Button Classes="icon" extension:IconAttach.Icon="{x:Static demo:IconFontProvider.Add}" /> 
+         
+             <controls:FontIcon 
+                 FontFamily="{StaticResource iconFont}" 
+                 Glyph="{x:Static demo:IconFontProvider.Export}" /> 
+         </StackPanel> 
     </StackPanel>
 </UserControl>

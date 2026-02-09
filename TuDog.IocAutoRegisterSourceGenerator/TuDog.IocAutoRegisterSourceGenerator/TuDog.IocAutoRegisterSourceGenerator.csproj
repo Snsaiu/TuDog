@@ -7,7 +7,7 @@
         <LangVersion>latest</LangVersion>
 
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        <IsRoslynAnalyzer>true</IsRoslynAnalyzer>
+        <IsRoslynComponent>true</IsRoslynComponent>
 
         <RootNamespace>TuDog.IocAutoRegisterSourceGenerator</RootNamespace>
         <PackageId>TuDog.IocAutoRegisterSourceGenerator</PackageId>
@@ -29,7 +29,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -40,14 +40,14 @@
         </PackageReference>
 
         <!-- Package the generator in the analyzer directory of the nuget package -->
-        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
         <None Include="..\..\ReadMeAssets\TudogTool_Icon.png">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
 
         <!-- Package the Newtonsoft.Json dependency alongside the generator assembly -->
-        <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
+        <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
 
 

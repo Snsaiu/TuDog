@@ -1,9 +1,8 @@
-{
+﻿{
   "profiles": {
     "DebugRoslynSourceGenerator": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "H:/TuDog/Demo/Demo.csproj"
-      "buildBeforeDebug": true
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json"

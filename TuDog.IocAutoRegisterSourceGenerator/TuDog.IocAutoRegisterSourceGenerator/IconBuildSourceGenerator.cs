@@ -13,7 +13,7 @@ public class IconBuildSourceGenerator : IIncrementalGenerator
     {
         // 找到指定路径的 AdditionalFile 并读取文本（使用 Ignore 大小写比较）
         var iconJsonProvider = context.AdditionalTextsProvider
-            .Where(t => t.Path.EndsWith(@"Assets\IconFont\IconFont.json", StringComparison.OrdinalIgnoreCase))
+            .Where(t => t.Path.EndsWith(@"IconFont.json", StringComparison.OrdinalIgnoreCase))
             .Select((t, ct) => t.GetText(ct)?.ToString());
 
         var combined = iconJsonProvider.Combine(context.CompilationProvider);
