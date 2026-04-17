@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport"/>
         <PackageReference Include="DryIoc.dll"/>
         <PackageReference Include="Serilog"/>
         <PackageReference Include="Serilog.Extensions.Logging"/>

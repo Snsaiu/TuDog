@@ -15,15 +15,15 @@
         <Setter Property="FontSize" Value="7" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="uIs:IconButton">
-                    <Border Name="PART_BorderElement" Padding="2" Background="{TemplateBinding Background}"
-                            BorderThickness="0" CornerRadius="{TemplateBinding CornerRadius}">
+                <ControlTemplate TargetType="uIs:IconButton" x:DataType="uIs:IconButton">
+                    <Border Name="PART_BorderElement" Padding="2" Background="{Binding Background}"
+                            BorderThickness="0" CornerRadius="{Binding CornerRadius}">
                         <controls:FontIcon
                             Name="Icon"
-                            FontSize="{TemplateBinding FontSize}"
-                            Foreground="{TemplateBinding Foreground}"
-                            FontFamily="{TemplateBinding FontFamily}"
-                            Glyph="{TemplateBinding IconFont}" />
+                            FontSize="{Binding FontSize}"
+                            Foreground="{Binding Foreground}"
+                            FontFamily="{Binding FontFamily}"
+                            Glyph="{Binding IconFont}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

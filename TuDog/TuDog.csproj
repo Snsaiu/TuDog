@@ -19,6 +19,7 @@
     <ItemGroup>
         <PackageReference Include="Avalonia"/>
         <PackageReference Include="Avalonia.Xaml.Behaviors"/>
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport"/>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
         <PackageReference Include="DryIoc.dll"/>
         <PackageReference Include="FluentAvaloniaUI"/>
