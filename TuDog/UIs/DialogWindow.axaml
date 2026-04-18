@@ -58,10 +58,6 @@
                                 Content="{TemplateBinding SecondaryButtonText}" />
                     </StackPanel>
                 </Border>
-                <!-- for show dialog -->
-                <VisualLayerManager Grid.Row="0" Grid.RowSpan="3">
-                    <OverlayLayer />
-                </VisualLayerManager>
                 <uIs:InfoBox Name="PART_InfoBox" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Right"
                              VerticalAlignment="Top"
                              Margin="0,5,0,0" />

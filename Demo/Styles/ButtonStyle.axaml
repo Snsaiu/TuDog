@@ -1,6 +1,5 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:extensions="clr-namespace:Demo.Extension">
     <Design.PreviewWith>
         <Border Padding="20">
@@ -17,13 +16,12 @@
                             Background="{TemplateBinding Background}"
                             BorderThickness="0">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <controls:FontIcon
-                                Name="Icon"
-                                Foreground="{TemplateBinding Foreground}"
-                                FontFamily="{StaticResource iconFont}"
-                                FontSize="{TemplateBinding FontSize}"
-                                FontWeight="{TemplateBinding FontWeight}"
-                                Glyph="{Binding Path=(extensions:IconAttach.Icon), RelativeSource={RelativeSource Self}}" />
+                            <TextBlock Name="Icon"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontFamily="{StaticResource iconFont}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       Text="{Binding Path=(extensions:IconAttach.Icon), RelativeSource={RelativeSource Self}}" />
                             <ContentPresenter Foreground="{TemplateBinding Foreground}"
                                               FontSize="{TemplateBinding FontSize}" Content="{TemplateBinding Content}"
                                               Margin="5,0,0,0" />

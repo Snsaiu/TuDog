@@ -5,7 +5,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Input;
 using DryIoc;
-using FluentAvalonia.UI.Windowing;
 using TuDog.Bootstrap;
 using TuDog.Interfaces;
 using TuDog.Interfaces.MessageBarService;
@@ -82,9 +81,12 @@ public partial class DialogWindow : Window
         _secondaryButton = e.NameScope.Find<Button>("SecondaryButton") ?? throw new NullReferenceException();
         _infoBox = e.NameScope.Find<InfoBox>("PART_InfoBox") ?? throw new NullReferenceException();
 
-        this.GetObservable(PrimaryButtonTextProperty).Subscribe(x => _primaryButton.IsVisible = !string.IsNullOrEmpty(x));
-
-        this.GetObservable(SecondaryButtonTextProperty).Subscribe(x => _secondaryButton.IsVisible = !string.IsNullOrEmpty(x));
+        UpdateButtonVisibility();
+        PropertyChanged += (_, args) =>
+        {
+            if (args.Property == PrimaryButtonTextProperty || args.Property == SecondaryButtonTextProperty)
+                UpdateButtonVisibility();
+        };
 
         if (DialogViewModel is not null)
             DialogViewModel.ErrorMessageAction += (message, title, state) => { _infoBox.AddNewMessage(InfoModel.Create(message, title, true, state)); };
@@ -93,5 +95,14 @@ public partial class DialogWindow : Window
     public DialogWindow()
     {
         InitializeComponent();
+    }
+
+    private void UpdateButtonVisibility()
+    {
+        if (_primaryButton is not null)
+            _primaryButton.IsVisible = !string.IsNullOrEmpty(PrimaryButtonText);
+
+        if (_secondaryButton is not null)
+            _secondaryButton.IsVisible = !string.IsNullOrEmpty(SecondaryButtonText);
     }
 }

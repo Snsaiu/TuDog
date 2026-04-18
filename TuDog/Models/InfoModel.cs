@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using Avalonia.Media;
 using TuDog.Bootstrap;
 using TuDog.Enums;
 
@@ -19,6 +20,8 @@ public partial class InfoModel : ModelBase
 
     [ObservableProperty] private MessageState _type = MessageState.Warning;
 
+    [ObservableProperty] private IBrush? _backgroundBrush;
+
     public Action<Guid> CloseAction { get; set; }
 
     private InfoModel()
@@ -32,7 +35,25 @@ public partial class InfoModel : ModelBase
 
     public static InfoModel Create(string message, string title, bool showClose, MessageState type)
     {
-        return new InfoModel { Message = message, Title = title, ShowClose = showClose, Type = type };
+        return new InfoModel
+        {
+            Message = message,
+            Title = title,
+            ShowClose = showClose,
+            Type = type,
+            BackgroundBrush = CreateBackgroundBrush(type)
+        };
+    }
+
+    private static IBrush CreateBackgroundBrush(MessageState type)
+    {
+        return type switch
+        {
+            MessageState.Success => new SolidColorBrush(Color.Parse("#FFDCFCE7")),
+            MessageState.Error => new SolidColorBrush(Color.Parse("#FFFEE2E2")),
+            MessageState.Warning => new SolidColorBrush(Color.Parse("#FFFEF3C7")),
+            _ => new SolidColorBrush(Color.Parse("#FFE0F2FE"))
+        };
     }
 
     //TODO warning..

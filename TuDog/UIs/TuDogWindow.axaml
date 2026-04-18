@@ -1,16 +1,16 @@
-﻿<windowing:AppWindow xmlns="https://github.com/avaloniaui"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     xmlns:uIs="clr-namespace:TuDog.UIs"
-                     xmlns:windowing="clr-namespace:FluentAvalonia.UI.Windowing;assembly=FluentAvalonia"
-                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                     x:Class="TuDog.UIs.TuDogWindow"
-                     WindowState="{Binding WindowState, Mode=TwoWay}"
-                     ExtendClientAreaToDecorationsHint="True"
-                     ExtendClientAreaChromeHints="NoChrome">
+﻿<uIs:TuDogWindow xmlns="https://github.com/avaloniaui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:uIs="clr-namespace:TuDog.UIs"
+                 xmlns:bootstrap="clr-namespace:TuDog.Bootstrap;assembly=TuDog"
+                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                 x:Class="TuDog.UIs.TuDogWindow"
+                 x:DataType="bootstrap:TuDogWindowViewModelBase"
+                 WindowState="{Binding WindowState, Mode=TwoWay}"
+                 WindowDecorations="None">
 
-    <windowing:AppWindow.Template>
+    <Window.Template>
         <ControlTemplate>
             <Grid RowDefinitions="Auto,*" Background="{DynamicResource SolidBackgroundFillColorBase}">
                 <Border Grid.Row="0" x:Name="PART_TitleBar">
@@ -18,19 +18,9 @@
                 </Border>
                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
 
-                <!-- for dialog -->
-                <VisualLayerManager Grid.RowSpan="2" Grid.Row="0">
-                    <OverlayLayer />
-                </VisualLayerManager>
-
                 <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
                              Margin="0,5,5,0" />
-                <Interaction.Behaviors>
-                    <EventTriggerBehavior EventName="Loaded">
-                        <InvokeCommandAction Command="{Binding LoadedCommand}" />
-                    </EventTriggerBehavior>
-                </Interaction.Behaviors>
             </Grid>
         </ControlTemplate>
-    </windowing:AppWindow.Template>
-</windowing:AppWindow>
+    </Window.Template>
+</uIs:TuDogWindow>
