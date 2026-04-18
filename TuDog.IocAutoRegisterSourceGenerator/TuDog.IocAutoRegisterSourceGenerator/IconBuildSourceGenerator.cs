@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.CodeAnalysis;
-using Newtonsoft.Json;
 using System.Text;
+using System.Text.RegularExpressions;
 using TuDog.IocAutoRegisterSourceGenerator.Models;
 
 namespace TuDog.IocAutoRegisterSourceGenerator;
@@ -32,10 +32,35 @@ public class IconBuildSourceGenerator : IIncrementalGenerator
             var result = new IconParseResultModel();
             result.NameSpace = compilation.AssemblyName ?? "Generated";
             result.ClassName = "IconFontProvider";
-            var iconModel = JsonConvert.DeserializeObject<IconModel>(json);
-            result.Icons = iconModel;
+            result.Icons = ParseIconModel(json);
             GenerateSourceAsync(spc, result);
         });
+    }
+
+    private static IconModel ParseIconModel(string json)
+    {
+        var model = new IconModel
+        {
+            glyphs = new System.Collections.Generic.List<GlyphsItem>()
+        };
+
+        var glyphMatches = Regex.Matches(
+            json,
+            "\"font_class\"\\s*:\\s*\"(?<font>[^\"]+)\".*?\"unicode\"\\s*:\\s*\"(?<unicode>[^\"]+)\"",
+            RegexOptions.Singleline);
+
+        foreach (Match match in glyphMatches)
+        {
+            model.glyphs.Add(new GlyphsItem
+            {
+                font_class = match.Groups["font"].Value,
+                unicode = match.Groups["unicode"].Value,
+                name = match.Groups["font"].Value,
+                icon_id = string.Empty
+            });
+        }
+
+        return model;
     }
 
     private static void GenerateSourceAsync(SourceProductionContext ctx, IconParseResultModel? ct)

@@ -9,19 +9,20 @@
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         CanResize="False"
-        Width="{Binding $self.Content.Width}"
-        Height="{Binding Converter={converters:DialogHeightConverter}, Path=$self.Content.Height}"
-        ExtendClientAreaChromeHints="NoChrome"
+        SizeToContent="WidthAndHeight"
+        WindowDecorations="None"
+        x:DataType="{x:Type uIs:DialogWindow}"
         ExtendClientAreaToDecorationsHint="True">
     <Window.Template>
-        <ControlTemplate TargetType="uIs:DialogWindow">
+        <ControlTemplate TargetType="uIs:DialogWindow" x:DataType="uIs:DialogWindow">
             <Grid RowDefinitions="Auto,*,Auto" Background="{DynamicResource SolidBackgroundFillColorBase}">
 
                 <Border Padding="24" BorderThickness="0,0,0,1"
                         BorderBrush="{DynamicResource ContentDialogBorderBrush}">
                     <StackPanel Orientation="Vertical">
 
-                        <TextBlock FontSize="20" Text="{TemplateBinding Title}"
+                        <TextBlock FontSize="20"
+                                   Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}"
                                    FontWeight="DemiBold"
                                    Foreground="{DynamicResource TextControlForeground}"
                                    VerticalAlignment="Center"
@@ -57,10 +58,6 @@
                                 Content="{TemplateBinding SecondaryButtonText}" />
                     </StackPanel>
                 </Border>
-                <!-- for show dialog -->
-                <VisualLayerManager Grid.Row="0" Grid.RowSpan="3">
-                    <OverlayLayer />
-                </VisualLayerManager>
                 <uIs:InfoBox Name="PART_InfoBox" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Right"
                              VerticalAlignment="Top"
                              Margin="0,5,0,0" />

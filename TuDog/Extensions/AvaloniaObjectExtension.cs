@@ -1,6 +1,5 @@
 ﻿using Avalonia;
-using Avalonia.Xaml.Interactions.Core;
-using Avalonia.Xaml.Interactivity;
+using Avalonia.Controls;
 using TuDog.Bootstrap;
 
 namespace TuDog.Extensions;
@@ -9,29 +8,29 @@ internal static class AvaloniaObjectExtension
 {
     public static void AttachLoadedBehavior(this AvaloniaObject view, ITuDogViewModel vm)
     {
-        var eventTriggerBehavior = new EventTriggerBehavior
+        if (view is not Control control)
         {
-            EventName = "Loaded"
-        };
-        var invokeCommandAction = new InvokeCommandAction
+            return;
+        }
+
+        control.Loaded += (_, _) =>
         {
-            Command = vm.LoadedCommand
+            if (vm.LoadedCommand.CanExecute(null))
+                vm.LoadedCommand.Execute(null);
         };
-        eventTriggerBehavior.Actions.Add(invokeCommandAction);
-        Interaction.GetBehaviors(view).Add(eventTriggerBehavior);
     }
 
     public static void AttachUnLoadedBehavior(this AvaloniaObject view, ITuDogViewModel vm)
     {
-        var eventTriggerBehavior = new EventTriggerBehavior
+        if (view is not Control control)
         {
-            EventName = "Unloaded"
-        };
-        var invokeCommandAction = new InvokeCommandAction
+            return;
+        }
+
+        control.Unloaded += (_, _) =>
         {
-            Command = vm.UnLoadedCommand
+            if (vm.UnLoadedCommand.CanExecute(null))
+                vm.UnLoadedCommand.Execute(null);
         };
-        eventTriggerBehavior.Actions.Add(invokeCommandAction);
-        Interaction.GetBehaviors(view).Add(eventTriggerBehavior);
     }
 }

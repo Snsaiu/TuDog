@@ -1,7 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Demo.App"
-             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -14,6 +13,6 @@
     <Application.Styles>
         <StyleInclude Source="avares://TuDog/Bootstrap/TuDogStyles.axaml" />
         <StyleInclude Source="Styles/ButtonStyle.axaml" />
-        <styling:FluentAvaloniaTheme PreferSystemTheme="True" />
+        <FluentTheme />
     </Application.Styles>
 </Application>

@@ -60,13 +60,8 @@ public abstract class TuDogApplication : Application
         collection.Register<IMessageBarService, MessageBarService>(Reuse.Singleton);
     }
 
-    private void DisableAvaloniaDataAnnotationValidation()
+    protected virtual void DisableAvaloniaDataAnnotationValidation()
     {
-        // Get an array of plugins to remove
-        var dataValidationPluginsToRemove = BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
-
-        // remove each entry found
-        foreach (var plugin in dataValidationPluginsToRemove) BindingPlugins.DataValidators.Remove(plugin);
     }
 
     public abstract object CreateShell();
@@ -91,7 +86,7 @@ public abstract class TuDogApplication : Application
             if (TopLevel?.InsetsManager is not null and var m)
             {
                 m.IsSystemBarVisible = true;
-                m.DisplayEdgeToEdge = false;
+                m.DisplayEdgeToEdgePreference = false;
                 m.SystemBarColor = Colors.White;
             }
         }

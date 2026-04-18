@@ -16,4 +16,8 @@
         </None>
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport"/>
+    </ItemGroup>
+
 </Project>

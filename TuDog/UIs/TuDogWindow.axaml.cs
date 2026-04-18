@@ -3,9 +3,9 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
 using DryIoc;
-using FluentAvalonia.UI.Windowing;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.MessageBarService;
 
@@ -13,7 +13,7 @@ namespace TuDog.UIs;
 
 [TemplatePart("PART_InfoBox", typeof(InfoBox))]
 [TemplatePart("PART_TitleBar", typeof(Border))]
-public partial class TuDogWindow : AppWindow
+public partial class TuDogWindow : Window
 {
     private InfoBox _infoBox;
     private Border _titleBar;
@@ -105,6 +105,7 @@ public partial class TuDogWindow : AppWindow
     {
         InitializeComponent();
         _messageBarService = TuDogApplication.ServiceProvider.Resolve<IMessageBarService>();
+        Loaded += OnLoaded;
     }
 
     protected override Type StyleKeyOverride { get; } = typeof(TuDogWindow);
@@ -122,6 +123,12 @@ public partial class TuDogWindow : AppWindow
 
     private bool _isWindowDragInEffect = false;
     private Point _cursorPositionAtWindowDragStart = new(0, 0);
+
+    private void OnLoaded(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is ITuDogViewModel vm && vm.LoadedCommand.CanExecute(null))
+            vm.LoadedCommand.Execute(null);
+    }
 
     private void WindowDragHandle_OnPointerMoved(object? sender, PointerEventArgs e)
     {
