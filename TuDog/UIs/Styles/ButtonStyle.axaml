@@ -1,6 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:uIs="clr-namespace:TuDog.UIs">
+        xmlns:uIs="clr-namespace:TuDog.UIs"
+        x:CompileBindings="False">
     <Design.PreviewWith>
         <Border Padding="20">
             <!-- Add Controls for Previewer Here -->
@@ -12,16 +13,19 @@
         <Setter Property="Height" Value="14" />
         <Setter Property="CornerRadius" Value="7" />
         <Setter Property="FontSize" Value="7" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="uIs:IconButton" x:DataType="uIs:IconButton">
-                    <Border Name="PART_BorderElement" Padding="2" Background="{Binding Background}"
-                            BorderThickness="0" CornerRadius="{Binding CornerRadius}">
+                <ControlTemplate TargetType="uIs:IconButton">
+                    <Border Name="PART_BorderElement" Padding="2"
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderThickness="0"
+                            CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}}">
                         <TextBlock Name="Icon"
-                                   Text="{Binding IconFont}"
-                                   FontSize="{Binding FontSize}"
-                                   Foreground="{Binding Foreground}"
-                                   FontFamily="{Binding FontFamily}"
+                                   Text="{Binding IconFont, RelativeSource={RelativeSource TemplatedParent}}"
+                                   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                   FontFamily="{Binding FontFamily, RelativeSource={RelativeSource TemplatedParent}}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
                     </Border>

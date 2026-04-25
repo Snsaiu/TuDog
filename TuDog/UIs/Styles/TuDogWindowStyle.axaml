@@ -15,31 +15,38 @@
                                 <StackPanel Spacing="6" Orientation="Horizontal"
                                             IsVisible="{OnPlatform Default=false,macOS=true}"
                                             Margin="8,5,0,5"
+                                            Background="Transparent"
                                             VerticalAlignment="Center">
                                     <StackPanel.Styles>
+                                        <Style Selector="uIs|IconButton">
+                                            <Setter Property="Foreground" Value="Transparent" />
+                                        </Style>
                                         <Style
-                                            Selector="StackPanel:pointerover uIs|IconButton /template/ Border TextBlock#Icon">
-                                            <Setter Property="Foreground" Value="Black" />
+                                            Selector="StackPanel:pointerover uIs|IconButton">
+                                            <Setter Property="Foreground" Value="#4C0102" />
                                         </Style>
                                     </StackPanel.Styles>
                                     <uIs:IconButton
-                                        IsVisible="{TemplateBinding ShowCloseButton}"
+                                        IsVisible="{Binding ShowCloseButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         IconFont="{x:Static extensions:IconFonts.MacosClose}"
+                                        Width="12" Height="12"
                                         FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
                                         Command="{Binding DataContext.CloseWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                        Foreground="#FF605C" Background="#FF605C" />
+                                        Background="#FF605C" />
                                     <uIs:IconButton
-                                        IsVisible="{TemplateBinding ShowMinButton}"
+                                        IsVisible="{Binding ShowMinButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         IconFont="{x:Static extensions:IconFonts.MacosMinimize}"
+                                        Width="12" Height="12"
                                         FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
                                         Command="{Binding DataContext.MinimizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                        Background="#FFBD44" Foreground="#FFBD44" />
+                                        Background="#FFBD44" />
                                     <uIs:IconButton
-                                        IsVisible="{TemplateBinding ShowMaxButton}"
+                                        IsVisible="{Binding ShowMaxButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         IconFont="{x:Static extensions:IconFonts.MacosMaximize}"
+                                        Width="12" Height="12"
                                         FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
                                         Command="{Binding DataContext.MaximizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                        Background="#00CA4E" Foreground="#00CA4E" />
+                                        Background="#00CA4E" />
                                 </StackPanel>
                                 <ContentControl
                                     Template="{Binding  $parent[uIs:TuDogWindow].TitleBarLeftAreaTemplate}" />
@@ -65,20 +72,23 @@
                                                     Value="{DynamicResource AccentFillColorDefaultBrush}" />
                                         </Style>
                                     </StackPanel.Styles>
-                                    <uIs:IconButton IsVisible="{TemplateBinding ShowMinButton}"
-                                                    Command="{Binding DataContext.MinimizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                                                    IconFont="{x:Static extensions:IconFonts.WindowsMinimize}" />
+                                    <uIs:IconButton
+                                        IsVisible="{Binding ShowMinButton, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Command="{Binding DataContext.MinimizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
+                                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                        IconFont="{x:Static extensions:IconFonts.WindowsMinimize}" />
 
-                                    <uIs:IconButton IsVisible="{TemplateBinding ShowMaxButton}"
-                                                    Command="{Binding DataContext.MaximizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                                                    IconFont="{x:Static extensions:IconFonts.WindowsMaximize}" />
+                                    <uIs:IconButton
+                                        IsVisible="{Binding ShowMaxButton, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Command="{Binding DataContext.MaximizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
+                                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                        IconFont="{x:Static extensions:IconFonts.WindowsMaximize}" />
 
-                                    <uIs:IconButton IsVisible="{TemplateBinding ShowCloseButton}"
-                                                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                                                    Command="{Binding DataContext.CloseWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                                    IconFont="{x:Static extensions:IconFonts.WindowsClose}" />
+                                    <uIs:IconButton
+                                        IsVisible="{Binding ShowCloseButton, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                        Command="{Binding DataContext.CloseWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
+                                        IconFont="{x:Static extensions:IconFonts.WindowsClose}" />
                                 </StackPanel>
 
                                 <ContentControl
