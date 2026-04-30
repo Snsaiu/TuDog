@@ -9,7 +9,7 @@
         <Setter Property="TitleBarTemplate">
             <Setter.Value>
                 <ControlTemplate TargetType="uIs:TuDogWindow" x:DataType="uIs:TuDogWindow">
-                    <Border Background="{DynamicResource LayerFillColorAltBrush}">
+                    <Border>
                         <Grid ColumnDefinitions="Auto,*,Auto">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel Spacing="6" Orientation="Horizontal"

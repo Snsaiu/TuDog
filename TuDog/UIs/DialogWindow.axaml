@@ -12,16 +12,15 @@
         WindowDecorations="None"
         TransparencyLevelHint="Transparent"
         Background="Transparent"
-        x:DataType="{x:Type uIs:DialogWindow}"
-        ExtendClientAreaToDecorationsHint="True">
+        x:DataType="{x:Type uIs:DialogWindow}">
     <Window.Template>
         <ControlTemplate TargetType="uIs:DialogWindow">
             <Border Margin="12"
                     Background="{DynamicResource RiderPanelBackgroundBrush}"
                     BorderBrush="{DynamicResource SurfaceStrokeColorFlyoutBrush}"
                     BorderThickness="1"
-                    CornerRadius="12"
-                    BoxShadow="0 4 20 0 #33000000">
+                    BoxShadow="0 4 20 0 #33000000"
+                    CornerRadius="12">
                 <Grid RowDefinitions="Auto,*,Auto">
                     <Border Grid.Row="0"
                             Background="{DynamicResource RiderChromeBackgroundBrush}"

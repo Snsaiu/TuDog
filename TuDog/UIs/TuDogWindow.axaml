@@ -12,7 +12,7 @@
 
     <Window.Template>
         <ControlTemplate>
-            <Grid RowDefinitions="Auto,*" Background="{DynamicResource SolidBackgroundFillColorBase}">
+            <Grid RowDefinitions="Auto,*" Background="DarkGray">
                 <Border Grid.Row="0" x:Name="PART_TitleBar">
                     <ContentControl Template="{TemplateBinding TitleBarTemplate}" />
                 </Border>
