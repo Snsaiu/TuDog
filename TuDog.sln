@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11018.127 d18.0
+VisualStudioVersion = 18.0.11018.127
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuDog", "TuDog\TuDog.csproj", "{434A0718-F121-A0A9-F49F-991A93B63D2B}"
 EndProject
@@ -23,6 +23,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{8D91BED7-A17D-48BF-AB7F-21271843D16C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{D5D3A62B-F52B-4B4C-8684-83B3A38C4478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication", "AvaloniaApplication\AvaloniaApplication\AvaloniaApplication.csproj", "{6A3DBD2B-5D86-41C3-94F4-EABED2E4C33D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication.Android", "AvaloniaApplication\AvaloniaApplication.Android\AvaloniaApplication.Android.csproj", "{E9BE332D-0CCE-4F72-B0A4-039FDDBC5C11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication.Desktop", "AvaloniaApplication\AvaloniaApplication.Desktop\AvaloniaApplication.Desktop.csproj", "{802E82AD-C8C3-4161-ADB9-8DB756B68D52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication.iOS", "AvaloniaApplication\AvaloniaApplication.iOS\AvaloniaApplication.iOS.csproj", "{FF0974E8-4AF1-4F3C-BEC5-DB3B6CA8107F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication.Browser", "AvaloniaApplication\AvaloniaApplication.Browser\AvaloniaApplication.Browser.csproj", "{40B01879-580A-4268-9DAA-A5C73E83E076}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,12 +64,37 @@ Global
 		{D5D3A62B-F52B-4B4C-8684-83B3A38C4478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D3A62B-F52B-4B4C-8684-83B3A38C4478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D3A62B-F52B-4B4C-8684-83B3A38C4478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A3DBD2B-5D86-41C3-94F4-EABED2E4C33D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A3DBD2B-5D86-41C3-94F4-EABED2E4C33D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A3DBD2B-5D86-41C3-94F4-EABED2E4C33D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A3DBD2B-5D86-41C3-94F4-EABED2E4C33D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9BE332D-0CCE-4F72-B0A4-039FDDBC5C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9BE332D-0CCE-4F72-B0A4-039FDDBC5C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9BE332D-0CCE-4F72-B0A4-039FDDBC5C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9BE332D-0CCE-4F72-B0A4-039FDDBC5C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{802E82AD-C8C3-4161-ADB9-8DB756B68D52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{802E82AD-C8C3-4161-ADB9-8DB756B68D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{802E82AD-C8C3-4161-ADB9-8DB756B68D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{802E82AD-C8C3-4161-ADB9-8DB756B68D52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0974E8-4AF1-4F3C-BEC5-DB3B6CA8107F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0974E8-4AF1-4F3C-BEC5-DB3B6CA8107F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0974E8-4AF1-4F3C-BEC5-DB3B6CA8107F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0974E8-4AF1-4F3C-BEC5-DB3B6CA8107F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B01879-580A-4268-9DAA-A5C73E83E076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B01879-580A-4268-9DAA-A5C73E83E076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B01879-580A-4268-9DAA-A5C73E83E076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B01879-580A-4268-9DAA-A5C73E83E076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D5D3A62B-F52B-4B4C-8684-83B3A38C4478} = {8D91BED7-A17D-48BF-AB7F-21271843D16C}
+		{6A3DBD2B-5D86-41C3-94F4-EABED2E4C33D} = {8D91BED7-A17D-48BF-AB7F-21271843D16C}
+		{E9BE332D-0CCE-4F72-B0A4-039FDDBC5C11} = {8D91BED7-A17D-48BF-AB7F-21271843D16C}
+		{802E82AD-C8C3-4161-ADB9-8DB756B68D52} = {8D91BED7-A17D-48BF-AB7F-21271843D16C}
+		{FF0974E8-4AF1-4F3C-BEC5-DB3B6CA8107F} = {8D91BED7-A17D-48BF-AB7F-21271843D16C}
+		{40B01879-580A-4268-9DAA-A5C73E83E076} = {8D91BED7-A17D-48BF-AB7F-21271843D16C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9C704C9-0741-449B-BE03-DF37561BA00C}

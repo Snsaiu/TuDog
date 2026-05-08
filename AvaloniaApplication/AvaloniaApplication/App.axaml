@@ -1,0 +1,16 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaApplication.App"
+             RequestedThemeVariant="Default">
+	<!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<FontFamily x:Key="iconFont">avares://AvaloniaApplication/Assets/IconFont/iconfont.ttf#iconfont</FontFamily>
+		</ResourceDictionary>
+	</Application.Resources>
+	<Application.Styles>
+		<StyleInclude Source="avares://TuDog/Bootstrap/TuDogStyles.axaml" />
+		<FluentTheme />
+	</Application.Styles>
+</Application>

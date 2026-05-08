@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	  <IsPackable>false</IsPackable>
+  </PropertyGroup>
+	<PropertyGroup>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\IconFont\IconFont.json" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="Assets\IconFont\IconFont.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="$(MSBuildProjectFile)" />
+	</ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="Assets\IconFont\IconFont.json" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Assets\IconFont\iconfont.ttf" />
+		<AvaloniaResource Include="Assets\IconFont\iconfont.ttf" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\TuDog.IocAttribute\TuDog.IocAttribute.csproj" />
+	  <ProjectReference Include="..\..\TuDog.IocAutoRegisterSourceGenerator\TuDog.IocAutoRegisterSourceGenerator\TuDog.IocAutoRegisterSourceGenerator.csproj"  OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+	  <ProjectReference Include="..\..\TuDog.LoggerMetrics\TuDog.LoggerMetrics.csproj" />
+	  <ProjectReference Include="..\..\TuDog\TuDog.csproj" />
+	  <ProjectReference Include="..\..\YouYan.Hamster\YouYan.Hamster.csproj" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<ScanAssemblyRule>^AvaloniaApplication</ScanAssemblyRule>
+	</PropertyGroup>
+</Project>

@@ -1,9 +1,9 @@
 using Avalonia.Markup.Xaml;
-using Demo.ViewModels;
-using DryIoc;
+using AvaloniaApplication.ViewModels;
+using AvaloniaApplication.Views;
 using TuDog.Bootstrap;
 
-namespace Demo;
+namespace AvaloniaApplication;
 
 public partial class App : TuDogApplication
 {
@@ -15,11 +15,6 @@ public partial class App : TuDogApplication
 
     public override object CreateShell()
     {
-        return new MainWindow { DataContext = new MainWindowViewModel() };
-    }
-
-    protected override void Register(IContainer collection)
-    {
-        base.Register(collection);
+        return new MainWindow { DataContext = new MainViewModel() };
     }
 }
