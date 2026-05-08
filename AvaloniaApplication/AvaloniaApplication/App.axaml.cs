@@ -15,6 +15,6 @@ public partial class App : TuDogApplication
 
     public override object CreateShell()
     {
-        return new MainWindow { DataContext = new MainViewModel() };
+        return new HomeView { DataContext = new HomeViewModel() };
     }
 }

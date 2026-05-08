@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>AvaloniaApplication</string>
 	<key>CFBundleIdentifier</key>
-	<string>companyName.AvaloniaApplication</string>
+	<string>com.yanyan.AvaloniaApplication</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -39,5 +39,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
