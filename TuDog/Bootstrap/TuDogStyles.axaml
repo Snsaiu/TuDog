@@ -1,8 +1,14 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
+<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Add Resources Here -->
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://TuDog/Bootstrap/TuDogResources.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+
     <StyleInclude Source="avares://TuDog/UIs/InfoBox.axaml" />
     <StyleInclude Source="avares://TuDog/UIs/Styles/TuDogWindowStyle.axaml" />
     <StyleInclude Source="avares://TuDog/UIs/Styles/ButtonStyle.axaml" />
-
 </Styles>

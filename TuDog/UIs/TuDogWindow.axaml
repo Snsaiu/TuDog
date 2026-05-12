@@ -8,19 +8,26 @@
                  x:Class="TuDog.UIs.TuDogWindow"
                  x:DataType="bootstrap:TuDogWindowViewModelBase"
                  WindowState="{Binding WindowState, Mode=TwoWay}"
+                 Background="{DynamicResource RiderWindowBackgroundBrush}"
                  WindowDecorations="None">
 
     <Window.Template>
         <ControlTemplate>
-            <Grid RowDefinitions="Auto,*" Background="DarkGray">
-                <Border Grid.Row="0" x:Name="PART_TitleBar">
-                    <ContentControl Template="{TemplateBinding TitleBarTemplate}" />
-                </Border>
-                <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
+            <Border Background="{DynamicResource RiderWindowBackgroundBrush}"
+                    BorderBrush="{DynamicResource RiderBorderBrush}"
+                    BorderThickness="1">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" x:Name="PART_TitleBar" Background="Transparent">
+                        <ContentControl Template="{TemplateBinding TitleBarTemplate}" />
+                    </Border>
+                    <Border Grid.Row="1" Background="{DynamicResource RiderPanelBackgroundBrush}">
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </Border>
 
-                <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
-                             Margin="0,5,5,0" />
-            </Grid>
+                    <uIs:InfoBox Grid.RowSpan="2" VerticalAlignment="Top" x:Name="PART_InfoBox" HorizontalAlignment="Right"
+                                 Margin="0,10,10,0" />
+                </Grid>
+            </Border>
         </ControlTemplate>
     </Window.Template>
 </uIs:TuDogWindow>

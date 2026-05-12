@@ -1,4 +1,4 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
+<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:uIs="clr-namespace:TuDog.UIs"
         xmlns:extensions="clr-namespace:TuDog.Extensions"
@@ -6,105 +6,134 @@
 
     <Style Selector="uIs|TuDogWindow">
         <Setter Property="MinWidth" Value="400" />
+        <Setter Property="Background" Value="{DynamicResource RiderWindowBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource RiderTitleForegroundBrush}" />
         <Setter Property="TitleBarTemplate">
             <Setter.Value>
                 <ControlTemplate TargetType="uIs:TuDogWindow" x:DataType="uIs:TuDogWindow">
-                    <Border>
-                        <Grid ColumnDefinitions="Auto,*,Auto">
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Spacing="6" Orientation="Horizontal"
+                    <Border Background="{DynamicResource RiderChromeBackgroundBrush}"
+                            BorderBrush="{DynamicResource RiderBorderBrush}"
+                            BorderThickness="0,0,0,1"
+                            MinHeight="{DynamicResource RiderTitleBarHeight}">
+                        <Grid ColumnDefinitions="Auto,*,Auto"
+                              MinHeight="{DynamicResource RiderTitleBarHeight}">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="10,0,0,0"
+                                        Spacing="10">
+                                <StackPanel Spacing="6"
+                                            Orientation="Horizontal"
                                             IsVisible="{OnPlatform Default=false,macOS=true}"
-                                            Margin="8,5,0,5"
                                             Background="Transparent"
                                             VerticalAlignment="Center">
                                     <StackPanel.Styles>
                                         <Style Selector="uIs|IconButton">
                                             <Setter Property="Foreground" Value="Transparent" />
                                         </Style>
-                                        <Style
-                                            Selector="StackPanel:pointerover uIs|IconButton">
+                                        <Style Selector="StackPanel:pointerover uIs|IconButton">
                                             <Setter Property="Foreground" Value="#4C0102" />
                                         </Style>
                                     </StackPanel.Styles>
                                     <uIs:IconButton
                                         IsVisible="{Binding ShowCloseButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         IconFont="{x:Static extensions:IconFonts.MacosClose}"
-                                        Width="12" Height="12"
-                                        FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
+                                        Width="12"
+                                        Height="12"
+                                        FontFamily="{DynamicResource tuDogIconFont}"
                                         Command="{Binding DataContext.CloseWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
                                         Background="#FF605C" />
                                     <uIs:IconButton
                                         IsVisible="{Binding ShowMinButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         IconFont="{x:Static extensions:IconFonts.MacosMinimize}"
-                                        Width="12" Height="12"
-                                        FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
+                                        Width="12"
+                                        Height="12"
+                                        FontFamily="{DynamicResource tuDogIconFont}"
                                         Command="{Binding DataContext.MinimizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
                                         Background="#FFBD44" />
                                     <uIs:IconButton
                                         IsVisible="{Binding ShowMaxButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         IconFont="{x:Static extensions:IconFonts.MacosMaximize}"
-                                        Width="12" Height="12"
-                                        FontFamily="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont"
+                                        Width="12"
+                                        Height="12"
+                                        FontFamily="{DynamicResource tuDogIconFont}"
                                         Command="{Binding DataContext.MaximizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
                                         Background="#00CA4E" />
                                 </StackPanel>
-                                <ContentControl
-                                    Template="{Binding  $parent[uIs:TuDogWindow].TitleBarLeftAreaTemplate}" />
+
+                                <ContentControl VerticalAlignment="Center"
+                                                Template="{Binding $parent[uIs:TuDogWindow].TitleBarLeftAreaTemplate}" />
                             </StackPanel>
 
                             <ContentControl Grid.Column="1"
+                                            VerticalAlignment="Stretch"
                                             Template="{Binding $parent[uIs:TuDogWindow].TitleTemplate}" />
 
                             <DockPanel Grid.Column="2" LastChildFill="True">
-                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="6"
+                                <StackPanel DockPanel.Dock="Right"
+                                            Orientation="Horizontal"
+                                            Spacing="0"
                                             IsVisible="{OnPlatform Default=false,Windows=true,Linux=true}">
                                     <StackPanel.Styles>
                                         <Style Selector="uIs|IconButton">
-                                            <Setter Property="FontFamily"
-                                                    Value="avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont" />
-                                            <Setter Property="FontSize" Value="14" />
-                                            <Setter Property="Width" Value="40" />
-                                            <Setter Property="Height" Value="40" />
+                                            <Setter Property="FontFamily" Value="{DynamicResource tuDogIconFont}" />
+                                            <Setter Property="FontSize" Value="11" />
+                                            <Setter Property="Width" Value="44" />
+                                            <Setter Property="Height" Value="{DynamicResource RiderTitleBarHeight}" />
                                             <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Foreground" Value="{DynamicResource RiderTitleForegroundBrush}" />
                                         </Style>
                                         <Style Selector="uIs|IconButton:pointerover">
-                                            <Setter Property="Background"
-                                                    Value="{DynamicResource AccentFillColorDefaultBrush}" />
+                                            <Setter Property="Background" Value="{DynamicResource RiderControlHoverBrush}" />
+                                        </Style>
+                                        <Style Selector="uIs|IconButton:pressed">
+                                            <Setter Property="Background" Value="{DynamicResource RiderControlPressedBrush}" />
+                                        </Style>
+                                        <Style Selector="uIs|IconButton.windowCloseButton:pointerover">
+                                            <Setter Property="Background" Value="{DynamicResource RiderCloseHoverBrush}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource RiderCloseForegroundHoverBrush}" />
+                                        </Style>
+                                        <Style Selector="uIs|IconButton.windowCloseButton:pressed">
+                                            <Setter Property="Background" Value="{DynamicResource RiderCloseHoverBrush}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource RiderCloseForegroundHoverBrush}" />
                                         </Style>
                                     </StackPanel.Styles>
                                     <uIs:IconButton
                                         IsVisible="{Binding ShowMinButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         Command="{Binding DataContext.MinimizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                                         IconFont="{x:Static extensions:IconFonts.WindowsMinimize}" />
 
                                     <uIs:IconButton
                                         IsVisible="{Binding ShowMaxButton, RelativeSource={RelativeSource TemplatedParent}}"
                                         Command="{Binding DataContext.MaximizeWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
-                                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                                         IconFont="{x:Static extensions:IconFonts.WindowsMaximize}" />
 
                                     <uIs:IconButton
+                                        Classes="windowCloseButton"
                                         IsVisible="{Binding ShowCloseButton, RelativeSource={RelativeSource TemplatedParent}}"
-                                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                                         Command="{Binding DataContext.CloseWindowCommand, RelativeSource={RelativeSource AncestorType=uIs:TuDogWindow}}"
                                         IconFont="{x:Static extensions:IconFonts.WindowsClose}" />
                                 </StackPanel>
 
-                                <ContentControl
-                                    Template="{Binding $parent[uIs:TuDogWindow].TitleBarRightAreaTemplate}" />
+                                <ContentControl VerticalAlignment="Center"
+                                                Margin="0,0,8,0"
+                                                Template="{Binding $parent[uIs:TuDogWindow].TitleBarRightAreaTemplate}" />
                             </DockPanel>
                         </Grid>
-
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="TitleTemplate">
             <ControlTemplate>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
-                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                           Text="{Binding $parent[uIs:TuDogWindow].Title }" />
+                <Border Background="Transparent"
+                        MinHeight="{DynamicResource RiderTitleBarHeight}"
+                        Padding="12,0">
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource RiderTitleForegroundBrush}"
+                               Text="{Binding $parent[uIs:TuDogWindow].Title }" />
+                </Border>
             </ControlTemplate>
         </Setter>
     </Style>

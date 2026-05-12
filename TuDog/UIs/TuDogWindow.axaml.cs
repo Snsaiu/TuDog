@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
+using Avalonia.VisualTree;
 using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.MessageBarService;
@@ -113,16 +114,16 @@ public partial class TuDogWindow : Window
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+        if (_titleBar is not null)
+        {
+            _titleBar.PointerPressed -= WindowDragHandle_OnPointerPressed;
+        }
+
         _infoBox = e.NameScope.Get<InfoBox>("PART_InfoBox");
         _titleBar = e.NameScope.Get<Border>("PART_TitleBar");
-        _titleBar.PointerMoved += WindowDragHandle_OnPointerMoved;
         _titleBar.PointerPressed += WindowDragHandle_OnPointerPressed;
-        _titleBar.PointerReleased += WindowDragHandle_OnPointerReleased;
         TuDogApplication.InfoBox = _infoBox;
     }
-
-    private bool _isWindowDragInEffect = false;
-    private Point _cursorPositionAtWindowDragStart = new(0, 0);
 
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
@@ -130,25 +131,14 @@ public partial class TuDogWindow : Window
             vm.LoadedCommand.Execute(null);
     }
 
-    private void WindowDragHandle_OnPointerMoved(object? sender, PointerEventArgs e)
-    {
-        if (_isWindowDragInEffect)
-        {
-            var currentCursorPosition = e.GetPosition(this);
-            var cursorPositionDelta = currentCursorPosition - _cursorPositionAtWindowDragStart;
-
-            Position = this.PointToScreen(cursorPositionDelta);
-        }
-    }
-
     private void WindowDragHandle_OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        _isWindowDragInEffect = true;
-        _cursorPositionAtWindowDragStart = e.GetPosition(this);
-    }
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+            return;
 
-    private void WindowDragHandle_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
-    {
-        _isWindowDragInEffect = false;
+        if (e.Source is Visual visual && (visual is Button || visual.FindAncestorOfType<Button>() is not null))
+            return;
+
+        BeginMoveDrag(e);
     }
 }

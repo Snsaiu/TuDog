@@ -1,4 +1,47 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="RiderWindowBackgroundBrush" Color="#F3F5F8" />
+            <SolidColorBrush x:Key="RiderPanelBackgroundBrush" Color="#FCFCFD" />
+            <SolidColorBrush x:Key="RiderChromeBackgroundBrush" Color="#E9EDF3" />
+            <SolidColorBrush x:Key="RiderBorderBrush" Color="#CDD5DF" />
+            <SolidColorBrush x:Key="RiderTitleForegroundBrush" Color="#1F2329" />
+            <SolidColorBrush x:Key="RiderMutedForegroundBrush" Color="#6B7280" />
+            <SolidColorBrush x:Key="RiderControlHoverBrush" Color="#DCE4F1" />
+            <SolidColorBrush x:Key="RiderControlPressedBrush" Color="#CFD8E7" />
+            <SolidColorBrush x:Key="RiderCloseHoverBrush" Color="#E81123" />
+            <SolidColorBrush x:Key="RiderCloseForegroundHoverBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="RiderAccentBrush" Color="#3574F0" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="RiderWindowBackgroundBrush" Color="#F3F5F8" />
+            <SolidColorBrush x:Key="RiderPanelBackgroundBrush" Color="#FCFCFD" />
+            <SolidColorBrush x:Key="RiderChromeBackgroundBrush" Color="#E9EDF3" />
+            <SolidColorBrush x:Key="RiderBorderBrush" Color="#CDD5DF" />
+            <SolidColorBrush x:Key="RiderTitleForegroundBrush" Color="#1F2329" />
+            <SolidColorBrush x:Key="RiderMutedForegroundBrush" Color="#6B7280" />
+            <SolidColorBrush x:Key="RiderControlHoverBrush" Color="#DCE4F1" />
+            <SolidColorBrush x:Key="RiderControlPressedBrush" Color="#CFD8E7" />
+            <SolidColorBrush x:Key="RiderCloseHoverBrush" Color="#E81123" />
+            <SolidColorBrush x:Key="RiderCloseForegroundHoverBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="RiderAccentBrush" Color="#3574F0" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="RiderWindowBackgroundBrush" Color="#25272B" />
+            <SolidColorBrush x:Key="RiderPanelBackgroundBrush" Color="#2B2D30" />
+            <SolidColorBrush x:Key="RiderChromeBackgroundBrush" Color="#31343A" />
+            <SolidColorBrush x:Key="RiderBorderBrush" Color="#434851" />
+            <SolidColorBrush x:Key="RiderTitleForegroundBrush" Color="#DFE1E5" />
+            <SolidColorBrush x:Key="RiderMutedForegroundBrush" Color="#9DA3AE" />
+            <SolidColorBrush x:Key="RiderControlHoverBrush" Color="#3B4048" />
+            <SolidColorBrush x:Key="RiderControlPressedBrush" Color="#4A505A" />
+            <SolidColorBrush x:Key="RiderCloseHoverBrush" Color="#C75450" />
+            <SolidColorBrush x:Key="RiderCloseForegroundHoverBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="RiderAccentBrush" Color="#4C89FF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <x:Double x:Key="RiderTitleBarHeight">38</x:Double>
     <FontFamily x:Key="tuDogIconFont">avares://TuDog/Assets/IconFonts/iconfont.ttf#iconfont</FontFamily>
 </ResourceDictionary>
