@@ -7,4 +7,5 @@ public interface IMessageBarService
     public void ShowError(string message, string title, bool showClose);
 
     public void ShowWarning(string message, string title, bool showClose);
+    public void ShowInfo(string message, string title, bool showClose);
 }

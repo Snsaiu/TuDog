@@ -23,6 +23,11 @@ public sealed class MessageBarService : IMessageBarService
         CreateInfoModel(message, title, showClose, MessageState.Warning);
     }
 
+    public void ShowInfo(string message, string title, bool showClose)
+    {
+        CreateInfoModel(message, title, showClose, MessageState.Info);
+    }
+
     public void RegisterInfoBox(InfoBox infoBox)
     {
         _infoBox = infoBox;

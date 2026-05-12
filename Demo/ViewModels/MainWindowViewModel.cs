@@ -32,6 +32,12 @@ public partial class MainWindowViewModel : TuDogWindowViewModelBase
     }
 
     [RelayCommand]
+    private void ShowInfoBox()
+    {
+        _messageBarService.ShowWarning("This is an info message!", "info", true);
+    }
+
+    [RelayCommand]
     public void ShowTextInputDialog()
     {
         _regionManager.AddToRegion<TextInputDialogViewModel>(regionName);

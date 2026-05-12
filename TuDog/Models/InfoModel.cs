@@ -41,18 +41,6 @@ public partial class InfoModel : ModelBase
             Title = title,
             ShowClose = showClose,
             Type = type,
-            BackgroundBrush = CreateBackgroundBrush(type)
-        };
-    }
-
-    private static IBrush CreateBackgroundBrush(MessageState type)
-    {
-        return type switch
-        {
-            MessageState.Success => new SolidColorBrush(Color.Parse("#FFDCFCE7")),
-            MessageState.Error => new SolidColorBrush(Color.Parse("#FFFEE2E2")),
-            MessageState.Warning => new SolidColorBrush(Color.Parse("#FFFEF3C7")),
-            _ => new SolidColorBrush(Color.Parse("#FFE0F2FE"))
         };
     }
 

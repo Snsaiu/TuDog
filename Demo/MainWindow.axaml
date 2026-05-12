@@ -44,8 +44,10 @@
                 <Button Content="自定义弹框" Command="{Binding ShowCustomDialogCommand}" />
                 <Button Content="MessageBox" Command="{Binding ShowMessageBarCommand}" />
                 <Button Content="Icon提供方" Command="{Binding ShowIconProviderCommand }" />
+                <Button Content="InforBox" Command="{Binding ShowInfoBoxCommand }" />
             </StackPanel>
             <ContentControl Margin="5" DockPanel.Dock="Right" attachs:RegionBehavior.Region="mainContainer" />
         </DockPanel>
+        <uIs:InfoBox Margin="0,10,5,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </uIs:TuDogWindow>
