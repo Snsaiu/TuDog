@@ -32,7 +32,7 @@ public abstract class TuDogApplication : Application
 
     public static TopLevel? TopLevel { get; set; }
 
-    public static Window? MainWindow { get; private set; }
+    public static Window? MainWindow { get; set; }
 
     internal static InfoBox? InfoBox { get; set; }
 
