@@ -63,11 +63,13 @@
                             <Button Name="SecondaryButton"
                                     Grid.Column="1"
                                     Classes="dialogTight"
+                                    HorizontalContentAlignment="Center"
                                     MinWidth="100"
                                     Command="{Binding $parent[uIs:DialogWindow].CancelCommand}"
                                     Content="{TemplateBinding SecondaryButtonText}" />
                             <Button Name="PrimaryButton"
                                     Grid.Column="2"
+                                    HorizontalContentAlignment="Center"
                                     Classes="accent dialogTight"
                                     MinWidth="110"
                                     Command="{Binding $parent[uIs:DialogWindow].ConfirmCommand}"
