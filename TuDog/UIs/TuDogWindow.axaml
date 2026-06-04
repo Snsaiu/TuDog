@@ -10,7 +10,8 @@
                  x:DataType="bootstrap:TuDogWindowViewModelBase"
                  WindowState="{Binding WindowState, Mode=TwoWay}"
                  Background="{DynamicResource RiderWindowBackgroundBrush}"
-                 WindowDecorations="BorderOnly">
+                 WindowDecorations="BorderOnly"
+                 ExtendClientAreaToDecorationsHint="True">
 
     <Window.Template>
         <ControlTemplate>
