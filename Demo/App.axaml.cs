@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using Demo.ViewModels;
 using DryIoc;
 using TuDog.Bootstrap;
+using TuDog.Extensions;
 
 namespace Demo;
 
@@ -23,5 +24,6 @@ public partial class App : TuDogApplication
     protected override void Register(IContainer collection)
     {
         base.Register(collection);
+        collection.ConfigPreferenceFileName(() => "Demo.json");
     }
 }

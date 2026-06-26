@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using Demo.Services;
 using DryIoc;
 using TuDog.Bootstrap;
 using TuDog.Interfaces.IDialogServers;
@@ -69,6 +70,9 @@ public partial class MainWindowViewModel : TuDogWindowViewModelBase
 
     protected override Task OnLoaded()
     {
+        var nameConfigService = TuDogApplication.ServiceProvider.Resolve<INameConfigService>();
+        nameConfigService.Set("hello");
+
         return base.OnLoaded();
     }
 }

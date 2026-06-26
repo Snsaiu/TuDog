@@ -6,15 +6,15 @@ namespace TuDog.Interfaces.PreferenceServices.Impl;
 
 public sealed class JsonPreferenceService : IPreferenceService
 {
-    private const string fileName = "preferences.json";
-    private readonly string fullFilePath;
+    internal static string PreferencesFilePath = "preferences.json";
+    private readonly string _fullFilePath;
 
     public JsonPreferenceService()
     {
         if (OperatingSystem.IsAndroid())
             // 返回应用的配置目录
         {
-            fullFilePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+            _fullFilePath = Path.Combine(FileSystem.AppDataDirectory, PreferencesFilePath);
         }
         else
         {
@@ -26,51 +26,55 @@ public sealed class JsonPreferenceService : IPreferenceService
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
-            fullFilePath = Path.Combine(folder, fileName);
+            _fullFilePath = Path.Combine(folder, PreferencesFilePath);
         }
 
-        if (!File.Exists(fullFilePath))
-            File.WriteAllText(fullFilePath, "{}");
+        if (!File.Exists(_fullFilePath))
+            File.WriteAllText(_fullFilePath, "{}");
     }
 
     public void Set<T>(string key, T value)
     {
-        var json = File.ReadAllText(fullFilePath);
+        var json = File.ReadAllText(_fullFilePath);
         var config = JObject.Parse(json);
-        config[key] = JToken.FromObject(value);
-        File.WriteAllText(fullFilePath, config.ToString(Formatting.Indented));
+
+        if (value is null)
+            config.Remove(key);
+        else
+            config[key] = JToken.FromObject(value);
+
+        File.WriteAllText(_fullFilePath, config.ToString(Formatting.Indented));
     }
 
     public void SetNull(string key)
     {
-        var json = File.ReadAllText(fullFilePath);
+        var json = File.ReadAllText(_fullFilePath);
         var config = JObject.Parse(json);
         if (config.ContainsKey(key))
             config.Remove(key);
-        File.WriteAllText(fullFilePath, config.ToString(Formatting.Indented));
+        File.WriteAllText(_fullFilePath, config.ToString(Formatting.Indented));
     }
 
     public T? GetOrDefault<T>(string key)
     {
-        var json = File.ReadAllText(fullFilePath);
+        var json = File.ReadAllText(_fullFilePath);
         var config = JObject.Parse(json);
-        if (!config.ContainsKey(key)) return default;
-
-        var obj = config[key].ToObject<T>();
+        if (!config.TryGetValue(key, out var value)) return default;
+        var obj = value.ToObject<T>();
         return obj;
     }
 
     public T Get<T>(string key, T defaultValue)
     {
-        var json = File.ReadAllText(fullFilePath);
+        var json = File.ReadAllText(_fullFilePath);
         var config = JObject.Parse(json);
-        if (!config.ContainsKey(key))
+        if (!config.TryGetValue(key, out var value))
         {
             Set(key, defaultValue);
             return defaultValue;
         }
 
-        var obj = config[key].ToObject<T>();
-        return obj;
+        var obj = value.ToObject<T>();
+        return obj ?? defaultValue;
     }
 }
