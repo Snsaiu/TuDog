@@ -10,10 +10,11 @@
         <uIs:InputTextViewModel />
     </Design.DataContext>
     <Grid>
-        <AutoCompleteBox HorizontalAlignment="Stretch"
-                         MaxLength="{Binding MaxLength}"
-                         Watermark="{Binding Watermark}" Text="{Binding Text}"
-                         Focusable="True" />
+        <TextBox HorizontalAlignment="Stretch"
+                 Name="textBox"
+                 MaxLength="{Binding MaxLength}"
+                 Watermark="{Binding Watermark}" Text="{Binding Text}"
+                 Focusable="True" />
     </Grid>
 
 </UserControl>

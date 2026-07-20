@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.Input;
 using DryIoc;
@@ -73,6 +74,35 @@ public partial class DialogWindow : Window
     internal CancellationTokenSource? CancellationTokenSource { get; set; }
 
     public bool WhenCancelCloseWindow { get; set; } = true;
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        if (e.Handled)
+        {
+            base.OnKeyDown(e);
+            return;
+        }
+
+        switch (e.Key)
+        {
+            case Key.Enter:
+                ExecuteCommand(ConfirmCommand, ref e);
+                break;
+            case Key.Escape:
+                ExecuteCommand(CancelCommand, ref e);
+                break;
+        }
+
+        base.OnKeyDown(e);
+    }
+
+    private static void ExecuteCommand(System.Windows.Input.ICommand command, ref KeyEventArgs e)
+    {
+        if (!command.CanExecute(null)) return;
+
+        e.Handled = true;
+        command.Execute(null);
+    }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
